@@ -1,0 +1,34 @@
+flowchart TD
+    A([Início da geração - Ano Letivo]) --> B[SEMED define modo<br/>Sequencial por prioridade ou Integrado]
+    B --> C[Coleta de insumos<br/>Turma×Disciplina×Professor • Aulas semanais<br/>Slots • Indisponibilidades • Dias por lotação<br/>Deslocamento entre escolas • Aulas já travadas]
+    C --> D{Modo}
+    D -->|Sequencial| E[Próxima escola na ordem de prioridade]
+    D -->|Integrado| F[Todas as escolas juntas]
+    E --> G[Solver OR-Tools CP-SAT<br/>Restrições rígidas + penalidades<br/>+ mínima alteração do que existe]
+    F --> G
+
+    G --> H{Viável?}
+    H -->|Não| I[Mostra travas/restrições em conflito]
+    I --> J[Coordenador destrava ou ajusta<br/>ou conflito de rede → SEMED arbitra]
+    J --> C
+
+    H -->|Sim| K[Grade PROPOSTA]
+    K --> L[Professores revisam a própria grade]
+    L --> M{Aceite}
+    M -->|Aceita| N[Aulas do professor → TRAVADAS]
+    M -->|Contesta| O[Registra indisponibilidade / observação]
+    O --> C
+
+    K --> P[Coordenador edita manualmente]
+    P --> Q{Validação em tempo real<br/>conflito professor/turma/deslocamento}
+    Q -->|Conflito| P
+    Q -->|OK| R[Aula → TRAVADA_MANUAL]
+
+    N --> S{Todos aceitaram?}
+    R --> S
+    S -->|Não| C
+    S -->|Sim| T[Grade PUBLICADA - versão congelada]
+    T --> U{Modo sequencial e<br/>há próxima escola?}
+    U -->|Sim| V[Travas viram indisponibilidade<br/>dos professores multi-escola]
+    V --> E
+    U -->|Não| W([Fim])

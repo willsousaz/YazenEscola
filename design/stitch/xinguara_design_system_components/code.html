@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara Design System</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0B5FFF", /* Matching user request for Primary Blue */
+                        "primary-dark": "#0047cc",
+                        "secondary": "#28A745", /* Accent Green */
+                        "danger": "#E53935", /* Error Red */
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#0f1623",
+                        "surface": "#ffffff",
+                        "text-main": "#0d121c",
+                        "text-sub": "#47649e",
+                        "border-color": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Roboto", "sans-serif"],
+                        "mono": ["Fira Code", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .sidebar-link.active {
+            background-color: #e6ebf4;
+            color: #0B5FFF;
+            font-weight: 600;
+        }
+        
+        .sidebar-link.active .icon {
+            color: #0B5FFF;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .code-block {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main h-screen flex overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 h-full bg-surface border-r border-border-color flex flex-col shrink-0 z-20 transition-all duration-300">
+<div class="p-6 border-b border-border-color">
+<div class="flex flex-col gap-1">
+<h1 class="text-text-main text-lg font-bold leading-tight tracking-tight">Xinguara DS</h1>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">v1.0.2</span>
+<span class="text-text-sub text-xs">Updated 2h ago</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar p-4 flex flex-col gap-1">
+<a class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group" href="#brand">
+<span class="material-symbols-outlined icon text-text-sub group-hover:text-primary transition-colors text-[20px]">palette</span>
+<span class="text-sm">Brand Identity</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group" href="#typography">
+<span class="material-symbols-outlined icon text-text-sub group-hover:text-primary transition-colors text-[20px]">text_fields</span>
+<span class="text-sm">Typography</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group" href="#components">
+<span class="material-symbols-outlined icon text-text-sub group-hover:text-primary transition-colors text-[20px]">toggle_on</span>
+<span class="text-sm">Components</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group ml-9 border-l border-border-color pl-4" href="#inputs">
+<span class="text-sm">Inputs &amp; Forms</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group ml-9 border-l border-border-color pl-4" href="#tables">
+<span class="text-sm">Data Tables</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group" href="#iconography">
+<span class="material-symbols-outlined icon text-text-sub group-hover:text-primary transition-colors text-[20px]">sticker</span>
+<span class="text-sm">Iconography</span>
+</a>
+<a class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-main hover:bg-slate-50 transition-colors group" href="#spacing">
+<span class="material-symbols-outlined icon text-text-sub group-hover:text-primary transition-colors text-[20px]">grid_4x4</span>
+<span class="text-sm">Spacing &amp; Grid</span>
+</a>
+</nav>
+<div class="p-4 border-t border-border-color">
+<div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50 border border-slate-100">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xs">JS</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-text-main">Jane Smith</span>
+<span class="text-xs text-text-sub">Lead Designer</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 h-full overflow-y-auto bg-background-light scroll-smooth">
+<div class="max-w-[1024px] mx-auto px-8 py-12 flex flex-col gap-16 pb-32">
+<!-- Header Section -->
+<header class="flex flex-col gap-4 border-b border-border-color pb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-black text-text-main tracking-tight">Xinguara Design System</h1>
+<p class="text-lg text-text-sub max-w-2xl">The official source of truth for the Municipal School Management Platform. These guidelines ensure consistency, accessibility, and efficiency across all municipal education software.</p>
+</div>
+<div class="flex gap-4 mt-2">
+<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium border border-blue-200">System v2.4</span>
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium border border-green-200">Stable</span>
+</div>
+</header>
+<!-- Brand Identity -->
+<section class="scroll-mt-8" id="brand">
+<div class="flex items-center gap-3 mb-6">
+<h2 class="text-2xl font-bold text-text-main">1. Brand Identity</h2>
+<div class="h-px bg-border-color flex-1 ml-4"></div>
+</div>
+<p class="text-text-sub mb-8">Our core palette defines the emotional weight of the interface. The Primary Blue conveys trust and stability essential for educational governance.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Primary -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-border-color flex flex-col gap-4">
+<div class="h-32 w-full rounded-lg bg-[#0B5FFF] shadow-inner flex items-end p-4">
+<span class="text-white font-mono text-sm opacity-90">AA Large Compliant</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-text-main">Primary Blue</h3>
+<p class="text-sm text-text-sub mt-1">Main actions, navigation, links</p>
+</div>
+<div class="text-right">
+<p class="font-mono text-sm font-medium text-text-main">#0B5FFF</p>
+<p class="text-xs text-text-sub mt-1">rgb(11, 95, 255)</p>
+</div>
+</div>
+</div>
+<!-- Secondary -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-border-color flex flex-col gap-4">
+<div class="h-32 w-full rounded-lg bg-[#28A745] shadow-inner flex items-end p-4">
+<span class="text-white font-mono text-sm opacity-90">Success States</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-text-main">Accent Green</h3>
+<p class="text-sm text-text-sub mt-1">Confirmations, positive trends</p>
+</div>
+<div class="text-right">
+<p class="font-mono text-sm font-medium text-text-main">#28A745</p>
+<p class="text-xs text-text-sub mt-1">rgb(40, 167, 69)</p>
+</div>
+</div>
+</div>
+<!-- Danger -->
+<div class="bg-white p-4 rounded-xl shadow-sm border border-border-color flex flex-col gap-4">
+<div class="h-32 w-full rounded-lg bg-[#E53935] shadow-inner flex items-end p-4">
+<span class="text-white font-mono text-sm opacity-90">Critical Actions</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-text-main">Error Red</h3>
+<p class="text-sm text-text-sub mt-1">Destructive actions, alerts</p>
+</div>
+<div class="text-right">
+<p class="font-mono text-sm font-medium text-text-main">#E53935</p>
+<p class="text-xs text-text-sub mt-1">rgb(229, 57, 53)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Typography -->
+<section class="scroll-mt-8" id="typography">
+<div class="flex items-center gap-3 mb-6">
+<h2 class="text-2xl font-bold text-text-main">2. Typography</h2>
+<div class="h-px bg-border-color flex-1 ml-4"></div>
+</div>
+<div class="bg-white rounded-xl shadow-sm border border-border-color overflow-hidden">
+<div class="grid grid-cols-12 border-b border-border-color bg-slate-50/50">
+<div class="col-span-3 p-4 text-xs font-semibold text-text-sub uppercase tracking-wider border-r border-border-color">Role</div>
+<div class="col-span-7 p-4 text-xs font-semibold text-text-sub uppercase tracking-wider border-r border-border-color">Example</div>
+<div class="col-span-2 p-4 text-xs font-semibold text-text-sub uppercase tracking-wider">Details</div>
+</div>
+<!-- H1 -->
+<div class="grid grid-cols-12 border-b border-border-color hover:bg-slate-50 transition-colors">
+<div class="col-span-3 p-6 text-sm text-text-sub border-r border-border-color flex flex-col justify-center">
+<span class="font-mono text-primary font-medium">Heading 1</span>
+<span>Page Titles</span>
+</div>
+<div class="col-span-7 p-6 border-r border-border-color flex items-center">
+<span class="text-4xl font-bold text-text-main">School Dashboard</span>
+</div>
+<div class="col-span-2 p-6 text-xs text-text-sub flex flex-col justify-center font-mono">
+<span>Inter Bold</span>
+<span>36px / 120%</span>
+</div>
+</div>
+<!-- H2 -->
+<div class="grid grid-cols-12 border-b border-border-color hover:bg-slate-50 transition-colors">
+<div class="col-span-3 p-6 text-sm text-text-sub border-r border-border-color flex flex-col justify-center">
+<span class="font-mono text-primary font-medium">Heading 2</span>
+<span>Section Headers</span>
+</div>
+<div class="col-span-7 p-6 border-r border-border-color flex items-center">
+<span class="text-2xl font-semibold text-text-main">Student Enrollment</span>
+</div>
+<div class="col-span-2 p-6 text-xs text-text-sub flex flex-col justify-center font-mono">
+<span>Inter SemiBold</span>
+<span>24px / 130%</span>
+</div>
+</div>
+<!-- H3 -->
+<div class="grid grid-cols-12 border-b border-border-color hover:bg-slate-50 transition-colors">
+<div class="col-span-3 p-6 text-sm text-text-sub border-r border-border-color flex flex-col justify-center">
+<span class="font-mono text-primary font-medium">Heading 3</span>
+<span>Card Titles</span>
+</div>
+<div class="col-span-7 p-6 border-r border-border-color flex items-center">
+<span class="text-lg font-medium text-text-main">Recent Activities</span>
+</div>
+<div class="col-span-2 p-6 text-xs text-text-sub flex flex-col justify-center font-mono">
+<span>Inter Medium</span>
+<span>18px / 140%</span>
+</div>
+</div>
+<!-- Body -->
+<div class="grid grid-cols-12 hover:bg-slate-50 transition-colors">
+<div class="col-span-3 p-6 text-sm text-text-sub border-r border-border-color flex flex-col justify-center">
+<span class="font-mono text-primary font-medium">Body Regular</span>
+<span>Paragraphs</span>
+</div>
+<div class="col-span-7 p-6 border-r border-border-color flex items-center">
+<span class="text-base font-normal text-text-main font-body">The municipal school system serves over 15,000 students across 42 campuses. Regular updates ensure data integrity.</span>
+</div>
+<div class="col-span-2 p-6 text-xs text-text-sub flex flex-col justify-center font-mono">
+<span>Roboto Regular</span>
+<span>16px / 150%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Components: Buttons -->
+<section class="scroll-mt-8" id="components">
+<div class="flex items-center gap-3 mb-6">
+<h2 class="text-2xl font-bold text-text-main">3. Component Library</h2>
+<div class="h-px bg-border-color flex-1 ml-4"></div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-border-color mb-8">
+<h3 class="text-lg font-semibold mb-6 text-text-main">Buttons</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
+<!-- Primary -->
+<div class="flex flex-col gap-3">
+<button class="bg-primary hover:bg-primary-dark text-white font-medium py-2.5 px-5 rounded-lg transition-colors shadow-sm text-sm w-full">
+                                Primary Action
+                            </button>
+<span class="text-xs text-center text-text-sub font-mono">.btn-primary</span>
+</div>
+<!-- Secondary/Outline -->
+<div class="flex flex-col gap-3">
+<button class="bg-white hover:bg-slate-50 text-primary border border-primary font-medium py-2.5 px-5 rounded-lg transition-colors text-sm w-full">
+                                Secondary Action
+                            </button>
+<span class="text-xs text-center text-text-sub font-mono">.btn-outline</span>
+</div>
+<!-- Ghost -->
+<div class="flex flex-col gap-3">
+<button class="bg-transparent hover:bg-slate-100 text-text-sub hover:text-text-main font-medium py-2.5 px-5 rounded-lg transition-colors text-sm w-full">
+                                Ghost Button
+                            </button>
+<span class="text-xs text-center text-text-sub font-mono">.btn-ghost</span>
+</div>
+<!-- Disabled -->
+<div class="flex flex-col gap-3">
+<button class="bg-slate-100 text-slate-400 font-medium py-2.5 px-5 rounded-lg cursor-not-allowed text-sm w-full border border-transparent" disabled="">
+                                Disabled
+                            </button>
+<span class="text-xs text-center text-text-sub font-mono">:disabled</span>
+</div>
+</div>
+</div>
+<!-- Inputs & Forms -->
+<div class="bg-white p-8 rounded-xl shadow-sm border border-border-color mb-8 scroll-mt-12" id="inputs">
+<h3 class="text-lg font-semibold mb-6 text-text-main">Form Inputs</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<!-- Default State -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-text-main">Student Name</label>
+<input class="w-full px-3 py-2.5 border border-border-color rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-slate-400" placeholder="e.g. Maria Silva" type="text"/>
+<span class="text-xs text-text-sub">Default state</span>
+</div>
+<!-- Focused State (Simulated via CSS classes for demo) -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-text-main text-primary">Registration ID</label>
+<input class="w-full px-3 py-2.5 border border-primary rounded-lg text-sm focus:outline-none ring-4 ring-primary/10 text-text-main" type="text" value="2023-XIN-001"/>
+<span class="text-xs text-primary">Focused state</span>
+</div>
+<!-- Error State -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-danger">Parent Email</label>
+<div class="relative">
+<input class="w-full px-3 py-2.5 border border-danger text-danger rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-danger/20 pr-10" type="email" value="invalid-email@"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-danger text-[20px]">error</span>
+</div>
+<span class="text-xs text-danger">Please enter a valid email address.</span>
+</div>
+<!-- Success State -->
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-secondary">Classroom Assignment</label>
+<div class="relative">
+<input class="w-full px-3 py-2.5 border border-secondary text-secondary rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-secondary/20 pr-10" type="text" value="Room 304 - Science Lab"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5 text-secondary text-[20px]">check_circle</span>
+</div>
+<span class="text-xs text-secondary">Classroom available.</span>
+</div>
+</div>
+</div>
+<!-- Data Tables -->
+<div class="bg-white rounded-xl shadow-sm border border-border-color overflow-hidden scroll-mt-12" id="tables">
+<div class="p-6 border-b border-border-color flex justify-between items-center bg-slate-50/50">
+<h3 class="text-lg font-semibold text-text-main">Data Tables</h3>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-200 rounded text-text-sub"><span class="material-symbols-outlined text-[20px]">filter_list</span></button>
+<button class="p-1.5 hover:bg-slate-200 rounded text-text-sub"><span class="material-symbols-outlined text-[20px]">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 text-text-sub font-medium border-b border-border-color">
+<tr>
+<th class="px-6 py-4 w-12"><input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/></th>
+<th class="px-6 py-4">Student Name</th>
+<th class="px-6 py-4">ID Number</th>
+<th class="px-6 py-4">Grade</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-color">
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4"><input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-text-main">Ana Clara Oliveira</td>
+<td class="px-6 py-4 text-text-sub font-mono">2023001</td>
+<td class="px-6 py-4 text-text-sub">9th Grade</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Active</span></td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-sub hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4"><input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-text-main">João Pedro Santos</td>
+<td class="px-6 py-4 text-text-sub font-mono">2023042</td>
+<td class="px-6 py-4 text-text-sub">9th Grade</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Pending</span></td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-sub hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="px-6 py-4"><input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4 font-medium text-text-main">Maria Eduarda Lima</td>
+<td class="px-6 py-4 text-text-sub font-mono">2023115</td>
+<td class="px-6 py-4 text-text-sub">8th Grade</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Suspended</span></td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-sub hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Iconography -->
+<section class="scroll-mt-8" id="iconography">
+<div class="flex items-center gap-3 mb-6">
+<h2 class="text-2xl font-bold text-text-main">4. Iconography</h2>
+<div class="h-px bg-border-color flex-1 ml-4"></div>
+</div>
+<p class="text-text-sub mb-8">We utilize Material Symbols Outlined for consistency. Icons should be used at 20px or 24px sizes.</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<!-- Academic -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-border-color">
+<h4 class="text-xs font-bold text-text-sub uppercase tracking-wider mb-4 border-b border-border-color pb-2">Academic</h4>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">school</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">assignment</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">cast_for_education</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Personnel -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-border-color">
+<h4 class="text-xs font-bold text-text-sub uppercase tracking-wider mb-4 border-b border-border-color pb-2">Personnel</h4>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">groups</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">badge</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">supervisor_account</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Logistics -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-border-color">
+<h4 class="text-xs font-bold text-text-sub uppercase tracking-wider mb-4 border-b border-border-color pb-2">Logistics</h4>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">directions_bus</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">map</span>
+</div>
+</div>
+</div>
+</div>
+<!-- System -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-border-color">
+<h4 class="text-xs font-bold text-text-sub uppercase tracking-wider mb-4 border-b border-border-color pb-2">System</h4>
+<div class="grid grid-cols-3 gap-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="p-2 rounded-lg bg-slate-50 group-hover:bg-blue-50 text-text-main group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined">logout</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Spacing -->
+<section class="scroll-mt-8" id="spacing">
+<div class="flex items-center gap-3 mb-6">
+<h2 class="text-2xl font-bold text-text-main">5. Spacing &amp; Grid</h2>
+<div class="h-px bg-border-color flex-1 ml-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white p-8 rounded-xl shadow-sm border border-border-color">
+<h3 class="text-lg font-semibold mb-4 text-text-main">Base Unit: 4px</h3>
+<p class="text-text-sub mb-6 text-sm">We use an 8px grid system for layout and component sizing, with 4px as a half-step for tight spacing.</p>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="w-1 h-4 bg-red-400 opacity-80 rounded-sm"></div>
+<span class="font-mono text-xs text-text-sub">0.25rem (4px) - Tight</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-2 h-4 bg-red-400 opacity-80 rounded-sm"></div>
+<span class="font-mono text-xs text-text-sub">0.5rem (8px) - Base</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 bg-red-400 opacity-80 rounded-sm"></div>
+<span class="font-mono text-xs text-text-sub">1rem (16px) - Default</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-6 h-4 bg-red-400 opacity-80 rounded-sm"></div>
+<span class="font-mono text-xs text-text-sub">1.5rem (24px) - Medium</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-4 bg-red-400 opacity-80 rounded-sm"></div>
+<span class="font-mono text-xs text-text-sub">2rem (32px) - Section</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-8 rounded-xl shadow-sm border border-border-color relative overflow-hidden">
+<h3 class="text-lg font-semibold mb-4 text-text-main">Grid Layout</h3>
+<p class="text-text-sub mb-6 text-sm">Responsive 12-column grid with 24px gutters on desktop.</p>
+<div class="flex gap-4 h-32 w-full">
+<!-- Visualizing columns -->
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">1</div>
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">2</div>
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">3</div>
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">4</div>
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">...</div>
+<div class="flex-1 bg-blue-100/50 border border-blue-200 border-dashed rounded flex items-center justify-center text-blue-400 text-xs">12</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

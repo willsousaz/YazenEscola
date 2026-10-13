@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Kitchen Inventory &amp; Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1664f3",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2435",
+                        "surface-highlight": "#232e42",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better blending in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232e42; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2e3b52; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen flex flex-col">
+<div class="flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Main Layout Container -->
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation / Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#223049] bg-background-dark px-6 py-4 lg:px-10">
+<div class="flex items-center gap-4 text-white">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Escola Municipal Xinguara</h2>
+<p class="text-[#90a5cb] text-xs font-medium">Kitchen Dashboard</p>
+</div>
+</div>
+<div class="flex items-center gap-4 lg:gap-8">
+<div class="hidden lg:flex items-center gap-2 rounded-lg bg-[#232e42] px-4 py-2">
+<span class="material-symbols-outlined text-[#90a5cb]">calendar_today</span>
+<span class="text-white font-medium">Oct 24, 2023</span>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 bg-surface-highlight hover:bg-[#2e3b52] text-white text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="truncate hidden sm:inline">Log Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/30" data-alt="Kitchen staff profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAe5C-q8dw5blSOMr17Gu6holplcvjeRYAE4YUg2jJYPqOhN1TWwlWgIJqgYtVSSwolipvCDrJdx0ukGh7N3sIttOyo8zMdCmsURBmq5oIjo1rpm02NLUrDnnSMl-WzK1vCUzHBmfFg6KyOILMd3-_m8pTa6-jJS7Xlk9dD8zk4UcakkYHggTpT1cxbTvWOawf161NzNC-t3ErQoaIbxVytjYDa17w0vfTPJ2DefbZtIljxRleKTUOmsFq6UJ79Z7ffP3AzOkwq1WY");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 justify-center py-6 px-4 lg:px-8">
+<div class="flex flex-col max-w-[1200px] flex-1 gap-6">
+<!-- Top Metrics Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-surface-dark border border-[#223049] shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#90a5cb] text-sm font-medium uppercase tracking-wider">Students Present</p>
+<span class="material-symbols-outlined text-primary text-2xl">groups</span>
+</div>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">342</p>
+<div class="flex items-center gap-1 text-xs text-green-400">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12 from yesterday</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-surface-dark border border-[#223049] shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#90a5cb] text-sm font-medium uppercase tracking-wider">Portions Planned</p>
+<span class="material-symbols-outlined text-orange-400 text-2xl">restaurant</span>
+</div>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">350</p>
+<div class="flex items-center gap-1 text-xs text-[#90a5cb]">
+<span>Based on attendance</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-5 bg-surface-dark border border-[#223049] shadow-sm">
+<div class="flex items-center justify-between">
+<p class="text-[#90a5cb] text-sm font-medium uppercase tracking-wider">Staff On Duty</p>
+<span class="material-symbols-outlined text-purple-400 text-2xl">badge</span>
+</div>
+<p class="text-white tracking-light text-3xl font-bold leading-tight">8</p>
+</div>
+<div class="flex flex-col justify-center items-center gap-2 rounded-xl p-5 bg-primary cursor-pointer hover:bg-blue-600 transition-colors shadow-lg shadow-blue-900/20 group">
+<span class="material-symbols-outlined text-white text-3xl group-hover:scale-110 transition-transform">emergency_home</span>
+<span class="text-white font-bold text-center">Emergency<br/>Request</span>
+</div>
+</div>
+<!-- Layout: Left (Menu & Ingredients) | Right (Actions & Forms) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
+<!-- Left Column: Menu Display -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Main Meal Card -->
+<section class="flex flex-col gap-4">
+<h2 class="text-white text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">restaurant_menu</span>
+                                    Today's Menu
+                                </h2>
+<div class="flex flex-col md:flex-row items-stretch gap-0 rounded-xl bg-surface-dark border border-[#223049] overflow-hidden">
+<div class="w-full md:w-2/5 min-h-[200px] bg-cover bg-center relative" data-alt="Close up of a delicious Feijoada dish" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFdtiunb7xHKAIdp9a4fjkgsfYRF3ZoCcKWRdg5Y0EFzfgNMdT5HtaVKqg5EeIpuTbW6-vz2ERcvgj_kN08A_5tN6Vg5oBNDYDEbm5IRgk4ZErc55L-lGvI-H6ML3Ia09ncPQ48NCtDKpSCFfUYDvA8J5I7zx6UtdzL_XNjUq4e5f6gx8Hi5ejoZVtmIoQV8gcIXvryfP_HMfSYCNOy4gsHTzA3l8WwXKPrukg7RnrILR9XSKYFvAhHQEoGecPqFWzJ0vgwoZOTFw");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 md:hidden">
+<h3 class="text-white text-2xl font-bold">Traditional Feijoada</h3>
+</div>
+</div>
+<div class="flex flex-col justify-center p-6 md:p-8 flex-1 gap-4">
+<div class="hidden md:block">
+<span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">Main Course</span>
+<h3 class="text-white text-3xl font-bold mt-2">Traditional Feijoada</h3>
+</div>
+<p class="text-[#90a5cb] text-lg leading-relaxed">
+                                            Black bean stew with fresh pork cuts, served with white rice, sautéed kale, and orange slices.
+                                        </p>
+<div class="flex flex-wrap gap-3 mt-2">
+<div class="flex items-center gap-2 bg-[#232e42] px-3 py-1.5 rounded-lg text-sm text-[#ccdbe8]">
+<span class="material-symbols-outlined text-base">nutrition</span>
+                                                850 kcal
+                                            </div>
+<div class="flex items-center gap-2 bg-[#232e42] px-3 py-1.5 rounded-lg text-sm text-[#ccdbe8]">
+<span class="material-symbols-outlined text-base">allergies</span>
+                                                Pork, Soy
+                                            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ingredients Checklist -->
+<section class="flex flex-col gap-4 flex-1">
+<div class="flex items-center justify-between">
+<h2 class="text-white text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+                                        Required Inventory
+                                    </h2>
+<span class="text-xs font-medium text-[#90a5cb] bg-[#232e42] px-2 py-1 rounded">Auto-calculated for 350 portions</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-dark border border-[#223049]">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-[#232e42] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#90a5cb]">egg</span>
+</div>
+<div>
+<p class="font-bold text-white">Black Beans</p>
+<p class="text-xs text-[#90a5cb]">Dry Stock</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-white">15 kg</p>
+<p class="text-xs text-green-400 font-medium">In Stock</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-dark border border-[#223049]">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-[#232e42] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#90a5cb]">rice_bowl</span>
+</div>
+<div>
+<p class="font-bold text-white">White Rice</p>
+<p class="text-xs text-[#90a5cb]">Dry Stock</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-white">12 kg</p>
+<p class="text-xs text-green-400 font-medium">In Stock</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-dark border border-[#223049]">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-[#232e42] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#90a5cb]">set_meal</span>
+</div>
+<div>
+<p class="font-bold text-white">Pork Loin</p>
+<p class="text-xs text-[#90a5cb]">Frozen</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-white">18 kg</p>
+<p class="text-xs text-orange-400 font-medium flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[10px] filled">circle</span>
+                                                Low Stock
+                                            </p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-dark border border-[#223049]">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-[#232e42] flex items-center justify-center">
+<span class="material-symbols-outlined text-[#90a5cb]">eco</span>
+</div>
+<div>
+<p class="font-bold text-white">Fresh Kale</p>
+<p class="text-xs text-[#90a5cb]">Produce</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xl font-bold text-white">30 bun</p>
+<p class="text-xs text-green-400 font-medium">Delivered Today</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Interactive Panel -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<!-- Daily Report Form -->
+<section class="flex flex-col gap-0 rounded-xl bg-surface-highlight border border-primary/20 overflow-hidden shadow-lg h-full">
+<div class="bg-primary/10 p-4 border-b border-primary/20">
+<h3 class="text-white font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+                                        Consumption Report
+                                    </h3>
+</div>
+<div class="p-5 flex flex-col gap-5 flex-1">
+<!-- Select -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-[#90a5cb]">Select Ingredient</label>
+<div class="relative">
+<select class="w-full h-12 bg-background-dark border border-[#223049] text-white text-base rounded-lg px-4 appearance-none focus:ring-2 focus:ring-primary focus:border-transparent outline-none">
+<option>Black Beans</option>
+<option>White Rice</option>
+<option>Pork Loin</option>
+<option>Fresh Kale</option>
+<option>Oranges</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#90a5cb]">expand_more</span>
+</div>
+</div>
+<!-- Stepper Input 1 -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-[#90a5cb]">Amount Used (kg/liters)</label>
+<div class="flex items-center gap-3">
+<button class="size-12 rounded-lg bg-[#2e3b52] hover:bg-[#3b4c68] active:bg-primary text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="flex-1 h-12 bg-background-dark border border-[#223049] text-center text-xl font-bold text-white rounded-lg focus:ring-2 focus:ring-primary outline-none" type="number" value="15.0"/>
+<button class="size-12 rounded-lg bg-[#2e3b52] hover:bg-[#3b4c68] active:bg-primary text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Stepper Input 2 -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-[#90a5cb]">Waste / Loss (kg/liters)</label>
+<div class="flex items-center gap-3">
+<button class="size-12 rounded-lg bg-[#2e3b52] hover:bg-[#3b4c68] active:bg-primary text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<input class="flex-1 h-12 bg-background-dark border border-[#223049] text-center text-xl font-bold text-white rounded-lg focus:ring-2 focus:ring-primary outline-none" type="number" value="0.5"/>
+<button class="size-12 rounded-lg bg-[#2e3b52] hover:bg-[#3b4c68] active:bg-primary text-white flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="flex-1"></div>
+<button class="w-full h-14 mt-4 bg-primary hover:bg-blue-600 active:bg-blue-700 text-white text-lg font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-900/30 transition-all transform active:scale-[0.98]">
+<span class="material-symbols-outlined">check_circle</span>
+                                        Log Consumption
+                                    </button>
+</div>
+</section>
+<!-- Quick Action Buttons -->
+<div class="grid grid-cols-2 gap-3">
+<button class="aspect-[4/3] bg-surface-dark border border-[#223049] hover:bg-[#2e3b52] rounded-xl flex flex-col items-center justify-center gap-2 p-3 transition-colors group">
+<span class="material-symbols-outlined text-3xl text-[#90a5cb] group-hover:text-white transition-colors">local_shipping</span>
+<span class="text-sm font-bold text-center text-[#90a5cb] group-hover:text-white leading-tight">Receive<br/>Delivery</span>
+</button>
+<button class="aspect-[4/3] bg-surface-dark border border-[#223049] hover:bg-[#2e3b52] rounded-xl flex flex-col items-center justify-center gap-2 p-3 transition-colors group">
+<span class="material-symbols-outlined text-3xl text-[#90a5cb] group-hover:text-white transition-colors">tune</span>
+<span class="text-sm font-bold text-center text-[#90a5cb] group-hover:text-white leading-tight">Stock<br/>Adjustment</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

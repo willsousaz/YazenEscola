@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offline Data &amp; Pre-fetch Settings</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#1754cf",
+                "primary-dark": "#103f9e",
+                "background-light": "#f6f6f8",
+                "background-dark": "#111621",
+                "surface-light": "#ffffff",
+                "surface-dark": "#1a2233",
+                "text-main": "#0e121b",
+                "text-secondary": "#4e6797",
+              },
+              fontFamily: {
+                "display": ["Lexend", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<div class="relative flex w-full flex-col bg-surface-light dark:bg-surface-dark border-b border-[#e7ebf3] dark:border-[#2a3449]">
+<div class="flex justify-center px-5 lg:px-40 py-3">
+<div class="flex w-full max-w-[960px] items-center justify-between">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">wifi_off</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Offline Settings</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+<a class="text-text-main dark:text-white text-sm font-medium" href="#">Offline Data</a>
+</div>
+<button class="hidden sm:flex h-10 items-center justify-center rounded-lg bg-primary px-6 text-sm font-bold text-white shadow-sm transition-all hover:bg-primary-dark">
+                        Save
+                    </button>
+<div class="h-10 w-10 overflow-hidden rounded-full bg-gray-200 ring-2 ring-white dark:ring-gray-700">
+<img alt="User Avatar" class="h-full w-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8wGGXZNc2_FLzh6DtHDArFHNi6FoD7N--s3cpFjny1QjadJOFQP7h0updVL9-HHJg_LWyq3mRAriQa5Fq55DDQQaF9l9LvJjl0Do4rBdgP4ML9JKlL8uicJu5CRU54zlLqP7wMQPWrHi4iNV1CEZqOwmfK4GzCtpDqoL4oPFKWziy4wSQzNJozgGgw9q4xwm9dQv0eYeFCgfVVjCNRzojEOelb-HHyIJI1ujRCIYd7PLKoNLvsJa9yyrGTTcJ2s1qoynS5fjIdxs"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex flex-1 justify-center px-4 py-8 md:px-10">
+<div class="flex w-full max-w-[720px] flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-bold text-text-main dark:text-white">Offline Data &amp; Pre-fetch</h1>
+<p class="text-text-secondary dark:text-gray-400 max-w-xl">
+                    Manage how the Xinguara system handles data when you have limited internet connectivity. Pre-fetch essential records before heading to rural areas.
+                </p>
+</div>
+<!-- Connectivity Settings -->
+<section class="flex flex-col gap-4">
+<h3 class="text-lg font-bold text-text-main dark:text-white">Connectivity Preferences</h3>
+<div class="overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e7ebf3] dark:border-[#2a3449]">
+<!-- Item 1: Wifi Only -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 border-b border-[#e7ebf3] dark:border-[#2a3449] hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">wifi</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-text-main dark:text-white">Auto-sync on Wi-Fi only</span>
+<span class="text-sm text-text-secondary dark:text-gray-400 mt-0.5">Save mobile data by only syncing large files when connected to Wi-Fi networks.</span>
+</div>
+</div>
+<label class="relative inline-flex cursor-pointer items-center shrink-0 mt-2 sm:mt-0 ml-16 sm:ml-0">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-7 w-12 rounded-full bg-gray-200 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Item 2: Download Records -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
+<div class="flex items-start gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">download_for_offline</span>
+</div>
+<div class="flex flex-col">
+<span class="text-base font-semibold text-text-main dark:text-white">Download Student Records</span>
+<span class="text-sm text-text-secondary dark:text-gray-400 mt-0.5">Automatically cache student grades, attendance, and history for offline access in rural areas.</span>
+</div>
+</div>
+<label class="relative inline-flex cursor-pointer items-center shrink-0 mt-2 sm:mt-0 ml-16 sm:ml-0">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-7 w-12 rounded-full bg-gray-200 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Pre-fetch Status -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-text-main dark:text-white">Sync Status</h3>
+<span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-200">
+<span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                        Active
+                    </span>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e7ebf3] dark:border-[#2a3449] p-6">
+<!-- Background decoration -->
+<div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl"></div>
+<div class="relative flex flex-col sm:flex-row gap-8 items-center">
+<!-- Circular Progress -->
+<div class="relative size-32 shrink-0">
+<svg class="size-full -rotate-90 transform" viewbox="0 0 100 100">
+<circle class="text-gray-200 dark:text-gray-700" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center">
+<span class="text-2xl font-bold text-text-main dark:text-white">75%</span>
+</div>
+</div>
+<div class="flex flex-col flex-1 gap-3 w-full">
+<div class="flex flex-col">
+<h4 class="text-lg font-bold text-text-main dark:text-white">Pre-fetching School Data...</h4>
+<p class="text-sm text-text-secondary dark:text-gray-400">Downloading student records and lesson plans for local caching.</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-text-secondary dark:text-gray-400 uppercase tracking-wide">
+<span>Progress</span>
+<span>342 / 456 Records</span>
+</div>
+<div class="h-2 w-full rounded-full bg-gray-100 dark:bg-gray-800">
+<div class="h-2 rounded-full bg-primary transition-all duration-500" style="width: 75%"></div>
+</div>
+<p class="text-xs text-text-secondary dark:text-gray-500 mt-1">Estimated time remaining: 2 minutes</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Storage Management -->
+<section class="flex flex-col gap-4 mb-10">
+<h3 class="text-lg font-bold text-text-main dark:text-white">Storage Management</h3>
+<div class="overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm border border-[#e7ebf3] dark:border-[#2a3449] p-5">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 text-text-secondary dark:text-gray-400">
+<span class="material-symbols-outlined">database</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main dark:text-white uppercase tracking-wider">Current Cache Size</span>
+<span class="text-2xl font-bold text-text-main dark:text-white">124 MB</span>
+</div>
+</div>
+<div class="h-px w-full bg-gray-100 dark:bg-gray-800 sm:h-12 sm:w-px"></div>
+<div class="flex flex-col sm:items-end gap-2 w-full sm:w-auto">
+<p class="text-sm text-text-secondary dark:text-gray-400 sm:text-right">
+                                Clearing cache will remove all downloaded student records. You will need internet to access them again.
+                            </p>
+<button class="group flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm font-medium text-red-700 transition-colors hover:bg-red-100 hover:text-red-800 dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/40">
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+                                Clear Local Cache
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Mobile Sticky Action Bar -->
+<div class="sm:hidden sticky bottom-0 border-t border-[#e7ebf3] dark:border-[#2a3449] bg-surface-light dark:bg-surface-dark p-4 z-10">
+<button class="flex w-full h-12 items-center justify-center rounded-lg bg-primary text-white font-bold shadow-lg active:scale-[0.98] transition-transform">
+            Save Changes
+        </button>
+</div>
+</body></html>

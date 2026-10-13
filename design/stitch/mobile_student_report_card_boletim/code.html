@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Boletim Escolar - Mobile View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1664f3",
+                        "primary-content": "#ffffff",
+                        "secondary": "#49669c",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                        "success": "#10B981",
+                        "warning": "#F59E0B",
+                        "danger": "#EF4444",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Hide scrollbar for clean look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d121c] dark:text-white min-h-screen flex flex-col font-display antialiased">
+<!-- Wrapper for desktop centralization -->
+<div class="flex-1 flex flex-col items-center w-full">
+<!-- Mobile Container Simulation -->
+<main class="w-full max-w-[600px] bg-white dark:bg-[#1a2333] min-h-screen shadow-xl relative pb-24">
+<!-- Top Navigation / Header -->
+<header class="sticky top-0 z-20 bg-white/90 dark:bg-[#1a2333]/90 backdrop-blur-md border-b border-[#e7ebf4] dark:border-[#2d3a4f] px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-gray-100 dark:hover:bg-[#2d3a4f] rounded-full transition-colors text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-[#0d121c] dark:text-white leading-tight tracking-tight">Boletim Escolar</h1>
+</div>
+<button class="p-2 hover:bg-gray-100 dark:hover:bg-[#2d3a4f] rounded-full transition-colors relative text-secondary dark:text-gray-300">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-danger rounded-full border-2 border-white dark:border-[#1a2333]"></span>
+</button>
+</header>
+<!-- Student Profile Section -->
+<section class="p-6 flex flex-col items-center text-center border-b border-[#e7ebf4] dark:border-[#2d3a4f] bg-[#f8f9fc] dark:bg-[#161e2e]">
+<div class="relative mb-4 group cursor-pointer">
+<div class="size-24 rounded-full bg-cover bg-center ring-4 ring-primary/10 dark:ring-primary/30" data-alt="Student Portrait Smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-5c5XCDZFUZwQq-HeuS6bBLVP7ddcGaIvjan_6iUaWNeoW3vZjFCsdhWRn8rTZfog2hV-roMC0QLct0W3AASwdTzUwlDH_3lj4pJzluSQRSBSQeAoO-jByBQXOkq7jojB2UGCqZQbAs9aQA1gH0vPAmaJz_Ej4yhfZNShv-m8Zi2g_eFAkOkQ-ZmBTuXP9gsKgl7q4tlxy2ITIpyazOm_J_oeOwIuYdjxH8yCwPhI3uUB0BULT-qymgO8dWwIYa1NaAhY3vpUTP8');"></div>
+<div class="absolute bottom-0 right-0 bg-success size-6 rounded-full border-2 border-white dark:border-[#161e2e] flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[14px] font-bold">check</span>
+</div>
+</div>
+<h2 class="text-xl font-bold text-[#0d121c] dark:text-white mb-1">João Silva</h2>
+<p class="text-sm font-medium text-secondary dark:text-gray-400 mb-1">8º Ano - Turma B</p>
+<div class="flex items-center gap-1 text-xs text-secondary/80 dark:text-gray-500 bg-white dark:bg-[#1a2333] px-3 py-1 rounded-full shadow-sm border border-gray-100 dark:border-gray-700">
+<span class="material-symbols-outlined text-[14px]">school</span>
+                    Escola Municipal Xinguara
+                </div>
+</section>
+<!-- Filters & Stats Row -->
+<div class="px-4 py-4 grid grid-cols-2 gap-3 sticky top-[65px] z-10 bg-white dark:bg-[#1a2333] shadow-sm">
+<div class="relative">
+<select class="w-full appearance-none bg-background-light dark:bg-[#101622] border border-[#ced7e8] dark:border-[#2d3a4f] text-[#0d121c] dark:text-white text-sm rounded-lg px-4 py-3 pr-8 font-medium focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all">
+<option value="2023">2023</option>
+<option value="2022">2022</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-secondary pointer-events-none">expand_more</span>
+</div>
+<div class="bg-primary/5 dark:bg-primary/20 border border-primary/10 dark:border-primary/30 rounded-lg flex flex-col justify-center px-4 py-2">
+<span class="text-[10px] font-bold text-primary uppercase tracking-wider">Média Geral</span>
+<div class="flex items-baseline gap-1">
+<span class="text-xl font-bold text-primary">8.2</span>
+<span class="text-xs text-secondary dark:text-gray-400 font-medium">/ 10.0</span>
+</div>
+</div>
+</div>
+<!-- Subject List -->
+<div class="px-4 pb-4 space-y-3">
+<!-- Card 1: Math (Expandable) -->
+<details class="group bg-white dark:bg-[#1a2333] border border-[#ced7e8] dark:border-[#2d3a4f] rounded-xl overflow-hidden transition-all duration-200 open:shadow-md">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none hover:bg-gray-50 dark:hover:bg-[#253041] transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d121c] dark:text-white text-base">Matemática</h3>
+<p class="text-xs text-secondary dark:text-gray-400">Prof. Almeida</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded text-center mb-1">Aprovado</span>
+<span class="text-sm font-bold text-[#0d121c] dark:text-white">8.5</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-4 pb-4 pt-1 bg-background-light/50 dark:bg-[#161e2e]/50 border-t border-[#e7ebf4] dark:border-[#2d3a4f]">
+<div class="grid grid-cols-4 gap-2 mt-2">
+<!-- Bimesters -->
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">1º Bim</span>
+<span class="block text-sm font-bold text-[#0d121c] dark:text-white">8.0</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">2º Bim</span>
+<span class="block text-sm font-bold text-[#0d121c] dark:text-white">9.0</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">3º Bim</span>
+<span class="block text-sm font-bold text-[#0d121c] dark:text-white">8.5</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">4º Bim</span>
+<span class="block text-sm font-bold text-[#0d121c] dark:text-white">8.5</span>
+</div>
+</div>
+<div class="mt-2 flex items-center justify-between bg-white dark:bg-[#1a2333] p-2.5 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
+<span class="text-xs font-medium text-secondary">Recuperação</span>
+<span class="text-xs font-bold text-gray-400">N/A</span>
+</div>
+</div>
+</details>
+<!-- Card 2: Portuguese (Warning) -->
+<details class="group bg-white dark:bg-[#1a2333] border border-[#ced7e8] dark:border-[#2d3a4f] rounded-xl overflow-hidden transition-all duration-200" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none hover:bg-gray-50 dark:hover:bg-[#253041] transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-orange-100 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 flex items-center justify-center">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d121c] dark:text-white text-base">Português</h3>
+<p class="text-xs text-secondary dark:text-gray-400">Profa. Clara</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-warning bg-warning/10 px-2 py-0.5 rounded text-center mb-1">Atenção</span>
+<span class="text-sm font-bold text-[#0d121c] dark:text-white">6.0</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-4 pb-4 pt-1 bg-background-light/50 dark:bg-[#161e2e]/50 border-t border-[#e7ebf4] dark:border-[#2d3a4f]">
+<div class="grid grid-cols-4 gap-2 mt-2">
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">1º Bim</span>
+<span class="block text-sm font-bold text-warning">5.5</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm">
+<span class="block text-[10px] text-secondary font-medium mb-1">2º Bim</span>
+<span class="block text-sm font-bold text-[#0d121c] dark:text-white">6.5</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm opacity-50">
+<span class="block text-[10px] text-secondary font-medium mb-1">3º Bim</span>
+<span class="block text-sm font-bold text-gray-400">--</span>
+</div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm opacity-50">
+<span class="block text-[10px] text-secondary font-medium mb-1">4º Bim</span>
+<span class="block text-sm font-bold text-gray-400">--</span>
+</div>
+</div>
+<div class="mt-2 flex items-center justify-between bg-white dark:bg-[#1a2333] p-2.5 rounded-lg border border-gray-100 dark:border-gray-700 shadow-sm">
+<span class="text-xs font-medium text-secondary">Recuperação</span>
+<span class="text-xs font-bold text-gray-400">--</span>
+</div>
+</div>
+</details>
+<!-- Card 3: Sciences -->
+<details class="group bg-white dark:bg-[#1a2333] border border-[#ced7e8] dark:border-[#2d3a4f] rounded-xl overflow-hidden transition-all duration-200">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none hover:bg-gray-50 dark:hover:bg-[#253041] transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined">science</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d121c] dark:text-white text-base">Ciências</h3>
+<p class="text-xs text-secondary dark:text-gray-400">Prof. Roberto</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded text-center mb-1">Aprovado</span>
+<span class="text-sm font-bold text-[#0d121c] dark:text-white">9.0</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-4 pb-4 pt-1 bg-background-light/50 dark:bg-[#161e2e]/50 border-t border-[#e7ebf4] dark:border-[#2d3a4f]">
+<div class="grid grid-cols-4 gap-2 mt-2">
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">1º</span><span class="text-sm font-bold">9.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">2º</span><span class="text-sm font-bold">9.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">3º</span><span class="text-sm font-bold">--</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">4º</span><span class="text-sm font-bold">--</span></div>
+</div>
+</div>
+</details>
+<!-- Card 4: History -->
+<details class="group bg-white dark:bg-[#1a2333] border border-[#ced7e8] dark:border-[#2d3a4f] rounded-xl overflow-hidden transition-all duration-200">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none hover:bg-gray-50 dark:hover:bg-[#253041] transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d121c] dark:text-white text-base">História</h3>
+<p class="text-xs text-secondary dark:text-gray-400">Profa. Ana</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-success bg-success/10 px-2 py-0.5 rounded text-center mb-1">Aprovado</span>
+<span class="text-sm font-bold text-[#0d121c] dark:text-white">7.5</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-4 pb-4 pt-1 bg-background-light/50 dark:bg-[#161e2e]/50 border-t border-[#e7ebf4] dark:border-[#2d3a4f]">
+<div class="grid grid-cols-4 gap-2 mt-2">
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">1º</span><span class="text-sm font-bold">7.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">2º</span><span class="text-sm font-bold">8.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">3º</span><span class="text-sm font-bold">--</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">4º</span><span class="text-sm font-bold">--</span></div>
+</div>
+</div>
+</details>
+<!-- Card 5: Geography (Danger Example) -->
+<details class="group bg-white dark:bg-[#1a2333] border border-[#ced7e8] dark:border-[#2d3a4f] rounded-xl overflow-hidden transition-all duration-200">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none hover:bg-gray-50 dark:hover:bg-[#253041] transition-colors">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 flex items-center justify-center">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d121c] dark:text-white text-base">Geografia</h3>
+<p class="text-xs text-secondary dark:text-gray-400">Prof. Carlos</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-end">
+<span class="text-xs font-semibold text-danger bg-danger/10 px-2 py-0.5 rounded text-center mb-1">Reprovado</span>
+<span class="text-sm font-bold text-[#0d121c] dark:text-white">4.5</span>
+</div>
+<span class="material-symbols-outlined text-secondary dark:text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="px-4 pb-4 pt-1 bg-background-light/50 dark:bg-[#161e2e]/50 border-t border-[#e7ebf4] dark:border-[#2d3a4f]">
+<div class="grid grid-cols-4 gap-2 mt-2">
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">1º</span><span class="text-sm font-bold text-danger">4.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">2º</span><span class="text-sm font-bold text-danger">5.0</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">3º</span><span class="text-sm font-bold text-gray-400">--</span></div>
+<div class="bg-white dark:bg-[#1a2333] p-2 rounded-lg border border-gray-100 dark:border-gray-700 text-center shadow-sm"><span class="block text-[10px] text-secondary font-medium mb-1">4º</span><span class="text-sm font-bold text-gray-400">--</span></div>
+</div>
+<div class="mt-2 flex items-center justify-between bg-white dark:bg-[#1a2333] p-2.5 rounded-lg border border-red-100 dark:border-red-900/30 shadow-sm bg-red-50 dark:bg-red-900/10">
+<span class="text-xs font-medium text-danger">Recuperação Necessária</span>
+<span class="text-xs font-bold text-danger">--</span>
+</div>
+</div>
+</details>
+</div>
+<!-- Download Button (Floating Action Button style) -->
+<div class="fixed bottom-6 right-6 lg:absolute lg:bottom-6 lg:right-6 z-30">
+<button class="bg-primary hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all rounded-full h-14 w-14 flex items-center justify-center group relative">
+<span class="material-symbols-outlined text-2xl">picture_as_pdf</span>
+<span class="absolute right-16 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        Baixar PDF
+                    </span>
+</button>
+</div>
+</main>
+</div>
+</body></html>

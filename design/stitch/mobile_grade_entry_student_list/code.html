@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Portal - Grade Entry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14a6f5",
+                        "primary-hover": "#0e8ecc",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .animate-check {
+            animation: check-pop 0.3s ease-out forwards;
+        }
+        @keyframes check-pop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 font-display min-h-screen flex overflow-hidden">
+<!-- Sidebar Navigation (Adapted from provided component) -->
+<aside class="hidden lg:flex w-72 flex-col bg-white border-r border-slate-200 h-screen z-20">
+<div class="flex flex-col h-full justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- User Profile -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-12 bg-slate-200" data-alt="Teacher profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCgsyo3_t1XPEJaE5oJB7prIMDwWwgAXvxIK2uvhTKSuZzvLoVjK1I-aHzx4Rauj-PyEUbu5k5eDx1APwGeDq4_S36AdwmKLLG8jqaZKOQgpvMbWPciQfMm47RwyAjz-sh72c_woGr3uZ9Fv4KhkYQ7o30NniRyZhXJ5EmNMAfC5jfNacNePk-1w-QjqjlOsRc_t2JChek42TlXIo2sV3J8leKhxPpK9voPVu3WwYKyX1RECbKEdfXEAsrPROsDmU2bDYWPXKNnVRU");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 text-base font-semibold">Teacher Portal</h1>
+<p class="text-slate-500 text-sm">Municipal School System</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary">school</span>
+<span class="text-sm font-medium">Classes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary">groups</span>
+<span class="text-sm font-medium">Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+<span class="text-sm">Grades</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Action -->
+<button class="flex items-center gap-3 px-3 py-3 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors w-full">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-sm font-medium">Log Out</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen relative overflow-hidden bg-background-light">
+<!-- Sticky Header -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-10 shadow-sm">
+<!-- Breadcrumbs & Title -->
+<div class="px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Classes</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-slate-900 font-medium">Grades</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h2 class="text-2xl font-bold text-slate-900">9º Ano A - Mathematics</h2>
+<span class="text-sm text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">Term 1</span>
+</div>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center gap-3">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary w-64 transition-all" placeholder="Search student..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-lg border border-slate-200 bg-white transition-colors" title="Filter">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-lg border border-slate-200 bg-white transition-colors" title="Sort">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<!-- Quick Stats Bar -->
+<div class="px-6 py-2 bg-slate-50 border-b border-slate-200 flex items-center gap-6 text-sm overflow-x-auto">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="text-slate-600">Total Students: <strong class="text-slate-900">32</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-slate-600">Average Class Score: <strong class="text-emerald-700">7.8</strong></span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="text-slate-600">Pending Grades: <strong class="text-amber-700">12</strong></span>
+</div>
+</div>
+</header>
+<!-- Scrollable Student Grid -->
+<div class="flex-1 overflow-y-auto p-6 pb-24"> <!-- pb-24 for footer space -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
+<!-- Student Card 1 (Complete) -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Ana Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqisXTUVduUCA-i_ZNMxJe2i7ocf30oRmhM6AZAdz7w8ZzAhL2F0X16r3sGcnlh5TSvBhECPgSBD1vEndm8QhDPktu3nen2QhHa7OmhPZeAuTSAD_1Q1W5r_OftI6UH5VLgg8u3Xm4dMz3d0beQ4R230FLhlaNBySgDSQX47ad-natNmXW3fn41boYATmoFkSqlC1y6vgJ3hfRd8vtOUEwTv5AfRx8AvDAOHJiGw_ObB26jwd7TVbp67LAcbmdjyO4ZrdXy3gu-Mk");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Ana Silva</h3>
+<p class="text-xs text-slate-500">ID: 2023001</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-emerald-100 text-emerald-700 text-sm font-bold px-2 py-0.5 rounded-md border border-emerald-200">8.5</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold text-slate-700" type="number" value="8.0"/>
+<span class="material-symbols-outlined text-emerald-500 text-[18px] absolute -right-1 -top-1 bg-white rounded-full animate-check shadow-sm">check_circle</span>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold text-slate-700" type="number" value="9.0"/>
+<span class="material-symbols-outlined text-emerald-500 text-[18px] absolute -right-1 -top-1 bg-white rounded-full animate-check shadow-sm" style="animation-delay: 0.1s;">check_circle</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 2 (Attention Needed) -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Bruno Souza" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBda9YgEm_5mz6x_gHsA0y4Hid-zm-6j-y9D6M13ju-vsQeMSgGezLXH963YG401ADs2LiI0Ed9OhB4WqcTn8ixc5WzCK8ISxsGnJSUgYjodSwD2CTSoEyhcgRRM-7FYY0V8fGCORNLfub3GddNWZT3q5hIzTi6LzwjuQOAJtTDnsY34Ri6QsFdC1RnAJvezCVMZQfdnm1a9qvxAZE7CRLn4s1PQe8vwJDOhTSOhUECfclJgHEBw6nLZrdOLY6PRtMV8vR9zzRyMBQ");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Bruno Souza</h3>
+<p class="text-xs text-slate-500">ID: 2023002</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-red-50 text-red-600 text-sm font-bold px-2 py-0.5 rounded-md border border-red-100">4.5</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-red-200 text-red-600 bg-red-50/30 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold" type="number" value="4.0"/>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-red-200 text-red-600 bg-red-50/30 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold" type="number" value="5.0"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 3 -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Carla Mendez" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDANfyfH_70AlY2wnCKdni6J7weO5RDy0VW7jAFpf9-Erl7Zri0wNeVg1eZpPte6zFZdXEjQasSQ8jWPEoOBpGQXROPp14U7-lcnBC_ADpDl40b42DIHTQQ0aMzfUBU1izdxuSduLnFAkPfKVVl9elJpIg4QWA8t37R912qjpzP20jblv92c11DmFlcackCbr-6CiIeEuZWg0zRaLSj3zOXDZbttoX6OD_YYpMnclHXywxss4hhfE3dygOjss1OQVdxFTlowcYNGCU");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Carla Mendez</h3>
+<p class="text-xs text-slate-500">ID: 2023003</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-slate-100 text-slate-600 text-sm font-bold px-2 py-0.5 rounded-md border border-slate-200">--</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 4 -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Diana Prince" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC0Frc40yesv7XTkTSQnGa7awj4cw_Xj9PbAKUftzkQJoNhNlqvlY92dlDCqM7pGbqKMfm1BRwqbKZl8pm5mg27V5VeSRQUMTRMLquoqCLxH1kZh_no2zZ54r_JouynmmDTtQ2lvu-PR54AIIe65HFiME71AhCKZd5HJqAyYVWIXVvqswyrVvLph408t0ur2x1b4pt5WYRi-wil3dHKhOkj8dsvmjV7jDyMhd3sa2IzRHmxYHBorOXDU-S-6_SXKpNMa3WP3L1YAqI");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Diana Prince</h3>
+<p class="text-xs text-slate-500">ID: 2023004</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-emerald-100 text-emerald-700 text-sm font-bold px-2 py-0.5 rounded-md border border-emerald-200">9.5</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold text-slate-700" type="number" value="9.0"/>
+<span class="material-symbols-outlined text-emerald-500 text-[18px] absolute -right-1 -top-1 bg-white rounded-full animate-check shadow-sm">check_circle</span>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold text-slate-700" type="number" value="10.0"/>
+<span class="material-symbols-outlined text-emerald-500 text-[18px] absolute -right-1 -top-1 bg-white rounded-full animate-check shadow-sm" style="animation-delay: 0.1s;">check_circle</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 5 -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Eduardo Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDS3bBgRuS6a1Mh-rFyYoAJq00Ol-C6sgqS_97jk6oue8kDX_JdePoNQ5SABZ_R8vsjcd5Er7_JX0nsfytPD0weMI4ANh_8RSyK2r6FE2MjjEdZ8XqUfTzokoNfMQzhG8nOWia6b_jbmwV-b8osJa23X0Cujarog7RNF8cBpwV_1G10haCthKVua-hbGv_Z0Sva0LKy4E4pEfoTj5hjcEnYylwGG9R_LEF_hDPNKcop7FBKcBRV_LGae7_PBGyXeSvzF2xm2OO4rqg");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Eduardo Silva</h3>
+<p class="text-xs text-slate-500">ID: 2023005</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-amber-100 text-amber-700 text-sm font-bold px-2 py-0.5 rounded-md border border-amber-200">6.0</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-amber-200 text-amber-700 bg-amber-50/20 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold" type="number" value="6.0"/>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-amber-200 text-amber-700 bg-amber-50/20 rounded-lg focus:border-primary focus:ring-primary/20 py-2 font-bold" type="number" value="6.0"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 6 -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+<div class="p-4 flex items-center gap-4 border-b border-slate-100">
+<div class="bg-slate-200 rounded-full size-12 bg-cover bg-center shrink-0" data-alt="Student Fernanda Torres" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOnzkOwI7n4qzMDbWQXNFIERWYgfFx6KVpW1yvY88iE6xl6yZYaAoum84Iho9fFGuyEARskUvmgE8Fb34-Zwn4cDEqW5B5Vm4HzU-dBP7z7i865tsMFMZhonlZiGklrC-VQGQXcB1DWBe6wZImDkA-PfPDU0Y5qP6J87QY66qOAEh1bx6ZYriCuFfDoEFgF23-nSSaZrmlg-IbWmqjPUMRvindx4OqVmiSLkqnoi45SHtmRcyx2pObTPg-5aOAz55XFf1lIT730Vw");'></div>
+<div class="flex-1 min-w-0">
+<h3 class="text-base font-semibold text-slate-900 truncate">Fernanda Torres</h3>
+<p class="text-xs text-slate-500">ID: 2023006</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Average</span>
+<span class="bg-slate-100 text-slate-600 text-sm font-bold px-2 py-0.5 rounded-md border border-slate-200">--</span>
+</div>
+</div>
+<div class="p-4 bg-slate-50/50 rounded-b-xl">
+<div class="grid grid-cols-4 gap-3">
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV1</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5 relative">
+<label class="text-xs font-medium text-slate-500 text-center">AV2</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV3</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-slate-500 text-center">AV4</label>
+<input class="w-full text-center font-mono text-sm border-slate-200 rounded-lg focus:border-primary focus:ring-primary/20 py-2 text-slate-700 focus:bg-white" placeholder="-" type="number"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer for Fixed Footer -->
+<div class="h-24"></div>
+</div>
+<!-- Fixed Footer Action Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.03)] z-20">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4 w-full sm:w-auto">
+<!-- Recovery Toggle -->
+<label class="inline-flex items-center cursor-pointer group">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="relative w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ms-3 text-sm font-medium text-slate-700 group-hover:text-slate-900">Recovery Mode</span>
+</label>
+<div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
+<span class="text-xs text-slate-500 hidden sm:inline-block">Last autosave: 2 mins ago</span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-5 py-2.5 rounded-lg border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors">
+                        Cancel
+                    </button>
+<button class="flex-1 sm:flex-none px-6 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-primary-hover shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:animate-pulse">save</span>
+                        Save All Changes
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

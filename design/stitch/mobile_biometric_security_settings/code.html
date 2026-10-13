@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara Admin Portal - Security Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4 dark:border-slate-800 dark:bg-slate-900 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="flex size-8 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Xinguara Admin Portal</h2>
+</div>
+<nav class="hidden items-center gap-8 lg:flex">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="#">Classes</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary" href="#">Students</a>
+<a class="text-sm font-medium text-primary" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<div class="relative hidden w-full max-w-xs md:block">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 bg-slate-100 py-2.5 pl-10 text-sm text-slate-900 placeholder:text-slate-500 focus:ring-2 focus:ring-primary dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400" placeholder="Search settings, users..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full bg-slate-100 p-2 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-slate-900"></span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full bg-slate-200" data-alt="User profile picture placeholder">
+<img alt="Profile" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBneQhfjuf8VaRYrxEpka-vXJEUHEwq7qRRLz2G9O6KGTjrrkwIfReqnVFtDK-NzjkY1dFzqygRv7jJ55bR71yEswaLkWarYe3v_abbHWML8QC9qTTOsQHv2I4xs5AncSNLRN6R5iYS26R2VLi2qHoAbSy1qwhRBvXzYBsoUsyULg3VfJBVBnJmp6SsJoSafbiZsS2PRHBaeMT2iIOWU_7fJcRxQlRu0hbJS8TtOHs9d0IBWDViUJilFVfFan4HXeFgiisKC6t1bxk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 py-8 px-4 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-6xl">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="mb-6 flex">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400" href="#">
+<span class="material-symbols-outlined mr-2 text-lg">home</span>
+                                Home
+                            </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined mx-1 text-slate-400">chevron_right</span>
+<a class="text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400" href="#">Settings</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined mx-1 text-slate-400">chevron_right</span>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Security</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Page Header -->
+<div class="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+<div>
+<h1 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">Security &amp; Authentication</h1>
+<p class="mt-2 text-lg text-slate-600 dark:text-slate-400">Manage your login preferences and secure your account for the Xinguara mobile app.</p>
+</div>
+<button class="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+<span class="material-symbols-outlined mr-2">save</span>
+                        Save Changes
+                    </button>
+</div>
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<!-- Main Security Column -->
+<div class="space-y-8 lg:col-span-2">
+<!-- Biometric Authentication Card -->
+<section class="rounded-xl border border-blue-100 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<div class="mb-6 flex items-start gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-50 text-primary dark:bg-blue-900/30 dark:text-blue-400">
+<span class="material-symbols-outlined text-2xl">fingerprint</span>
+</div>
+<div class="flex-1">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Biometric Login</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Enable FaceID or Fingerprint for faster, secure access to the mobile app.</p>
+</div>
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-7 w-14 rounded-full bg-slate-200 after:absolute after:top-[2px] after:left-[2px] after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-slate-700 dark:peer-focus:ring-blue-800"></div>
+</label>
+</div>
+<div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-700/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500">info</span>
+<p class="text-sm text-slate-600 dark:text-slate-300">Biometric data is stored locally on your device and is never transmitted to our servers.</p>
+</div>
+</div>
+</section>
+<!-- Two-Factor Authentication (2FA) -->
+<section class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<div class="mb-6 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400">
+<span class="material-symbols-outlined text-2xl">security</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Two-Factor Authentication</h3>
+<p class="text-sm text-green-600 dark:text-green-400 font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span> Enabled via Authenticator App
+                                        </p>
+</div>
+</div>
+<button class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600 dark:focus:ring-slate-700">
+                                    Configure
+                                </button>
+</div>
+<div class="space-y-4 border-t border-slate-100 pt-6 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-slate-400">sms</span>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">SMS Recovery</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Use phone number ending in •••• 8829</p>
+</div>
+</div>
+<button class="text-sm font-medium text-primary hover:text-blue-700">Edit</button>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-slate-400">key</span>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Security Keys</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">0 keys added</p>
+</div>
+</div>
+<button class="text-sm font-medium text-primary hover:text-blue-700">Add Key</button>
+</div>
+</div>
+</section>
+<!-- Trusted Devices -->
+<section class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<h3 class="mb-4 text-xl font-bold text-slate-900 dark:text-white">Trusted Devices</h3>
+<p class="mb-6 text-sm text-slate-600 dark:text-slate-400">Devices that are currently logged in to your account.</p>
+<div class="space-y-4">
+<!-- Device 1 -->
+<div class="flex flex-col gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-slate-700 dark:bg-slate-700/30">
+<div class="flex items-center gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-slate-600">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">smartphone</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">iPhone 14 Pro</p>
+<div class="flex flex-wrap items-center gap-x-2 text-xs text-slate-500 dark:text-slate-400">
+<span>São Paulo, BR</span>
+<span class="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-500"></span>
+<span class="text-green-600 dark:text-green-400 font-medium">Active now</span>
+</div>
+</div>
+</div>
+<button class="text-sm font-medium text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        Revoke Access
+                                    </button>
+</div>
+<!-- Device 2 -->
+<div class="flex flex-col gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-slate-700 dark:bg-slate-700/30">
+<div class="flex items-center gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-slate-600">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">laptop_mac</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">MacBook Pro M2</p>
+<div class="flex flex-wrap items-center gap-x-2 text-xs text-slate-500 dark:text-slate-400">
+<span>Brasília, BR</span>
+<span class="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-500"></span>
+<span>Last active: 2 hours ago</span>
+</div>
+</div>
+</div>
+<button class="text-sm font-medium text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+                                        Revoke Access
+                                    </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Column -->
+<div class="space-y-8 lg:col-span-1">
+<!-- Login Notifications -->
+<section class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<h3 class="mb-4 text-lg font-bold text-slate-900 dark:text-white">Login Notifications</h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">New device alert</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Email me when a new device logs in</span>
+</div>
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-6 w-11 rounded-full bg-slate-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:bg-slate-700"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Failed login attempts</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Notify on 3+ failed attempts</span>
+</div>
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-6 w-11 rounded-full bg-slate-200 after:absolute after:top-[2px] after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-primary peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:bg-slate-700"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Recent Activity Log -->
+<section class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+<div class="mb-4 flex items-center justify-between">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Activity</h3>
+<a class="text-xs font-medium text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="relative border-l border-slate-200 dark:border-slate-700 ml-2 space-y-6 pb-2">
+<!-- Log Item 1 -->
+<div class="relative pl-6">
+<span class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full border-2 border-white bg-green-500 dark:border-slate-800"></span>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Login Successful</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Mobile App • Oct 24, 10:42 AM</span>
+<span class="text-xs text-slate-400 dark:text-slate-500">IP: 192.168.1.42</span>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="relative pl-6">
+<span class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full border-2 border-white bg-green-500 dark:border-slate-800"></span>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Login Successful</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Web Portal • Oct 23, 09:15 AM</span>
+<span class="text-xs text-slate-400 dark:text-slate-500">IP: 201.12.33.102</span>
+</div>
+</div>
+<!-- Log Item 3 -->
+<div class="relative pl-6">
+<span class="absolute -left-1.5 top-1.5 h-3 w-3 rounded-full border-2 border-white bg-slate-300 dark:border-slate-800 dark:bg-slate-600"></span>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Password Changed</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Web Portal • Oct 20, 04:30 PM</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Support Card -->
+<div class="relative overflow-hidden rounded-xl bg-primary p-6 text-white">
+<div class="relative z-10">
+<h3 class="mb-2 text-lg font-bold">Need help?</h3>
+<p class="mb-4 text-sm text-blue-100">Contact IT support if you notice any suspicious activity.</p>
+<button class="rounded-lg bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm hover:bg-white/30 transition-colors">Contact Support</button>
+</div>
+<div class="absolute -right-6 -bottom-6 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
+<div class="absolute -top-6 -right-6 h-24 w-24 rounded-full bg-blue-400/20 blur-xl"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

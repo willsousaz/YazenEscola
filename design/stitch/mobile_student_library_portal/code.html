@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Student Library Portal - Desktop</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d121b] flex flex-col min-h-screen overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#e7ebf3]">
+<div class="px-6 xl:px-40 py-3 flex items-center justify-between gap-8">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white shrink-0">
+<span class="material-symbols-outlined text-[28px]">local_library</span>
+</div>
+<div>
+<h2 class="text-[#0d121b] text-lg font-bold leading-tight">Biblioteca Municipal</h2>
+<p class="text-xs text-slate-500 font-medium">Xinguara Portal</p>
+</div>
+</div>
+<!-- Desktop Search -->
+<div class="hidden md:flex flex-1 max-w-2xl">
+<div class="relative w-full group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-2.5 border-none rounded-xl bg-[#e7ebf3] text-sm focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all placeholder:text-slate-500" placeholder="Search by title, author, or ISBN..." type="text"/>
+<button class="absolute inset-y-1 right-1 bg-white hover:bg-slate-50 text-slate-700 px-3 py-1 rounded-lg text-xs font-semibold shadow-sm border border-slate-200 transition-colors">
+                        Search
+                    </button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="hidden sm:flex items-center gap-3 pl-4 border-l border-slate-200">
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900">Ana Silva</p>
+<p class="text-xs text-slate-500">Grade 8 - Class B</p>
+</div>
+<div class="size-10 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm bg-center bg-cover" data-alt="Portrait of a young female student smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7m-2-w0dYyOROKGpsZ_OkMvpJHkYc3dtspd-IFv9Bouc6pVY9CpH81qh49OWK-dHYyM6TjaGslWK4raP4CkV5vzt75ZLYwigSS-rYVWodTdrN6oCsypVkGILZMqRbKGCoM4dXQp1KuWJ5qm9EN_XKQDcZoKOioKqJU0hMJ85PHGsaFMEM6PyPrSd-7JAkBcFwg22gNsAh1QZWNBUFwmp6-FE0hI8wwUX7UHpYgups7jL_Dl8sdtA6b6ELeJwNRskEPFCBWCP9SHs");'></div>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 w-full px-6 xl:px-40 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar (Filters & Personal Info) -->
+<aside class="hidden lg:flex lg:col-span-3 flex-col gap-6 sticky top-24 h-fit">
+<!-- Student Card -->
+<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">id_card</span>
+<span class="font-bold text-slate-800">My Digital ID</span>
+</div>
+<div class="bg-gradient-to-br from-primary to-blue-600 rounded-lg p-4 text-white relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-20">
+<span class="material-symbols-outlined text-[100px]">school</span>
+</div>
+<p class="text-xs font-medium opacity-80 mb-1">STUDENT ID</p>
+<p class="text-lg font-bold tracking-wide mb-4">8430 2210 993</p>
+<div class="flex justify-between items-end">
+<div class="text-xs opacity-90">Ana Silva</div>
+<div class="bg-white/20 px-2 py-0.5 rounded text-[10px] font-bold">ACTIVE</div>
+</div>
+</div>
+</div>
+<!-- Categories -->
+<div class="bg-white rounded-xl border border-slate-200 p-2 shadow-sm">
+<h3 class="px-4 py-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Browse Categories</h3>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-2.5 bg-primary/5 text-primary rounded-lg font-medium text-sm" href="#">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+                        All Books
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] fill-current">auto_stories</span>
+                        Fiction &amp; Lit
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">science</span>
+                        Science
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+                        History
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+                        Biographies
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-lg font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">sentiment_satisfied</span>
+                        Comics
+                    </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:col-span-6 flex flex-col gap-8">
+<!-- Mobile Search (Visible only on smaller screens) -->
+<div class="md:hidden relative w-full group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3 border-none rounded-xl bg-white shadow-sm text-sm placeholder:text-slate-500" placeholder="Search books..." type="text"/>
+</div>
+<!-- Hero / Featured -->
+<div class="relative rounded-2xl overflow-hidden bg-white shadow-sm border border-slate-200">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-blue-500/80 z-10"></div>
+<div class="absolute inset-0 bg-center bg-cover" data-alt="Abstract colorful library shelves blurred background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgL1Lr7zKYQSl5cKiW1V-NzgPE5knG7phmXHPkS3ZPVcEqMTAXohYJt2W9vhJ0duhrUKL-usO4M-TAJfVUUMbySjJ2yqDZMoVvl5_ncCLXeruGyd7tCYarlQVFbXiFR9LBUK77dcCMlN6ZolkWjhgyh5k8daR12MjZAU8kyvy8YIhE_HFHUJch4BCdzXrEqNOfGohuTirKJt-_HFSlK5ZbQl63BjwcjHV_9r8LrTFVdnWP4cPaFNZSsTFkwm-Z1jqZL4vTpLGKRDk");'></div>
+<div class="relative z-20 p-8 flex flex-col items-start gap-4">
+<span class="bg-white/20 text-white backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold border border-white/20">NEW ARRIVALS</span>
+<h1 class="text-3xl font-bold text-white max-w-md leading-tight">Explore the Magic of Classic Literature</h1>
+<button class="mt-2 bg-white text-primary hover:bg-slate-100 font-bold py-2.5 px-6 rounded-lg text-sm shadow-lg transition-transform hover:scale-105 active:scale-95">
+                        Browse Collection
+                    </button>
+</div>
+</div>
+<!-- Section Title & Sort -->
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-slate-900">Popular This Week</h2>
+<button class="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-primary transition-colors">
+                    Filter &amp; Sort <span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<!-- Book Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Book Card 1 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for The Little Prince" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for The Little Prince" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqiFmo_klOpsI0yPKhjY3gudiG6S9qdfJHEIIxnAJ46rm_fheyatYomyp-NogWheRcSXYORGOGgaTGd7KCFXvEGu4_aFopnbnEPPCTn3IyJtCe88iA1pxNN_Dsz4_hKsiuJifCe3k-z7QJxQEdnvPWRWSj9-qGuZAmNUv3QCMcPcbcHwKYlqL9Kn5XdiuE_m9uB24ZWA2c8H4Gg1uKZ3AtHBkXR1EEDiHasTClLSjYi0QaQopSbNrecTBnleiuKATW--9VtP7_3ro"/>
+<div class="absolute top-2 right-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm uppercase">Available</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="The Little Prince">The Little Prince</h3>
+<p class="text-xs text-slate-500 mt-1">Antoine de Saint-Exupéry</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-primary hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+                                Reserve
+                            </button>
+</div>
+</div>
+</div>
+<!-- Book Card 2 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for Cosmos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for Cosmos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChIZ5U_DiXSdPqsfTVsc_n88uHajB4ADrP0Tl89YaEQt4w5mkP_nWukGI3o4DIdQYTOePnAClNEr50v1QjPbD8MeSY1wwinBksdvYu-JCamuMorS5HzBjFLsP20yk8uL8n1F8yfKTL_qrkOLtXscJuiX_9f_Zr6kewnrJNNxPJyqH7HVZy-2wVM_PBAME4DghP5jpCqSSA2p24ZrDyl3nYriD453KIkxDNjWeMgzht2RQqS6mQ-WW00nJryCCIgOSGNOmsrdJNGsA"/>
+<div class="absolute top-2 right-2">
+<span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded border border-amber-200 shadow-sm uppercase">Waitlist</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="Cosmos">Cosmos</h3>
+<p class="text-xs text-slate-500 mt-1">Carl Sagan</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+                                Notify Me
+                            </button>
+</div>
+</div>
+</div>
+<!-- Book Card 3 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for Dom Casmurro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for Dom Casmurro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC2HzTC1-M54X8OXyRWqd3Hw7zLrBgTb3r-BLbp8iQ8ZfKAOVerYpWikxOKd7XNB6Ai0gKZCUC8UVxMoYBPjMPLtFIeUiXdTBgnUQn5JmFXAATVWWhU0BXC5u6mOl9RtDT68D1W2psmbZDLBevnLgVLRNvVFFbuG-iwTZ4Cy91c-HDlc-TSng-Do8lRcvkhu9NOvVpmx6RDV1SCtt3yUs_bZVjK0lQlmcBpHngmXHaDrzI9BEB33zpvYvxdopeqbPwzQSPzF7zaUs"/>
+<div class="absolute top-2 right-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm uppercase">Available</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="Dom Casmurro">Dom Casmurro</h3>
+<p class="text-xs text-slate-500 mt-1">Machado de Assis</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-primary hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+                                Reserve
+                            </button>
+</div>
+</div>
+</div>
+<!-- Book Card 4 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for General Chemistry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for General Chemistry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDae9AfGxvwMJ9pHjjc88Y3OzyIbw7XtCkGJt5SiLwRj-qvWhnp5MmbMHlUoH-VombAR1l3BeiG_YJagODuVe_yv2alPR49PXqZpCYAQ6JRLoqEOjeeXYhw6suVx7vlZPErW2uRXTxf87hrBWdw7zPl_lQ4tv57T016suYynNxc42gM5rPkV7vIE_FOnfXsIV70368hO4j1FMrDR3gXjhPzsWGWPGKgtS63kpER0sn_44iG516hjuh5vNTm87j1yCokDTuV2qNfHWk"/>
+<div class="absolute top-2 right-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm uppercase">Available</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="General Chemistry: Principles">General Chemistry: Principles</h3>
+<p class="text-xs text-slate-500 mt-1">Linus Pauling</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-primary hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+                                Reserve
+                            </button>
+</div>
+</div>
+</div>
+<!-- Book Card 5 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for 1984" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for 1984" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_faP3l7shRT7ln6fQkxomNWj7QzsJ041T_gB6rZCrx57McH-3nZTaxhqalzpgsHrXfDL3vvbCL7LG0EX9biWhIA9pGHHy-duyWbvIedPEjK75ns7rZ63AD5KJROwWDoEs7K3rsYe2wjxoK6uVVTRdwGUoviqSvaTQMBmdXowtkqDhviPenLPU1bo6-FPqFkHjk5TrkxOAureSjrJo-kH28Yu9ZY387GsbZj-FZ5NmhuqBDFqBM8Q8imfDLxd0cMcrQnqcU1b5yvw"/>
+<div class="absolute top-2 right-2">
+<span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm uppercase">Available</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="1984">1984</h3>
+<p class="text-xs text-slate-500 mt-1">George Orwell</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-primary hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+                                Reserve
+                            </button>
+</div>
+</div>
+</div>
+<!-- Book Card 6 -->
+<div class="group bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full">
+<div class="aspect-[2/3] w-full overflow-hidden relative bg-slate-100">
+<img alt="Book cover art for The Great Gatsby" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Book cover art for The Great Gatsby" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqhN2-tqK2PL56MY8uOcl5UvKvjRbUFi5Z8ziPcqk3Uw-NCgazrkc2GFt1tcx56FsAOPFdM99bInQWGQf9c1HOKvklQ1heiufP-NQwa7TwP3rYRNroB9ZQDoOGqSdhKI_Moh34Ywca6rU2V9hiewjPJ85pA5xajec91jxQWN2HCrrJoObvrqF9V2z12wB29b3nu0JcIkK5nL4_o3Dh5O0reSvqdAtXbqqnJs-2z_XS2-gPJA7Dtnh4A-COKaBHBRPRX_7tI8C72Z0"/>
+<div class="absolute top-2 right-2">
+<span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded border border-amber-200 shadow-sm uppercase">Waitlist</span>
+</div>
+</div>
+<div class="p-3 flex flex-col flex-1 gap-2">
+<div>
+<h3 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2" title="The Great Gatsby">The Great Gatsby</h3>
+<p class="text-xs text-slate-500 mt-1">F. Scott Fitzgerald</p>
+</div>
+<div class="mt-auto pt-2">
+<button class="w-full bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">notifications_active</span>
+                                Notify Me
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center pt-4">
+<nav class="flex gap-2">
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold shadow-md shadow-blue-200">1</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 font-medium">2</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 font-medium">3</button>
+<button class="size-10 flex items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-slate-50">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</main>
+<!-- Right Sidebar (My Loans & Alerts) -->
+<aside class="lg:col-span-3 flex flex-col gap-6 sticky top-24 h-fit">
+<!-- Loans Widget -->
+<div class="bg-white rounded-xl border border-slate-200 p-0 shadow-sm overflow-hidden flex flex-col">
+<div class="p-5 border-b border-slate-100 flex items-center justify-between">
+<h3 class="font-bold text-slate-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">book</span>
+                        My Loans
+                    </h3>
+<a class="text-xs font-bold text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="p-4 flex flex-col gap-4">
+<!-- Loan Item 1 -->
+<div class="flex gap-3 items-start">
+<div class="w-12 h-16 rounded overflow-hidden shrink-0 shadow-sm">
+<img alt="The Little Prince cover thumbnail" class="w-full h-full object-cover" data-alt="Thumbnail of The Little Prince book cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClWq6ghT2tMhxo2-zIn_PfXvieU-U_INnrWcGxz7JhOXFJCg0ndCgE20mpPpoKg2ETbUOINCo9PFqTM4VXuWOoLms-he6Pe2L_ro-_1Oev4dQEY85nlyyBq6C5M9yNjhhj8fpwoYFd3cxyNRmVd0RTj97QR55UtlZXt93_P2bi_HH4vB6oNRtQBMP8bMru-Z4sNedI6ImptZ522P1V4reEr8fQ2rG6hGfpx6dJ4BCW6g1TWIjASU7qoR1w7u1GVhZmCbETVSlS8SQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm text-slate-900 truncate">The Little Prince</h4>
+<p class="text-xs text-red-500 font-semibold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                Due in 2 days
+                            </p>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-2">
+<div class="bg-red-500 h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Loan Item 2 -->
+<div class="flex gap-3 items-start pt-2 border-t border-slate-50">
+<div class="w-12 h-16 rounded overflow-hidden shrink-0 shadow-sm">
+<img alt="General Chemistry cover thumbnail" class="w-full h-full object-cover" data-alt="Thumbnail of General Chemistry book cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCntYGx8s3qTODMbQHMtxDetbIivNjOQa8zhCoDsRTqjouH0BrQqQzVqadfsqUSozs8Y60lFI09WL7IK9w0MXz0NOBCIgKVFPLwzvIDYDJUacEJA7J7c_TCSV0DobXaQ9nw5ciegiK-1jjWOIYwawgxbmx61X7UWpUrR0-3Bb3XqH536wakQHlSn4XO-Vb5gZKh8i-GPCGu05YzonEA7uWwgjEQQA4AURr6jep3jSRrlu1MJdf1ERmdMxvORS-5ikqekb2Mptkno5k"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm text-slate-900 truncate">General Chemistry</h4>
+<p class="text-xs text-green-600 font-semibold mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Due Nov 01
+                            </p>
+<div class="w-full bg-slate-100 rounded-full h-1.5 mt-2">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="p-3 bg-slate-50 border-t border-slate-100 text-center">
+<button class="text-xs text-slate-500 hover:text-slate-900 font-medium transition-colors">Manage Renewals</button>
+</div>
+</div>
+<!-- Alerts / Notifications Toast Style -->
+<div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg shadow-sm">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-blue-600 mt-0.5">info</span>
+<div>
+<p class="text-sm font-bold text-blue-900">Upcoming Holiday</p>
+<p class="text-xs text-blue-800 mt-1 leading-relaxed">The library will be closed on Nov 02 for a national holiday. Online renewals are still active.</p>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
+<h3 class="font-bold text-slate-900 mb-3 text-sm">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors text-center group">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">history</span>
+<span class="text-xs font-medium text-slate-600">History</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors text-center group">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">favorite</span>
+<span class="text-xs font-medium text-slate-600">Favorites</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors text-center group">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">menu_book</span>
+<span class="text-xs font-medium text-slate-600">Suggest</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors text-center group">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">help</span>
+<span class="text-xs font-medium text-slate-600">Help</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</body></html>

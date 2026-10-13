@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIGE - Nova Matrícula</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14a6f5",
+                        "primary-dark": "#0c8bc0",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c22",
+                        "text-main": "#0d171c",
+                        "text-secondary": "#487f9d",
+                        "border-color": "#e7eff4",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main min-h-screen flex flex-col antialiased">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-color bg-white dark:bg-[#1a2c35] px-6 lg:px-10 py-3 shadow-sm z-20 sticky top-0">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="size-8 flex items-center justify-center bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-tight">SIGE <span class="hidden sm:inline font-medium text-text-secondary dark:text-gray-400">- Sistema de Gestão Escolar</span></h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<button class="hidden md:flex items-center gap-2 text-text-secondary hover:text-primary transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span>Ajuda</span>
+</button>
+<div class="h-6 w-px bg-border-color hidden md:block"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-text-main dark:text-white">Secretaria Municipal</p>
+<p class="text-xs text-text-secondary">Admin</p>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white dark:ring-gray-700 shadow-sm" data-alt="User profile picture showing a woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsmzBc2ArUHBKQme70iY9TjpIqLJm_y_BLo6bFKtx9YeuuZ8LMGsBaVURnHBRV7GL91HsNCO5apabGMvGXbFL4OcZ-u8oRt23dRxDzFTRXnQOrndcraKoiRhS-u75xB501pdkcDDhVmMIuWEZQ5QzXFs6bwnWz9l71VFSBK-zNbqf0tFsCZJgvlrcmptBvjPiAIUTrywLNaMvI47Pv-VXhkpBF5WVJsH3MptMS3rEzFJUSNHCJRdL0zg8sTbmTg3nRkBFUDL7dkFU");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-4 md:p-8 flex flex-col gap-6">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-text-secondary text-sm mb-1">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<a class="hover:underline" href="#">Voltar para Matrículas</a>
+</div>
+<h1 class="text-3xl font-black text-text-main dark:text-white tracking-tight">Nova Matrícula</h1>
+<p class="text-text-secondary text-base">Ano Letivo 2024 - Ensino Fundamental</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white dark:bg-[#1a2c35] border border-border-color dark:border-gray-700 rounded-lg text-text-main dark:text-white font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition shadow-sm">
+                    Salvar Rascunho
+                </button>
+</div>
+</div>
+<!-- Progress Stepper -->
+<div class="w-full bg-white dark:bg-[#1a2c35] rounded-xl shadow-sm border border-border-color dark:border-gray-700 p-4 mb-2 overflow-x-auto">
+<div class="flex items-center justify-between min-w-[600px]">
+<!-- Step 1 (Active) -->
+<div class="flex flex-col items-center relative group flex-1">
+<div class="flex items-center w-full">
+<div class="flex-1 h-[2px] bg-transparent"></div>
+<div class="size-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-md ring-4 ring-primary/10 z-10">
+                            1
+                        </div>
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+</div>
+<span class="mt-2 text-sm font-bold text-primary">Dados do Aluno</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center relative group flex-1">
+<div class="flex items-center w-full">
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="size-8 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center font-bold text-sm z-10">
+                            2
+                        </div>
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-400">Responsáveis</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center relative group flex-1">
+<div class="flex items-center w-full">
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="size-8 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center font-bold text-sm z-10">
+                            3
+                        </div>
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-400">Endereço e Contato</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center relative group flex-1">
+<div class="flex items-center w-full">
+<div class="flex-1 h-[2px] bg-gray-200 dark:bg-gray-700"></div>
+<div class="size-8 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-400 flex items-center justify-center font-bold text-sm z-10">
+                            4
+                        </div>
+<div class="flex-1 h-[2px] bg-transparent"></div>
+</div>
+<span class="mt-2 text-sm font-medium text-gray-400">Documentação</span>
+</div>
+</div>
+</div>
+<!-- Layout Grid: Form + Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Form Card -->
+<div class="lg:col-span-8 bg-white dark:bg-[#1a2c35] rounded-xl shadow-sm border border-border-color dark:border-gray-700 flex flex-col">
+<div class="p-6 md:p-8 space-y-8">
+<!-- Section: Identificação -->
+<div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person</span>
+                            Identificação Pessoal
+                        </h3>
+<p class="text-text-secondary text-sm mb-6">Preencha os dados básicos conforme a certidão de nascimento.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Nome Completo do Aluno *</label>
+<input class="w-full rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm" placeholder="Ex: João da Silva" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Data de Nascimento *</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+<input class="w-full pl-10 rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm" type="date"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Sexo Biológico *</label>
+<select class="w-full rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm">
+<option value="">Selecione...</option>
+<option value="M">Masculino</option>
+<option value="F">Feminino</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Cor/Raça *</label>
+<select class="w-full rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm">
+<option value="">Selecione...</option>
+<option value="branca">Branca</option>
+<option value="preta">Preta</option>
+<option value="parda">Parda</option>
+<option value="amarela">Amarela</option>
+<option value="indigena">Indígena</option>
+<option value="nao_declarado">Não declarado</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Nacionalidade</label>
+<select class="w-full rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm">
+<option value="brasileira">Brasileira</option>
+<option value="estrangeira">Estrangeira</option>
+</select>
+</div>
+</div>
+</div>
+<hr class="border-gray-100 dark:border-gray-700"/>
+<!-- Section: Informações Complementares -->
+<div>
+<h3 class="text-lg font-bold text-text-main dark:text-white mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">medical_information</span>
+                            Informações de Saúde e Inclusão
+                        </h3>
+<p class="text-text-secondary text-sm mb-6">Dados importantes para o acompanhamento pedagógico.</p>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-3">Possui Necessidades Especiais?</label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span>Nenhuma</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px]">visibility_off</span>
+<span>Deficiência Visual</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px]">hearing_disabled</span>
+<span>Deficiência Auditiva</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px]">accessible</span>
+<span>Deficiência Motora</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<div class="px-4 py-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary transition-all flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+<span>Autismo / TEA</span>
+</div>
+</label>
+</div>
+</div>
+<div class="pt-2">
+<label class="block text-sm font-medium text-text-main dark:text-gray-200 mb-1.5">Observações Médicas / Restrições Alimentares</label>
+<textarea class="w-full rounded-lg border-gray-300 bg-gray-50 dark:bg-gray-800 dark:border-gray-600 text-text-main dark:text-white focus:border-primary focus:ring-primary shadow-sm resize-none" placeholder="Ex: Alérgico a amendoim, uso de medicação contínua..." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="bg-gray-50 dark:bg-[#15232b] px-6 py-4 md:px-8 md:py-5 border-t border-border-color dark:border-gray-700 rounded-b-xl flex justify-between items-center">
+<button class="px-6 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-sm flex items-center gap-2">
+                        Cancel
+                    </button>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 rounded-lg border border-primary text-primary font-bold text-sm hover:bg-primary/5 transition shadow-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            Voltar
+                        </button>
+<button class="px-8 py-2.5 rounded-lg bg-primary text-text-main font-bold text-sm hover:bg-primary-dark transition shadow-md flex items-center gap-2">
+                            Próximo
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Summary -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-white dark:bg-[#1a2c35] rounded-xl shadow-sm border border-border-color dark:border-gray-700 p-5 sticky top-24">
+<div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-100 dark:border-gray-700">
+<h3 class="text-base font-bold text-text-main dark:text-white">Resumo da Matrícula</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Em andamento</span>
+</div>
+<div class="space-y-6">
+<!-- Step 1 Summary -->
+<div class="relative pl-4 border-l-2 border-primary">
+<p class="text-xs font-bold text-primary uppercase tracking-wider mb-2">1. Aluno</p>
+<div class="space-y-2">
+<div class="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700">
+<div class="flex items-center gap-2 text-text-secondary text-sm italic">
+<span class="material-symbols-outlined text-[16px] animate-pulse">edit</span>
+                                        Preenchendo dados...
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Step 2 Summary (Future) -->
+<div class="relative pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">2. Responsáveis</p>
+<p class="text-xs text-text-secondary">Pendente</p>
+</div>
+<!-- Step 3 Summary (Future) -->
+<div class="relative pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">3. Endereço</p>
+<p class="text-xs text-text-secondary">Pendente</p>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-gray-100 dark:border-gray-700">
+<div class="flex items-start gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">info</span>
+<p class="text-xs text-text-secondary dark:text-blue-200 leading-relaxed">
+                                Os dados são salvos automaticamente conforme você avança as etapas.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Quick Stats / Info Card -->
+<div class="bg-primary/5 border border-primary/20 rounded-xl p-5">
+<h4 class="font-bold text-text-main dark:text-white text-sm mb-3">Escola Selecionada</h4>
+<div class="flex gap-3 mb-3">
+<div class="bg-gray-200 dark:bg-gray-700 rounded-lg w-16 h-16 bg-cover bg-center shrink-0" data-alt="Exterior view of a modern school building" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuChERr-MtrOBstyXGzqG6sVLEZpYMi5TxBSffwb8uh85pTniuJ7bGqo1D_B4mOatUtZFSbxbZhddgHNfIVi3GKusWExkA5XVeKQIfuTGVrFSkxRa9I_OexTAodywVNz-SnvcYONs9kxOj4Xv_dBBUNUJhQX_9hn_brruF_g0WQFdoeo5S3W0dTwjGTiTasqSirE5yL86lVlcthA13WE7XY8l4fNvk3bPoOW2LGKGQrsJozBl24YXN2bZxGT24tHT12rcaJo-uBbEfY");'></div>
+<div>
+<p class="text-sm font-semibold text-text-main dark:text-white leading-tight">E.M.E.F. Tancredo Neves</p>
+<p class="text-xs text-text-secondary mt-1">Xinguara, PA</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>Vagas disponíveis: <strong>12</strong></span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

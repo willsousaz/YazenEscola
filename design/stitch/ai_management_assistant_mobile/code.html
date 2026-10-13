@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara AI Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a202c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "glow": "0 0 15px -3px rgba(23, 84, 207, 0.3)",
+                        "card": "0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 flex h-screen overflow-hidden">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="w-64 bg-card-light dark:bg-card-dark border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between hidden lg:flex z-20 shadow-sm">
+<div class="flex flex-col gap-6 p-6">
+<div class="flex gap-3 items-center">
+<div class="bg-primary/10 rounded-full p-2">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Xinguara AI</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">Director Portal</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined">spark</span>
+<span class="text-sm font-medium">Assistant</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-medium">Students</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="text-sm font-medium">Messages</span>
+</a>
+</nav>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-4">
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Profile picture of Director Silva" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2Gm2pAXOtsstRH39vjMj2EkVSlezE9WzmxHoHL03xeESm6K_7CD3LFtJ0VfI3GrNpxLH2d8T8Bvak4VnSR3EtmuB7oL486JVbPkb9dNnXAb2XXrzLR5MOwUAUvWinDAK3LzOeS4YBs89tNwA1kui8FvZpNoGuybg0p7M0BP2gAVrkSM2guwNla8GjLrPBC9v-bx4Cb6JqfdbPQV7cQtTxsq6zshIMY8KuNLkvWKt0-GE6oGMbhl7onQwN75AYi_r0Zt0pv_BiOUU');"></div>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Director Silva</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Online</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Header / Voice Command -->
+<header class="px-6 py-5 lg:px-12 flex justify-between items-center z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0">
+<div class="lg:hidden flex items-center gap-3">
+<button class="p-2 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-bold text-lg text-slate-900 dark:text-white">Xinguara AI</span>
+</div>
+<!-- Desktop Search Bar / Voice Command -->
+<div class="hidden lg:flex flex-1 justify-center max-w-2xl mx-auto">
+<div class="relative w-full shadow-glow rounded-full group transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary animate-pulse">mic</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-3 rounded-full border-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:outline-none transition-colors" placeholder="Ask AI about school health..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center">
+<button class="p-2 bg-primary text-white rounded-full hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+</div>
+</header>
+<!-- Content Grid -->
+<div class="flex-1 overflow-y-auto overflow-x-hidden">
+<div class="container mx-auto px-4 lg:px-8 py-6 h-full">
+<div class="flex flex-col lg:flex-row gap-8 h-full justify-center">
+<!-- Mobile View Simulation (Feed) -->
+<div class="flex-1 max-w-lg w-full mx-auto flex flex-col gap-6 pb-12">
+<!-- Greeting -->
+<div class="flex flex-col gap-1">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Good Morning, Director</h2>
+<p class="text-slate-500 dark:text-slate-400">Here are your critical interventions for today.</p>
+</div>
+<!-- Mobile Search (Visible only on mobile screens) -->
+<div class="lg:hidden relative w-full shadow-glow rounded-full mb-2">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary animate-pulse">mic</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-3 rounded-full border-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 shadow-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Ask AI..." type="text"/>
+</div>
+<div class="flex items-center justify-between mt-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                Critical Interventions
+                                <span class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+</h3>
+<button class="text-sm text-primary font-medium hover:underline">View All</button>
+</div>
+<!-- Card 1 -->
+<article class="bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-md transition-shadow duration-300 border-l-4 border-red-500 overflow-hidden group">
+<div class="p-5 flex flex-col gap-4">
+<!-- Header -->
+<div class="flex justify-between items-start">
+<div class="flex gap-3 items-center">
+<div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Student Portrait Carlos Mendes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2f9tsXD3Ys4KIJAkAnmCYxXeGorgyoTir4dbVCRrzpjLViZuWQmi9f9z8yGMpdySmHGJnYKOd6xufjfW9mNl9_FiaSjQMP_vGx5LZDWPl5ABPJvse2AEVrItncPgVNDBSQwXUaK95hfVfZEYKMQ05LjpKyfXdVAAgf0rtoZJGDWVyoDuC-z4oav1pfjUbM-Z_pc2cdGpL04WDRScc-1ugRWiTG9BhmHz145sihRpExBIC8gRsEXFncb9yehHgqB63ifcrWbDGMZs');"></div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white text-lg">Carlos Mendes</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Grade 10B • ID: #928371</p>
+</div>
+</div>
+<span class="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-red-100 dark:border-red-800">
+<span class="material-symbols-outlined text-[16px]">warning</span> High Risk
+                                    </span>
+</div>
+<!-- AI Analysis -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-4xl">psychology</span>
+</div>
+<p class="text-xs font-bold text-primary mb-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> AI Insight
+                                    </p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-red-500 text-sm mt-0.5">trending_down</span>
+<span>Attendance dropped by <strong class="text-slate-900 dark:text-white">15%</strong> this week.</span>
+</li>
+<li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-orange-500 text-sm mt-0.5">flag</span>
+<span>Keywords flagged in recent counselor notes regarding isolation.</span>
+</li>
+</ul>
+</div>
+<!-- Actions -->
+<div class="grid grid-cols-2 gap-3 mt-1">
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+                                        Notify Counselor
+                                    </button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-primary text-white font-medium text-sm shadow-md hover:bg-blue-700 hover:shadow-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                                        Schedule Meeting
+                                    </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-md transition-shadow duration-300 border-l-4 border-orange-400 overflow-hidden">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex gap-3 items-center">
+<div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Student Portrait Ana Souza" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5t5EC8tXXurPUgVf5gWyljE4AfB2pKj_PxqoqJs8f5epOTbLtIVuBUDSUxWk4NoDlAF54pfcEz5TMAGUSRLGNb7OHW9vBDd_V-PHogvsrUm6OUuAnG7TfR0x97ujsc6ENWv59UXB0o1RWD37B2_-4l5SZ41Ijf4gjiXd25Kn4AR3NzVvAXIB-vu-HYtom4EGct1BjQtuSxZSQXKJbWboAATUWOgd2H4RrwF2xLoy0L8L0RjWxvrE-ku-H5SSE6aFeyIhW2EriRJU');"></div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white text-lg">Ana Souza</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Grade 11A • ID: #928442</p>
+</div>
+</div>
+<span class="bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-orange-100 dark:border-orange-800">
+<span class="material-symbols-outlined text-[16px]">error</span> Moderate Risk
+                                    </span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-4xl">psychology</span>
+</div>
+<p class="text-xs font-bold text-primary mb-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> AI Insight
+                                    </p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-orange-500 text-sm mt-0.5">school</span>
+<span>Failed 2 consecutive Math exams.</span>
+</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-1">
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[18px]">notifications</span>
+                                        Notify Teacher
+                                    </button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-primary text-white font-medium text-sm shadow-md hover:bg-blue-700 hover:shadow-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                                        Schedule Meeting
+                                    </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-card-light dark:bg-card-dark rounded-2xl shadow-card hover:shadow-md transition-shadow duration-300 border-l-4 border-yellow-400 overflow-hidden">
+<div class="p-5 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex gap-3 items-center">
+<div class="h-12 w-12 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Student Portrait Pedro Lima" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0Sg-41SldNS_470JR0HgGRxJpOZto4JLhCwhIU9yoImnVdiDNLji_oBFP4iAW6L2L36slnzTiYQkM0EAmcs_-54bIgLFk5sFlh25vnhwXcNh7tBpP4ITfGGQ9KNSqnKPnTrwUygT9THcxhDclf77RqgcinSnmi-NV_nuuIDXNiS0MGfG6tetL6HqH3TvdIQOBSRFVkLObzoqVJ4B4veCvK5SKoKDZuIiSviFWjm-xVpc1ZAEIp4S58MaU-HB0YUBssUgbRDgvp08');"></div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white text-lg">Pedro Lima</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Grade 9C • ID: #928118</p>
+</div>
+</div>
+<span class="bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-yellow-100 dark:border-yellow-800">
+<span class="material-symbols-outlined text-[16px]">warning_amber</span> Watchlist
+                                    </span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-4xl">psychology</span>
+</div>
+<p class="text-xs font-bold text-primary mb-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> AI Insight
+                                    </p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-yellow-500 text-sm mt-0.5">report_problem</span>
+<span>Behavioral incident reported in cafeteria.</span>
+</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-1">
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                        Monitor
+                                    </button>
+<button class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-primary text-white font-medium text-sm shadow-md hover:bg-blue-700 hover:shadow-lg transition-all">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                                        Schedule Meeting
+                                    </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Right Sidebar / Stats Widget (Desktop Only) -->
+<div class="hidden xl:flex w-80 flex-col gap-6 pt-1">
+<!-- System Status -->
+<div class="bg-card-light dark:bg-card-dark rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-5">
+<h3 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wide">System Health</h3>
+<div class="flex items-center gap-3 mb-4">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</div>
+<span class="text-sm font-medium text-green-600 dark:text-green-400">Active Monitoring</span>
+</div>
+<div class="h-px bg-slate-100 dark:bg-slate-700 w-full mb-4"></div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Scanned Students</p>
+<p class="text-xl font-bold text-slate-900 dark:text-white">1,240</p>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-1">Alerts Resolved</p>
+<p class="text-xl font-bold text-slate-900 dark:text-white">12</p>
+</div>
+</div>
+</div>
+<!-- School Health Overview -->
+<div class="bg-primary rounded-2xl shadow-lg p-5 text-white relative overflow-hidden group cursor-pointer">
+<div class="absolute -right-10 -top-10 h-32 w-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-all"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-sm uppercase tracking-wide opacity-90">School Overview</h3>
+<span class="material-symbols-outlined opacity-80">ssid_chart</span>
+</div>
+<div class="flex flex-col gap-1 mb-6">
+<span class="text-4xl font-bold">94%</span>
+<span class="text-sm opacity-80">Average Attendance</span>
+</div>
+<button class="w-full py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2">
+                                    View Full Report
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Mini Calendar/Schedule -->
+<div class="bg-card-light dark:bg-card-dark rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-5">
+<h3 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wide">Upcoming Meetings</h3>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-600 dark:text-slate-400">
+<span>10</span>
+<span>AM</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Mrs. Oliveira</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Guardian of Sofia (9A)</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="flex flex-col items-center justify-center w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-600 dark:text-slate-400">
+<span>02</span>
+<span>PM</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Staff Meeting</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Weekly Review</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

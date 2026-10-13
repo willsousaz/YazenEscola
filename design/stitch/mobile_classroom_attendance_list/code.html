@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classroom Attendance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14a6f5",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for better look in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101c22; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #223b49; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #305569; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex overflow-hidden">
+<!-- Sidebar Navigation (Reused from component list) -->
+<aside class="hidden lg:flex flex-col w-72 bg-[#101c23] border-r border-[#223b49] h-screen shrink-0">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3 items-center mb-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 border-2 border-[#223b49]" data-alt="Portrait of Professor Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAR0jMR1Y8G6Yy21LmSGb4P5hBuWHMgW7lPvv2rAQbTAf2gZddgxV-UHccARr3nVBwvWPS9PEVKUN49r_GGfSXUdAqXaFotYh1Cao6floxjCRjqClU1OylBVf1ySJ4ftStSab3y4bZ799iB7byuWLcjZMfDoqz-_0hLyK8mBRS9x_jxdFbeAa9wHK-411uLver21ZkIUyppf7rCN-RpNjZalmv7UnZXMevmwl05guARS987ocdBbvIzoHehDu-ws2cokOoOMTSbgac");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-lg font-bold leading-normal">Prof. Silva</h1>
+<p class="text-[#8fb6cc] text-sm font-normal leading-normal">Mathematics</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#223b49] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8fb6cc] group-hover:text-white">dashboard</span>
+<p class="text-[#8fb6cc] group-hover:text-white text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-[#223b49] text-white" href="#">
+<span class="material-symbols-outlined fill-1">school</span>
+<p class="text-white text-sm font-medium leading-normal">Classes</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#223b49] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8fb6cc] group-hover:text-white">groups</span>
+<p class="text-[#8fb6cc] group-hover:text-white text-sm font-medium leading-normal">Students</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#223b49] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8fb6cc] group-hover:text-white">bar_chart</span>
+<p class="text-[#8fb6cc] group-hover:text-white text-sm font-medium leading-normal">Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-[#223b49] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[#8fb6cc] group-hover:text-white">settings</span>
+<p class="text-[#8fb6cc] group-hover:text-white text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<button class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg h-12 px-4 bg-primary hover:bg-primary/90 transition-colors text-[#101c23] text-sm font-bold shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="truncate">New Class</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Top Header Bar -->
+<header class="bg-[#101c23]/95 backdrop-blur-sm border-b border-[#223b49] z-20 sticky top-0">
+<div class="px-6 py-4 flex flex-col gap-4">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#8fb6cc] hover:text-white transition-colors" href="#">Classes</a>
+<span class="text-[#223b49] material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-white font-medium">8º Ano B - Mathematics</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div class="flex flex-col gap-1">
+<h2 class="text-white text-2xl md:text-3xl font-black tracking-tight">Attendance Tracking</h2>
+<div class="flex items-center gap-2 text-[#8fb6cc]">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+<span class="text-sm font-medium">October 12, 2023</span>
+<span class="mx-2 text-[#223b49]">|</span>
+<span class="material-symbols-outlined text-lg">schedule</span>
+<span class="text-sm font-medium">08:00 AM - 09:40 AM</span>
+</div>
+</div>
+<!-- Global Stats -->
+<div class="flex flex-col w-full md:w-64 gap-2">
+<div class="flex justify-between items-end">
+<span class="text-[#8fb6cc] text-xs font-semibold uppercase tracking-wider">Progress</span>
+<span class="text-primary text-sm font-bold">22/30 Called</span>
+</div>
+<div class="h-2 w-full bg-[#223b49] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 73%"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Split View -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Student List Section (Left/Main) -->
+<div class="flex-1 overflow-y-auto p-4 md:p-6 pb-24">
+<div class="max-w-4xl mx-auto space-y-3">
+<!-- Column Headers (Desktop Only) -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-4 py-2 text-[#8fb6cc] text-xs font-semibold uppercase tracking-wider">
+<div class="col-span-5">Student</div>
+<div class="col-span-2 text-center">ID</div>
+<div class="col-span-5 text-right">Attendance Status</div>
+</div>
+<!-- Student Card 1 -->
+<div class="group bg-[#15232d] hover:bg-[#1a2c38] border border-[#223b49] hover:border-primary/30 rounded-xl p-3 md:p-4 transition-all duration-200">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center">
+<!-- Student Info -->
+<div class="col-span-5 flex items-center gap-4 w-full">
+<div class="relative">
+<div class="size-10 md:size-12 rounded-full bg-cover bg-center border-2 border-[#223b49]" data-alt="Student Portrait Ana" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuATG6iI920TifmhN13WyH7cra-URE_vRdxFF2gY_Qcp44qiba-uUpawQqDEJWxC_ze76PLfKYRNw65sZm5_37ZSGQ8-qn9lc5ZxonCVjZY2AbHbFPzYBOWHpTyUB883Jwjz3eU1-6X7WpqoAPzJbijiXGdjLjJO13XLkND34UHQ1b5dubx9hhgJvI2gO42pFj_8V6lnaLGZk0NqaZ9ssToRgmQ-glQU87hCbJK1Qhfqn70Y5f7tE9FDNOa7fUN7LPLxCMBi2ItZ3Pw')"></div>
+<div class="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full border-2 border-[#15232d]"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-base md:text-lg group-hover:text-primary transition-colors">Ana Beatriz Silva</span>
+<span class="text-[#8fb6cc] text-xs md:hidden">ID: #2938</span>
+</div>
+</div>
+<!-- ID (Desktop) -->
+<div class="col-span-2 hidden md:block text-center">
+<span class="bg-[#223b49] text-[#8fb6cc] text-xs font-mono px-2 py-1 rounded">#2938</span>
+</div>
+<!-- Actions -->
+<div class="col-span-5 flex justify-between md:justify-end items-center gap-2 w-full">
+<div class="flex bg-[#0f171c] p-1 rounded-lg border border-[#223b49] w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 bg-green-500/20 text-green-400 font-bold border border-green-500/50 shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>P</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>F</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span>J</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 2 -->
+<div class="group bg-[#15232d] hover:bg-[#1a2c38] border border-[#223b49] hover:border-primary/30 rounded-xl p-3 md:p-4 transition-all duration-200">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center">
+<div class="col-span-5 flex items-center gap-4 w-full">
+<div class="relative">
+<div class="size-10 md:size-12 rounded-full bg-cover bg-center border-2 border-[#223b49]" data-alt="Student Portrait Carlos" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnFGwgTLqldph_ZxhS3Z3Idn7TQeBcNn8_5YzSZSnjtPi44aLAlLiCh-tbhIBAkaDRgb4Ke7laj74FIkn75ynRbd5kqEIUsgqP43G_ciMw8Ek2VnWFAhCX8tSgwERT3ZWwU6DwlLrVfESkRh_Yi-TgIFsFK2ww5yeg6i73z4Ry1uch7rdjzNm2d7p1AH4NvZAVqriWnl8We2sGXJxIcnHMkiOQoY7O4Wf3F2d0mAUznRPdctSEHxUnpUcwNwU1mb12TUmNI0JpHV0')"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-base md:text-lg group-hover:text-primary transition-colors">Carlos Eduardo</span>
+<span class="text-[#8fb6cc] text-xs md:hidden">ID: #2939</span>
+</div>
+</div>
+<div class="col-span-2 hidden md:block text-center">
+<span class="bg-[#223b49] text-[#8fb6cc] text-xs font-mono px-2 py-1 rounded">#2939</span>
+</div>
+<div class="col-span-5 flex justify-between md:justify-end items-center gap-2 w-full">
+<div class="flex bg-[#0f171c] p-1 rounded-lg border border-[#223b49] w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>P</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 bg-red-500/20 text-red-400 font-bold border border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.2)] transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>F</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span>J</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 3 -->
+<div class="group bg-[#15232d] hover:bg-[#1a2c38] border border-[#223b49] hover:border-primary/30 rounded-xl p-3 md:p-4 transition-all duration-200">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center">
+<div class="col-span-5 flex items-center gap-4 w-full">
+<div class="relative">
+<div class="size-10 md:size-12 rounded-full bg-cover bg-center border-2 border-[#223b49]" data-alt="Student Portrait Julia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmxPwsKHI4CL7xhJ6AY23iSL28xBdlCvqTCb0TyCejxL_ZlImvnmU212NE6WOrVYOXVWz2QupkXS6KjBTBbeqdimgRl9_oA82WmgXuwVzZs1UsPvqzy_3ls_e2UBQD118agkWn0Vfssrz4Leaim0PilKJ8Z1Qd9boIZE-BjB4lI8tZM4TRojMfP3rSp31Rl6ixjWAfkFBariwy3CNBdVp2mccVgUpAmwq3Ll9I1GiZWYRxMOEuLHNztjVypDZRUs58c6eWD_ZPKws')"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-base md:text-lg group-hover:text-primary transition-colors">Julia Maria Souza</span>
+<span class="text-[#8fb6cc] text-xs md:hidden">ID: #2940</span>
+</div>
+</div>
+<div class="col-span-2 hidden md:block text-center">
+<span class="bg-[#223b49] text-[#8fb6cc] text-xs font-mono px-2 py-1 rounded">#2940</span>
+</div>
+<div class="col-span-5 flex justify-between md:justify-end items-center gap-2 w-full">
+<div class="flex bg-[#0f171c] p-1 rounded-lg border border-[#223b49] w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>P</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>F</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 bg-yellow-500/20 text-yellow-400 font-bold border border-yellow-500/50 shadow-[0_0_10px_rgba(245,158,11,0.2)] transition-all">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span>J</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 4 (Unmarked) -->
+<div class="group bg-[#15232d] hover:bg-[#1a2c38] border border-[#223b49] hover:border-primary/30 rounded-xl p-3 md:p-4 transition-all duration-200 opacity-80 hover:opacity-100">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center">
+<div class="col-span-5 flex items-center gap-4 w-full">
+<div class="relative">
+<div class="size-10 md:size-12 rounded-full bg-[#223b49] flex items-center justify-center text-white font-bold text-lg border-2 border-[#305569]">LM</div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-base md:text-lg group-hover:text-primary transition-colors">Lucas Mendes</span>
+<span class="text-[#8fb6cc] text-xs md:hidden">ID: #2941</span>
+</div>
+</div>
+<div class="col-span-2 hidden md:block text-center">
+<span class="bg-[#223b49] text-[#8fb6cc] text-xs font-mono px-2 py-1 rounded">#2941</span>
+</div>
+<div class="col-span-5 flex justify-between md:justify-end items-center gap-2 w-full">
+<div class="flex bg-[#0f171c] p-1 rounded-lg border border-[#223b49] w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>P</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>F</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span>J</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Card 5 (Unmarked) -->
+<div class="group bg-[#15232d] hover:bg-[#1a2c38] border border-[#223b49] hover:border-primary/30 rounded-xl p-3 md:p-4 transition-all duration-200 opacity-80 hover:opacity-100">
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center">
+<div class="col-span-5 flex items-center gap-4 w-full">
+<div class="relative">
+<div class="size-10 md:size-12 rounded-full bg-cover bg-center border-2 border-[#223b49]" data-alt="Student Portrait Mariana" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDCbJ_vpgsPY9lTxpuwBdtn0yrwRoS22u_G1HQcFdep9AceNqILGc99htAIBda_12tZTEZYRHP5_0Mv5vZWRwJh-Neqye5DXFZbriXCMdU-f0nXm2uQMuOqRxDiugz_OT1bhtGFdRXBEC0MeppbKs8oqy_9D04PwrX_Avc4XO8FF_T3xIYVI1ufx9zpTm6H4vJPd3KR1_cl_OKBRBucEjc3V_f5Nw8UTn6KEptxJNocT05AeMZJIMnNNvRl9h2NcV0xKSGueswWkmQ')"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-white font-bold text-base md:text-lg group-hover:text-primary transition-colors">Mariana Costa</span>
+<span class="text-[#8fb6cc] text-xs md:hidden">ID: #2942</span>
+</div>
+</div>
+<div class="col-span-2 hidden md:block text-center">
+<span class="bg-[#223b49] text-[#8fb6cc] text-xs font-mono px-2 py-1 rounded">#2942</span>
+</div>
+<div class="col-span-5 flex justify-between md:justify-end items-center gap-2 w-full">
+<div class="flex bg-[#0f171c] p-1 rounded-lg border border-[#223b49] w-full md:w-auto">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>P</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>F</span>
+</button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded md:w-24 text-[#8fb6cc] hover:text-white hover:bg-[#223b49] transition-all">
+<span class="material-symbols-outlined text-[20px]">info</span>
+<span>J</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panel (Desktop Only) - Summary & Notes -->
+<aside class="hidden xl:flex flex-col w-96 border-l border-[#223b49] bg-[#101c23]/50 p-6 shrink-0">
+<div class="flex flex-col gap-6 sticky top-6">
+<div>
+<h3 class="text-white font-bold text-xl mb-4">Class Summary</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-[#15232d] p-4 rounded-xl border border-[#223b49] flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-green-400">18</span>
+<span class="text-[#8fb6cc] text-xs font-medium uppercase mt-1">Present</span>
+</div>
+<div class="bg-[#15232d] p-4 rounded-xl border border-[#223b49] flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-red-400">3</span>
+<span class="text-[#8fb6cc] text-xs font-medium uppercase mt-1">Absent</span>
+</div>
+<div class="bg-[#15232d] p-4 rounded-xl border border-[#223b49] flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-yellow-400">1</span>
+<span class="text-[#8fb6cc] text-xs font-medium uppercase mt-1">Justified</span>
+</div>
+<div class="bg-[#15232d] p-4 rounded-xl border border-[#223b49] flex flex-col items-center justify-center">
+<span class="text-3xl font-black text-white">8</span>
+<span class="text-[#8fb6cc] text-xs font-medium uppercase mt-1">Pending</span>
+</div>
+</div>
+</div>
+<div class="h-px bg-[#223b49] w-full"></div>
+<div class="flex flex-col gap-2">
+<label class="text-white font-bold text-lg flex items-center gap-2">
+<span class="material-symbols-outlined">edit_note</span>
+                            Classroom Notes
+                        </label>
+<textarea class="w-full h-40 bg-[#0f171c] border border-[#223b49] rounded-xl p-4 text-[#8fb6cc] placeholder-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none" placeholder="Add observations about today's class..."></textarea>
+<p class="text-xs text-[#5f7a8c]">Notes are visible to school administration.</p>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full bg-primary hover:bg-primary/90 text-[#101c23] font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all transform active:scale-95">
+<span class="material-symbols-outlined">send</span>
+                            Submit Attendance
+                        </button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Sticky Footer for Mobile/Tablet (Hidden on XL screens where side panel exists) -->
+<div class="xl:hidden absolute bottom-0 left-0 right-0 bg-[#101c23]/95 backdrop-blur-md border-t border-[#223b49] p-4 z-30">
+<div class="flex gap-3 max-w-4xl mx-auto">
+<button class="flex-1 bg-[#15232d] hover:bg-[#1a2c38] text-white border border-[#223b49] font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="hidden sm:inline">Notes</span>
+</button>
+<button class="flex-[3] bg-primary hover:bg-primary/90 text-[#101c23] font-bold py-3 px-4 rounded-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined">send</span>
+                    Submit Attendance
+                </button>
+</div>
+</div>
+</main>
+</body></html>

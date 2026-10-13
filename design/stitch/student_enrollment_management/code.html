@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Enrollment Management - Xinguara Municipal Schools</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14a6f5",
+                        "primary-dark": "#0d8ecf",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom scrollbar for table container if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display">
+<!-- Top Navigation / Header -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-20">
+<div class="max-w-[1400px] mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold">
+                    X
+                </div>
+<h1 class="text-lg font-bold text-slate-800 dark:text-white hidden sm:block">Xinguara Schools</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-800">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+<img alt="School Secretary Profile" class="w-full h-full object-cover" data-alt="School Secretary Profile Portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU94eSFIMHDATj_2XsfZ11wifDcDlU2_VAZBuBZJlbiMQ3_qJGyAvQphfNIJopH23tV8zssu11x1psfsKTTQ-OqqH298DD5y2kMy7-cg5qASn-kLvqSOTz0YdfeebN7j2gYLN8gbJkCgxn2Po0hWzcbc-kKznC4qypAIR9hb_hvMtwFqwqw9-FvnSEt2ZD-F1STEHLKCoPdBZjzTA-ypTX5_7eccVHr88PbRFsK3q10ZIZAzPRFxrAE9C2oUsch39uB4vwBhr-1uc"/>
+</div>
+<div class="hidden md:block">
+<p class="text-sm font-medium text-slate-700 dark:text-slate-200">Maria Oliveira</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">School Secretary</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-4 py-6 md:px-6 lg:px-8">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex mb-6 text-sm">
+<ol class="inline-flex items-center space-x-1 md:space-x-2">
+<li class="inline-flex items-center">
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">
+                        Home
+                    </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-lg mx-1">chevron_right</span>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">
+                            Enrollments
+                        </a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-lg mx-1">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-medium">Management</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+<div class="space-y-1">
+<h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Student Enrollment Management</h2>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">
+                    Manage student records, enrollments, and academic history for the current academic year.
+                </p>
+</div>
+<button class="inline-flex items-center justify-center h-10 px-5 py-2 bg-primary hover:bg-primary-dark text-white text-sm font-medium rounded-lg shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined mr-2 text-[20px]">add</span>
+                Start New Enrollment
+            </button>
+</div>
+<!-- Filters & Actions Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 mb-6">
+<div class="p-4 md:p-5 flex flex-col lg:flex-row gap-4 lg:items-end">
+<!-- Search -->
+<div class="flex-1 min-w-[280px]">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="search">Search Student</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-shadow" id="search" name="search" placeholder="Search by name, ID, or guardian..." type="text"/>
+</div>
+</div>
+<!-- Filters Group -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 flex-none w-full lg:w-auto">
+<!-- Academic Year -->
+<div class="w-full">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="year">Academic Year</label>
+<div class="relative">
+<select class="block w-full pl-3 pr-10 py-2.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none" id="year" name="year">
+<option selected="">2024</option>
+<option>2023</option>
+<option>2022</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Grade Level -->
+<div class="w-full">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="grade">Grade Level</label>
+<div class="relative">
+<select class="block w-full pl-3 pr-10 py-2.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none" id="grade" name="grade">
+<option selected="">All Grades</option>
+<option>1st Grade</option>
+<option>2nd Grade</option>
+<option>3rd Grade</option>
+<option>4th Grade</option>
+<option>5th Grade</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Status -->
+<div class="w-full">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="status">Status</label>
+<div class="relative">
+<select class="block w-full pl-3 pr-10 py-2.5 text-sm border border-slate-300 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none" id="status" name="status">
+<option selected="">All Statuses</option>
+<option>Active</option>
+<option>Transferred</option>
+<option>Dropped Out</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Apply Filters Button (Mobile mainly, or for explicit action) -->
+<button class="hidden lg:flex items-center justify-center h-[42px] px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-lg transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined mr-2 text-[20px]">filter_list</span>
+                    More Filters
+                </button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col">
+<!-- Table Header Stats/Summary (Optional density booster) -->
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-800/50">
+<div class="flex items-center gap-2">
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300">Total Students:</span>
+<span class="text-sm font-bold text-primary">1,248</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-500" title="Refresh List">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-500" title="Export CSV">
+<span class="material-symbols-outlined text-[20px]">download</span>
+</button>
+</div>
+</div>
+<!-- Responsive Table -->
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/80 sticky top-0 z-10">
+<tr>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[240px]" scope="col">Student Name</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[120px]" scope="col">ID Number</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[200px]" scope="col">Guardian</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[160px]" scope="col">Class</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[140px]" scope="col">Docs Status</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 min-w-[140px]" scope="col">Enrollment</th>
+<th class="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right min-w-[180px]" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-3 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm mr-3">
+                                        JS
+                                    </div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Joao Silva</div>
+<div class="text-xs text-slate-500 dark:text-slate-400">Since Jan 2024</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-mono">2024001</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">Maria Silva</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">5th Grade - A</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+                                    Pending
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary p-1.5 hover:bg-primary/10 rounded" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-amber-600 dark:text-slate-500 dark:hover:text-amber-500 p-1.5 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded" title="Generate History">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-500 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded" title="Transfer">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-3 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 flex items-center justify-center font-bold text-sm mr-3">
+                                        AS
+                                    </div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Ana Souza</div>
+<div class="text-xs text-slate-500 dark:text-slate-400">Since Feb 2024</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-mono">2024002</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">Carlos Souza</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">4th Grade - B</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Verified
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary p-1.5 hover:bg-primary/10 rounded" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-amber-600 dark:text-slate-500 dark:hover:text-amber-500 p-1.5 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded" title="Generate History">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-500 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded" title="Transfer">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-3 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400 flex items-center justify-center font-bold text-sm mr-3">
+                                        PS
+                                    </div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Pedro Santos</div>
+<div class="text-xs text-slate-500 dark:text-slate-400">Since Jan 2023</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-mono">2024003</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">Julia Santos</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">5th Grade - A</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800">
+                                    Missing
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600">
+                                    Transferred
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary p-1.5 hover:bg-primary/10 rounded" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-amber-600 dark:text-slate-500 dark:hover:text-amber-500 p-1.5 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded" title="Generate History">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-500 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded" title="Transfer">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-3 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-teal-100 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400 flex items-center justify-center font-bold text-sm mr-3">
+                                        ML
+                                    </div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Mariana Lima</div>
+<div class="text-xs text-slate-500 dark:text-slate-400">Since Jan 2024</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-mono">2024004</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">Roberto Lima</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">3rd Grade - C</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Verified
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Active
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary p-1.5 hover:bg-primary/10 rounded" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-amber-600 dark:text-slate-500 dark:hover:text-amber-500 p-1.5 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded" title="Generate History">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-500 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded" title="Transfer">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<td class="px-6 py-3 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-9 w-9 rounded-full bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400 flex items-center justify-center font-bold text-sm mr-3">
+                                        LO
+                                    </div>
+<div>
+<div class="text-sm font-medium text-slate-900 dark:text-white">Lucas Oliveira</div>
+<div class="text-xs text-slate-500 dark:text-slate-400">Since Mar 2024</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300 font-mono">2024005</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">Fernanda Oliveira</td>
+<td class="px-6 py-3 whitespace-nowrap text-sm text-slate-600 dark:text-slate-300">5th Grade - A</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                                    Verified
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400 border border-red-200 dark:border-red-800">
+                                    Dropped Out
+                                </span>
+</td>
+<td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+<div class="flex items-center justify-end gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-slate-400 hover:text-primary dark:text-slate-500 dark:hover:text-primary p-1.5 hover:bg-primary/10 rounded" title="View Details">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="text-slate-400 hover:text-amber-600 dark:text-slate-500 dark:hover:text-amber-500 p-1.5 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded" title="Generate History">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="text-slate-400 hover:text-red-600 dark:text-slate-500 dark:hover:text-red-500 p-1.5 hover:bg-red-50 dark:hover:bg-red-900/20 rounded" title="Transfer">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-slate-700 dark:text-slate-300">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">1,248</span> results
+                        </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                1
+                            </a>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                2
+                            </a>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                3
+                            </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300">
+                                ...
+                            </span>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                48
+                            </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination View -->
+<div class="flex items-center justify-between sm:hidden w-full">
+<a class="relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 text-sm font-medium rounded-md text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+                        Previous
+                    </a>
+<a class="ml-3 relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 text-sm font-medium rounded-md text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+                        Next
+                    </a>
+</div>
+</div>
+</div>
+</main>
+</body></html>

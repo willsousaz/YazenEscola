@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara School Events</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Hide scrollbar for clean mobile feel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col items-center justify-center p-4 lg:p-8 relative overflow-hidden">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 z-0 opacity-40 pointer-events-none" style="background-image: radial-gradient(#1754cf 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none"></div>
+<!-- Mobile View Container -->
+<div class="relative w-full max-w-[480px] h-[850px] bg-background-light dark:bg-background-dark rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col border-[8px] border-white z-10 ring-1 ring-slate-900/5">
+<!-- Status Bar Mimic -->
+<div class="h-8 bg-white dark:bg-background-dark flex justify-between items-center px-6 pt-2 shrink-0 z-20">
+<span class="text-xs font-semibold text-slate-900 dark:text-white">9:41</span>
+<div class="flex gap-1.5">
+<div class="w-4 h-4 bg-slate-900 dark:bg-white rounded-sm opacity-20"></div>
+<div class="w-4 h-4 bg-slate-900 dark:bg-white rounded-sm opacity-20"></div>
+<div class="w-4 h-4 bg-slate-900 dark:bg-white rounded-sm opacity-100"></div>
+</div>
+</div>
+<!-- App Header -->
+<header class="flex items-center justify-between px-6 py-4 bg-white dark:bg-background-dark sticky top-0 z-20 shadow-sm/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h1 class="text-sm font-medium text-slate-500 dark:text-slate-400 leading-none mb-0.5">Welcome back,</h1>
+<p class="text-base font-bold text-slate-900 dark:text-white leading-none">Maria Silva</p>
+</div>
+</div>
+<button class="relative w-10 h-10 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24 bg-background-light dark:bg-background-dark">
+<!-- Hero Featured Event -->
+<div class="px-5 pt-6 pb-2">
+<div class="flex items-center justify-between mb-3">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Featured Event</h2>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">Don't Miss Out</span>
+</div>
+<div class="relative w-full aspect-[4/5] sm:aspect-video rounded-2xl overflow-hidden group shadow-lg">
+<!-- Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Students presenting science fair projects in a hall" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCl9I8A-TbAfOSKn_WGTUMiwamRBj65MzwQkq4kIz2VHB3PsQC2cSqJVW7VvigLRxcEiXW7D4PfTYtm8oxUA6XrKU8yu8tuLq6ktGbFkvY0YlIA0dtdnC5lNqDOyK3saG5x0J74HOy04qGF75dw1-06zAp467RXcP6eEwytoZH5y1wgaxZfkHW_dA1j9SMWUITXq500oYZr3IvQh7t62R4qBqrRk8QWOIDvmgTFJVIeIS6tj0bYlXd7-98ToCX2Bo59qHY4w32R9Bk');"></div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+<!-- Content -->
+<div class="absolute bottom-0 left-0 right-0 p-5 text-white">
+<div class="inline-flex items-center gap-1 bg-white/20 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-semibold mb-3 border border-white/10">
+<span class="material-symbols-outlined text-[16px]">science</span>
+                            Science Fair 2024
+                        </div>
+<h3 class="text-2xl font-black leading-tight mb-2">Innovation &amp; Discovery Showcase</h3>
+<p class="text-sm text-slate-200 line-clamp-2 mb-4">Join us for a showcase of student innovation, robotics demos, and biology experiments.</p>
+<!-- Countdown Timer -->
+<div class="grid grid-cols-4 gap-2 mb-4">
+<div class="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center border border-white/10">
+<span class="block text-lg font-bold leading-none">02</span>
+<span class="text-[10px] text-slate-300 uppercase tracking-wider">Days</span>
+</div>
+<div class="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center border border-white/10">
+<span class="block text-lg font-bold leading-none">14</span>
+<span class="text-[10px] text-slate-300 uppercase tracking-wider">Hrs</span>
+</div>
+<div class="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center border border-white/10">
+<span class="block text-lg font-bold leading-none">45</span>
+<span class="text-[10px] text-slate-300 uppercase tracking-wider">Mins</span>
+</div>
+<div class="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center border border-white/10">
+<span class="block text-lg font-bold leading-none">12</span>
+<span class="text-[10px] text-slate-300 uppercase tracking-wider">Secs</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
+<span>View Details</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Invitation Feed -->
+<div class="px-5 py-6 space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Upcoming Events</h2>
+<button class="text-sm text-primary font-semibold">View Calendar</button>
+</div>
+<!-- Event Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+<div class="relative h-48 bg-cover bg-center" data-alt="Musicians playing string instruments on a stage" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_hNW5S2MeGXOpKHI0hgOHtlLDCgDo-F1Rv2HBUYqhk_EZBt1ncnaW9KrepM3cjXJ34k6May8zVXXbQTA0QhDXk2cL32d_lE1Nr6mA5SXLtah9rheebNKNgWkVcaIvvrgejqKXgRR57rvEoWEpx6oSoO_GKwfqkHn5PYJKtJUrl4P4tgd84UEpodPJedEl9Prbvho2O8SA_UZB8YG3Bit3cTMdtbac9YOvnHIHPfL1kmPYudvTQhuqQoCNcCF3gLTcE-Zld_UGPrk');">
+<div class="absolute top-3 right-3 bg-white dark:bg-slate-900 rounded-lg px-2.5 py-1 text-center shadow-md">
+<span class="block text-xs font-bold text-slate-400 uppercase">Dec</span>
+<span class="block text-xl font-black text-primary leading-none">15</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Winter Music Recital</h3>
+<div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4 gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>7:00 PM</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Auditorium B</span>
+</div>
+<div class="flex gap-2 mb-4">
+<button class="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+                                Program
+                            </button>
+<button class="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 py-2 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">photo_library</span>
+                                Gallery
+                            </button>
+</div>
+<button class="w-full bg-primary/10 hover:bg-primary/20 text-primary font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2 border border-primary/20">
+<span class="material-symbols-outlined">check_circle</span>
+                            RSVP / Confirm Attendance
+                        </button>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+<div class="relative h-48 bg-cover bg-center" data-alt="Parents and teachers talking in a classroom setting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBzL_v08UaAFLPqF63HBclj1JPhVo-RZwSW4xc2I_2Lyx5RQNW0AwpPccDnjxlqyrtOOo3okgrKOy-cnNPzqp7nnFX9dpLjT_AXKHZcqqVKTDWlI7EYmwwrrdcyrWttwb5OpUZ9_WFzPCX-zSqRlNIAWDteeFuzJlASHmxY2ZpJWU7KUSX10ktd2as0Dv3GHGqansNRjztP3hwoO_Oxqy9pv1EZhtPTIBsZV58Ss5y_RSMYISUdayLkmgSv8BdQXqJOCf1BuU_BNqI');">
+<div class="absolute top-3 right-3 bg-white dark:bg-slate-900 rounded-lg px-2.5 py-1 text-center shadow-md">
+<span class="block text-xs font-bold text-slate-400 uppercase">Jan</span>
+<span class="block text-xl font-black text-primary leading-none">20</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">Parent-Teacher Conf.</h3>
+<div class="flex items-center text-slate-500 dark:text-slate-400 text-sm mb-4 gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>9:00 AM - 4:00 PM</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Main Hall</span>
+</div>
+<button class="w-full bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">calendar_add_on</span>
+                            Add to Calendar
+                        </button>
+</div>
+</div>
+<!-- Voluntary Signup Section -->
+<div class="bg-gradient-to-br from-primary to-blue-600 rounded-2xl shadow-lg p-6 text-white relative overflow-hidden">
+<!-- Decor Circles -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-10 -mb-10 blur-xl"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4 backdrop-blur-sm">
+<span class="material-symbols-outlined text-2xl">volunteer_activism</span>
+</div>
+<h3 class="text-xl font-bold mb-2">Become a Volunteer</h3>
+<p class="text-blue-100 text-sm mb-5 leading-relaxed">Help us make the Spring Fete amazing! We need 5 more volunteers for the food stall.</p>
+<button class="w-full bg-white text-primary font-bold py-3 rounded-xl hover:bg-blue-50 transition-colors shadow-sm">
+                            Sign Up Now
+                        </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="absolute bottom-0 w-full bg-white dark:bg-background-dark border-t border-slate-100 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-30 pb-6">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined filled">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Calendar</span>
+</button>
+<!-- FAB Center Button -->
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/40 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">airplane_ticket</span>
+<span class="text-[10px] font-medium">My RSVPs</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+<!-- Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-900/20 dark:bg-white/20 rounded-full z-40"></div>
+</div>
+</body></html>

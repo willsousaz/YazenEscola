@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bem-vindo ao Sistema Xinguara - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#105ef9",
+                        "primary-content": "#ffffff",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1623",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2433",
+                        "text-main": "#0d121c",
+                        "text-subtle": "#47649e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean carousel look */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main antialiased min-h-screen flex flex-col">
+<!-- Main Container: Centered Card Layout for Desktop to mimic focused mobile feel -->
+<div class="flex flex-1 items-center justify-center p-4 md:p-8 min-h-screen">
+<!-- Onboarding Card -->
+<div class="relative w-full max-w-5xl bg-surface-light dark:bg-surface-dark rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row h-auto md:h-[600px]">
+<!-- Left Side: Hero Illustration (Visual Anchor) -->
+<div class="relative w-full md:w-1/2 bg-primary/5 dark:bg-primary/10 flex items-center justify-center p-8 md:p-12 overflow-hidden group">
+<!-- Abstract decorative shapes -->
+<div class="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl"></div>
+<!-- Main Illustration Container -->
+<div class="relative z-10 w-full aspect-square max-w-[400px]">
+<div class="w-full h-full bg-center bg-contain bg-no-repeat transition-transform duration-700 group-hover:scale-105" data-alt="Digital tablet showing analytics and graduation cap representing edtech" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBd8kcG1s7iNGcD3I2WM_aYS8wklHxC7JmfU7VQPwrWXZi8MLkUI7wrcAVjkwxDKZ_Oj7tIZIsTu4mgS_szprFktmatWPsRRevGOoptKdWuW2nmZdjSqTCxo2fudckbOOP6iJ2Phegm2h7jQulYlP-bjwhYgfTJjdvGdmjtXhDGNSXRnZjcVeawhhYofGewkbnN-ddgKeg6XesJI-SJWWmLNELZxwatRtMeNjdNahdXd3WvBuyjTHSKpzVGzVNjlcRBVBDKomqBAdA");'>
+</div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute bottom-8 left-8 bg-surface-light dark:bg-surface-dark/90 backdrop-blur-sm p-3 rounded-xl shadow-lg border border-primary/10 hidden md:flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<p class="text-xs font-bold text-text-main dark:text-white">Sistema Xinguara</p>
+<p class="text-[10px] text-text-subtle">Versão 3.0 Mobile</p>
+</div>
+</div>
+</div>
+<!-- Right Side: Content & Interactive Flow -->
+<div class="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-between bg-surface-light dark:bg-surface-dark">
+<!-- Header Section -->
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+</span>
+<span class="text-sm font-bold tracking-widest text-primary uppercase">Bem-vindo</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-text-main dark:text-white leading-tight tracking-tight mb-3">
+                        Bem-vindo ao Sistema Xinguara!
+                    </h1>
+<p class="text-text-subtle text-base md:text-lg leading-relaxed">
+                        Sua nova ferramenta para transformar a gestão escolar com inteligência e praticidade.
+                    </p>
+</div>
+<!-- Carousel / Features Section -->
+<div class="flex-1 flex flex-col justify-center py-4">
+<!-- Cards Container -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Feature 1 -->
+<div class="group flex flex-row md:flex-col gap-4 p-4 rounded-xl hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors cursor-default border border-transparent hover:border-primary/10">
+<div class="h-10 w-10 md:h-12 md:w-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">monitoring</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main dark:text-white text-sm md:text-base mb-1">Gestão em Tempo Real</h3>
+<p class="text-xs md:text-sm text-text-subtle leading-snug">Acompanhe KPIs e matrículas na palma da mão.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="group flex flex-row md:flex-col gap-4 p-4 rounded-xl hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors cursor-default border border-transparent hover:border-primary/10">
+<div class="h-10 w-10 md:h-12 md:w-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">chat_bubble</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main dark:text-white text-sm md:text-base mb-1">Comunicação Facilitada</h3>
+<p class="text-xs md:text-sm text-text-subtle leading-snug">Fale diretamente com professores e secretaria.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="group flex flex-row md:flex-col gap-4 p-4 rounded-xl hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors cursor-default border border-transparent hover:border-primary/10">
+<div class="h-10 w-10 md:h-12 md:w-12 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<h3 class="font-bold text-text-main dark:text-white text-sm md:text-base mb-1">Segurança e Dados</h3>
+<p class="text-xs md:text-sm text-text-subtle leading-snug">Conformidade total com a LGPD e dados criptografados.</p>
+</div>
+</div>
+</div>
+<!-- Mobile Carousel Dots (Visual only for this layout as we expanded the grid for desktop) -->
+<div class="flex md:hidden justify-center gap-2 mt-4">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-6 flex flex-col gap-3">
+<button class="w-full flex items-center justify-center gap-2 h-12 rounded-xl bg-primary hover:bg-blue-700 text-white font-bold text-base transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50 transform active:scale-[0.98]">
+<span>Começar Agora</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="w-full flex items-center justify-center h-10 rounded-xl bg-transparent hover:bg-background-light dark:hover:bg-background-dark text-text-subtle hover:text-primary text-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-lg mr-2">play_circle</span>
+                        Ver Tutorial
+                    </button>
+</div>
+</div>
+</div>
+<!-- Background decorative elements for the page -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-[120px]"></div>
+</div>
+</div>
+</body></html>

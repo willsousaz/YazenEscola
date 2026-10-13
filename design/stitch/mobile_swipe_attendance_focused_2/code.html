@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Swipe Attendance (Focused)</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14a6f5",
+                        "primary-dark": "#0c8bc5",
+                        "danger": "#ef4444",
+                        "success": "#22c55e",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101c23",
+                        "surface-dark": "#182a34",
+                        "surface-highlight": "#223b49",
+                        "text-secondary": "#8fb6cc",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Hide scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101c23; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #223b49; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #305569; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-hidden">
+<!-- Main Layout -->
+<div class="flex flex-1 h-screen overflow-hidden">
+<!-- Sidebar (Collapsed for Focus Mode) -->
+<aside class="hidden md:flex flex-col w-20 lg:w-64 border-r border-[#223b49] bg-[#101c23] shrink-0 transition-all duration-300">
+<div class="h-16 flex items-center justify-center lg:justify-start lg:px-6 border-b border-[#223b49]">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold text-xl">X</div>
+<span class="ml-3 font-bold text-lg hidden lg:block tracking-tight">Xinguara</span>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-2 px-3">
+<a class="flex items-center gap-3 p-3 rounded-lg text-text-secondary hover:bg-[#223b49] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+<span class="hidden lg:block font-medium">Attendance</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-text-secondary hover:bg-[#223b49] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="hidden lg:block">Students</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-text-secondary hover:bg-[#223b49] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="hidden lg:block">Schedule</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#223b49]">
+<a class="flex items-center gap-3 p-3 rounded-lg text-text-secondary hover:bg-[#223b49] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="hidden lg:block">Settings</span>
+</a>
+<div class="flex items-center gap-3 mt-4 px-3">
+<img alt="Teacher profile" class="w-8 h-8 rounded-full border border-[#223b49]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj1snTpo0rxOLSDa_o8eSqlSSLqFcjZix2ykxF_xscUbtUiluynb_ecEGGw1SUc6T7DaeI23YKgVP0JEwCQxcnZIToL9zObHQxF0m8-y9uigKdC0NFVPpGzJumMYxlH0iajqPJz0Gtf4ktyhVc3JsSDYKVP8PcRwojh-dH3sM6bKlqIQTt9__xPOVtk1UZ_MXhrfgD8N03MDxS-QOEho0tPHtO1YNXtAPWzTFjlGSjRQw745nn0bU6L7aTgOn00FyLWT1vC-0uhE0"/>
+<div class="hidden lg:block">
+<p class="text-sm font-medium text-white">Prof. Silva</p>
+<p class="text-xs text-text-secondary">Math Teacher</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Content Area -->
+<main class="flex-1 flex flex-col relative h-full">
+<!-- Top Header -->
+<header class="h-16 border-b border-[#223b49] bg-[#101c23] flex items-center justify-between px-6 z-20">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-text-secondary hover:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div>
+<h1 class="text-white text-lg font-bold leading-tight">Class 5B - Mathematics</h1>
+<p class="text-text-secondary text-xs">Swipe Attendance Mode</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex items-center gap-2 mr-4 bg-[#182a34] px-3 py-1.5 rounded-full border border-[#305569]">
+<span class="material-symbols-outlined text-text-secondary text-sm">schedule</span>
+<span class="text-sm font-medium text-white">08:00 - 09:30 AM</span>
+</div>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#223b49] hover:bg-[#305569] text-white transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-[#223b49] hover:bg-[#305569] text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Focus Container -->
+<div class="flex-1 bg-[#0d151a] relative flex flex-col items-center justify-center p-4 sm:p-6 overflow-hidden">
+<!-- Background decorative elements -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-3xl"></div>
+</div>
+<!-- Progress Header -->
+<div class="w-full max-w-md mb-6 z-10 flex flex-col gap-2">
+<div class="flex justify-between items-end text-sm">
+<span class="text-white font-medium">Student 12 of 30</span>
+<span class="text-primary font-bold">40%</span>
+</div>
+<div class="h-2 w-full bg-[#223b49] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 40%"></div>
+</div>
+<div class="flex justify-between text-xs text-text-secondary mt-1">
+<span>Started 5 mins ago</span>
+<span>18 remaining</span>
+</div>
+</div>
+<!-- Main Card Area -->
+<div class="relative w-full max-w-md z-10">
+<!-- Student Card -->
+<div class="bg-surface-dark border border-[#305569] rounded-2xl shadow-xl overflow-hidden relative group">
+<!-- Card Header / Image -->
+<div class="relative h-64 sm:h-72 w-full bg-[#101c23] overflow-hidden">
+<img alt="Student Photo" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" data-alt="Portrait of a female student looking forward" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXo4uY7xIBFjwNfS-leKu9hSEycHde5C97wd3cqEvZvpzxeCxJKhBUJr65xFd8001h6po4HSC_KXqNLlQgDRE0PVSdPvRxKxUDv0hNXvCjiA5VX3KTBnRbqeTLJMcdZk9GBILf0sinF3JQJjDly5hwMkcb07WykqiW-mwJhfaFhDs0gYzjbjbRi8i0BDqeMO1WKU_gyzHDfghDACMBW9SczuBTuJ7MNrCBPZb5rwBTwejDGpsLGcuEtMxf0R4b5UWziwaYWR8ou2U"/>
+<!-- Status Badges Overlay -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<span class="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                                    Needs Justification
+                                </span>
+</div>
+<div class="absolute top-4 left-4">
+<span class="bg-black/40 text-white text-xs font-medium px-2 py-1 rounded backdrop-blur-sm border border-white/10">
+                                    ID: 2023-8841
+                                </span>
+</div>
+<!-- Gradient Fade at bottom -->
+<div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-surface-dark via-surface-dark/80 to-transparent"></div>
+</div>
+<!-- Card Content -->
+<div class="relative px-6 pb-6 pt-2 text-center -mt-12">
+<h2 class="text-2xl sm:text-3xl font-bold text-white mb-1 tracking-tight">Maria Gonzalez</h2>
+<p class="text-text-secondary text-sm mb-6">Regular Student • 92% Attendance Rate</p>
+<!-- Action Buttons Row (Swipe Controls) -->
+<div class="flex items-center justify-center gap-6 sm:gap-10 mb-6">
+<!-- Absent Button -->
+<div class="flex flex-col items-center gap-2 group/absent cursor-pointer">
+<button class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#223b49] border-2 border-transparent hover:border-danger hover:bg-danger/10 text-danger flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-danger/20 hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-[32px] sm:text-[40px]">close</span>
+</button>
+<span class="text-xs font-bold text-text-secondary group-hover/absent:text-danger uppercase tracking-wider transition-colors">Absent</span>
+</div>
+<!-- Present Button -->
+<div class="flex flex-col items-center gap-2 group/present cursor-pointer">
+<button class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-primary border-2 border-transparent hover:bg-primary-dark hover:shadow-primary/40 text-white flex items-center justify-center transition-all duration-200 shadow-lg shadow-primary/20 hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-[32px] sm:text-[40px]">check</span>
+</button>
+<span class="text-xs font-bold text-text-secondary group-hover/present:text-primary uppercase tracking-wider transition-colors">Present</span>
+</div>
+</div>
+<!-- Additional Actions -->
+<div class="grid grid-cols-2 gap-3 pt-4 border-t border-[#305569]/50">
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-[#223b49] hover:bg-[#305569] text-text-secondary hover:text-white transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-lg">edit_note</span>
+                                    Justify
+                                </button>
+<button class="flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-[#223b49] hover:bg-[#305569] text-text-secondary hover:text-white transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-lg">add_comment</span>
+                                    Observation
+                                </button>
+</div>
+</div>
+</div>
+<!-- Decorative Stacked Cards Effect behind -->
+<div class="absolute top-4 inset-x-4 h-full bg-[#182a34]/50 rounded-2xl -z-10 scale-[0.95] translate-y-2 border border-[#305569]/30"></div>
+<div class="absolute top-8 inset-x-8 h-full bg-[#182a34]/20 rounded-2xl -z-20 scale-[0.90] translate-y-4 border border-[#305569]/10"></div>
+</div>
+<!-- Keyboard Shortcuts Hint -->
+<div class="mt-8 flex gap-8 opacity-40 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-2">
+<kbd class="px-2 py-1 bg-[#223b49] rounded text-white text-xs font-mono border border-[#305569]">←</kbd>
+<span class="text-xs text-text-secondary">Absent</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-text-secondary">Present</span>
+<kbd class="px-2 py-1 bg-[#223b49] rounded text-white text-xs font-mono border border-[#305569]">→</kbd>
+</div>
+</div>
+<!-- Floating Undo Button (Toast style) -->
+<div class="absolute bottom-6 z-30 flex items-center gap-3 bg-[#182a34] text-white px-4 py-3 rounded-lg border border-[#305569] shadow-xl transform translate-y-20 opacity-0 animate-[slideUp_0.3s_ease-out_forwards_2s]">
+<div class="flex items-center justify-center w-5 h-5 rounded-full bg-success text-[#101c23]">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+</div>
+<span class="text-sm font-medium">Gabriel marked as Present</span>
+<button class="ml-2 text-primary hover:text-white text-sm font-bold uppercase tracking-wide">Undo</button>
+</div>
+</div>
+</main>
+</div>
+<!-- Animation Keyframes hack using style block since tailwind config is in script tag -->
+<style>
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</body></html>

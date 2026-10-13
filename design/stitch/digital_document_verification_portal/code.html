@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Document Verification Portal - Xinguara</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d216f3",
+                        "primary-dark": "#b012cd",
+                        "primary-light": "#f5d0fb",
+                        "background-light": "#f8f5f8",
+                        "background-dark": "#1f1022",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d1b32",
+                        "neutral-light": "#f2e7f4",
+                        "neutral-dark": "#4a2c52",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#1a0d1c] dark:text-gray-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-neutral-light dark:border-neutral-dark bg-surface-light dark:bg-surface-dark px-6 lg:px-10 py-4 shadow-sm relative z-20">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight">Xinguara Municipal</h2>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">School Management System</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-6">
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors text-sm font-medium" href="#">Help Center</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors text-sm font-medium" href="#">Contact Support</a>
+</div>
+<button class="hidden sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary/10 hover:bg-primary/20 text-primary transition-colors text-sm font-bold">
+<span>Login</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-10 relative overflow-hidden">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 pointer-events-none opacity-40 dark:opacity-20">
+<div class="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+</div>
+<div class="layout-content-container flex flex-col max-w-[1024px] w-full z-10 gap-8 lg:flex-row lg:items-start lg:justify-center">
+<!-- Left Column: Context & Branding -->
+<div class="flex flex-col gap-6 lg:w-5/12 lg:pt-10 text-center lg:text-left">
+<div class="space-y-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs font-bold uppercase tracking-wider w-fit mx-auto lg:mx-0">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                        Official Verification
+                    </div>
+<h1 class="text-gray-900 dark:text-white text-4xl lg:text-5xl font-black leading-tight tracking-tight">
+                        Verify Digital <br/><span class="text-primary">Documents</span>
+</h1>
+<p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Ensure the authenticity of Xinguara Municipal School certificates. Our secure portal instantly validates diplomas and transcripts against our blockchain-secured database.
+                    </p>
+</div>
+<div class="flex flex-col gap-3 max-w-sm mx-auto lg:mx-0">
+<div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span>Instant Verification</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span>Tamper-proof Results</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span>Official Municipal Records</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Verification Card -->
+<div class="w-full lg:w-6/12">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-xl border border-neutral-light dark:border-neutral-dark overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5">
+<!-- Tabs -->
+<div class="grid grid-cols-2 border-b border-neutral-light dark:border-neutral-dark">
+<button class="relative flex items-center justify-center gap-2 py-4 text-sm font-bold tracking-wide transition-colors text-primary bg-primary/5">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                            Scan QR Code
+                            <div class="absolute bottom-0 left-0 w-full h-1 bg-primary"></div>
+</button>
+<button class="group flex items-center justify-center gap-2 py-4 text-sm font-bold tracking-wide text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors bg-transparent">
+<span class="material-symbols-outlined">password</span>
+                            Enter Hash
+                            <div class="absolute bottom-0 left-0 w-full h-1 bg-transparent group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-colors"></div>
+</button>
+</div>
+<!-- Scan Mode Content -->
+<div class="p-8 flex flex-col items-center justify-center gap-6 min-h-[400px]">
+<!-- Scanner Placeholder -->
+<div class="relative w-full max-w-[320px] aspect-square bg-gray-900 rounded-xl overflow-hidden flex flex-col items-center justify-center group cursor-pointer shadow-inner border-2 border-dashed border-gray-700 hover:border-primary/50 transition-colors">
+<img class="absolute inset-0 w-full h-full object-cover opacity-30" data-alt="Abstract blurry background resembling a camera view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDuO-s1tsYObQMObgq4Fkj4EA9He632oao2MT_IR4N6Eb9HR6xC1GbRtMasPJTa7XulW3TRg5X2p6Q7f35KJEr5Tx9WsElTn2h_vTXfdROTXWbnWBQLUuUzI3vsNryHAqrMdTZ6tuXXfqiBKiUHuxnSZ4QtNOEOucQIefTOsg5eKQq3ZM15FtA5sIpmJm6l-qYQdKcKAqPZK9JAel8sF-teqz2e16aca_gowmT2Tw6WlKYu_HMGM4sCRBtVya-MCW2sYO5H7LjzmE"/>
+<!-- Scanning Animation Overlay -->
+<div class="absolute inset-0 z-10">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary/80 shadow-[0_0_15px_rgba(210,22,243,0.8)] animate-[scan_2s_ease-in-out_infinite]"></div>
+</div>
+<div class="relative z-20 bg-black/60 backdrop-blur-sm p-4 rounded-full border border-white/10 text-white group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-3xl">videocam</span>
+</div>
+<p class="relative z-20 mt-4 text-white text-sm font-medium tracking-wide">Click to enable camera</p>
+</div>
+<p class="text-center text-gray-500 dark:text-gray-400 text-sm max-w-xs">
+                            Point your camera at the QR code located at the bottom right of the certificate.
+                        </p>
+<!-- Alternative Link (Simulated Interaction) -->
+<button class="text-primary text-sm font-bold hover:underline flex items-center gap-1">
+                            Having trouble? Enter hash manually
+                            <span class="material-symbols-outlined text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Result Card (Simulated Success State - Hidden by default but shown here for design) -->
+<!-- To see this state, one would typically toggle visibility. Since I can't add JS, I will add it as a secondary section below to showcase the UI design for "Result" -->
+</div>
+</div>
+<!-- Result Showcase (Simulating what appears after verification) -->
+<div class="w-full max-w-[1024px] mt-12 pt-12 border-t border-neutral-light dark:border-neutral-dark">
+<div class="flex flex-col md:flex-row gap-8 items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest text-xs">Design Preview: Verification Result</h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg border border-neutral-light dark:border-neutral-dark p-6 md:p-8 flex flex-col md:flex-row gap-8 items-start">
+<!-- Status Column -->
+<div class="flex flex-col items-center justify-center w-full md:w-auto md:min-w-[200px] gap-4 p-6 bg-green-50 dark:bg-green-900/10 rounded-lg border border-green-100 dark:border-green-900/30">
+<div class="size-16 rounded-full bg-green-100 dark:bg-green-800 flex items-center justify-center text-green-600 dark:text-green-200">
+<span class="material-symbols-outlined text-4xl material-symbols-filled">verified</span>
+</div>
+<div class="text-center">
+<p class="text-green-700 dark:text-green-400 font-bold text-lg">Valid Document</p>
+<p class="text-green-600/70 dark:text-green-400/70 text-xs font-medium uppercase tracking-wide mt-1">Authenticity Confirmed</p>
+</div>
+</div>
+<!-- Details Column -->
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8 w-full">
+<div class="col-span-1 sm:col-span-2">
+<p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-1">Student Full Name</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">Mariana Costa Silva</p>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-1">Course / Level</p>
+<p class="text-base font-medium text-gray-800 dark:text-gray-200">Ensino Médio - Integrated Technical</p>
+</div>
+<div>
+<p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-1">Graduation Date</p>
+<p class="text-base font-medium text-gray-800 dark:text-gray-200">December 14, 2023</p>
+</div>
+<div class="col-span-1 sm:col-span-2 border-t border-dashed border-neutral-light dark:border-neutral-700 pt-4 mt-2">
+<p class="text-xs text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wider mb-1">School Unit</p>
+<div class="flex items-start gap-3 mt-2">
+<div class="mt-1 size-8 rounded bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-lg">apartment</span>
+</div>
+<div>
+<p class="text-base font-bold text-gray-900 dark:text-white">Escola Municipal Tancredo Neves</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">Rua das Palmeiras, 120 - Centro, Xinguara - PA</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3 w-full md:w-auto border-t md:border-t-0 md:border-l border-neutral-light dark:border-neutral-dark pt-6 md:pt-0 md:pl-8 justify-center">
+<button class="flex w-full md:w-auto items-center justify-center gap-2 rounded-lg h-10 px-6 bg-primary text-white hover:bg-primary-dark transition-colors text-sm font-bold shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Download PDF
+                    </button>
+<button class="flex w-full md:w-auto items-center justify-center gap-2 rounded-lg h-10 px-6 bg-white dark:bg-white/5 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/10 transition-colors text-sm font-bold">
+<span class="material-symbols-outlined text-lg">print</span>
+                        Print
+                    </button>
+<div class="h-px w-full bg-neutral-light dark:bg-neutral-700 my-1"></div>
+<button class="text-xs text-gray-500 hover:text-primary text-center">Report Issue</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-neutral-light dark:border-neutral-dark py-8 px-6 lg:px-10 mt-auto">
+<div class="max-w-[1024px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="size-6 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-gray-500 dark:text-gray-400">account_balance</span>
+</div>
+<span class="text-sm font-semibold text-gray-700 dark:text-gray-300">City Hall of Xinguara</span>
+</div>
+<div class="flex gap-6 text-sm text-gray-500 dark:text-gray-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Security</a>
+</div>
+<div class="text-xs text-gray-400 dark:text-gray-500">
+                © 2024 Municipal Education Dept.
+            </div>
+</div>
+</footer>
+<style>
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+    </style>
+</body></html>

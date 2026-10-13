@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sincronização Offline - Gestão Escolar Municipal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "primary-content": "#ffffff",
+                        "primary-dark": "#103c96",
+                        "primary-light": "#e1e9fb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2130",
+                        "warning": "#f59e0b",
+                        "warning-light": "#fef3c7",
+                        "warning-dark": "#78350f",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col transition-colors duration-200">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7ebf3] dark:border-[#2a3140] bg-surface-light dark:bg-surface-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-[#0e121b] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Gestão Escolar Municipal</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-[#e7ebf3] dark:bg-[#2a3140] text-[#0e121b] dark:text-white gap-2 text-sm font-bold leading-normal px-2.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[20px]">wifi_off</span>
+<span class="hidden sm:inline">Offline</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 bg-[#e7ebf3] dark:bg-[#2a3140] text-[#0e121b] dark:text-white gap-2 text-sm font-bold leading-normal px-2.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700">
+<span class="material-symbols-outlined text-[20px]">cloud_off</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaUjLI8hoDqEcMrD7zvyZ0XEphajc236BxK0v97FCs45jtu6nHVZCqlYuDiZ-IueQ51mmqbpct3DHmvL8A7GcTmSRFLVzQFG2mh7WNdOKnmMZVcw63fEkPuTx0DVMOKMzDUxH9uOZJxF11CTs82g9YTZTo9dm0r_3PZO5hgMIAWfyUJfe9_jUDXjs1gR5TFhTVJzSwywpqkIyhvqsVpQS9vEecL0avV3ifPQULvgLKm0bykyoHW-JQ3kwZ2bYxWzB9zlAdqOL2cx8");'></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center justify-center p-6 md:p-12 w-full max-w-7xl mx-auto">
+<!-- Mobile Simulation Container -->
+<div class="w-full max-w-[480px] bg-surface-light dark:bg-surface-dark rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col h-[800px] relative">
+<!-- 1) Connectivity Banner: Status Bar -->
+<div class="bg-warning text-white px-6 py-4 flex items-center gap-3 shadow-sm z-10">
+<span class="material-symbols-outlined animate-pulse">wifi_tethering_off</span>
+<div class="flex flex-col">
+<span class="font-bold text-sm uppercase tracking-wide">Modo Offline Ativo</span>
+<span class="text-xs opacity-90 font-medium">Sincronização Pendente</span>
+</div>
+</div>
+<!-- Header Content -->
+<div class="px-6 pt-6 pb-2">
+<h3 class="text-[#0e121b] dark:text-white text-2xl font-bold leading-tight">Fila de Sincronização</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Seus dados estão salvos localmente e seguros.</p>
+</div>
+<!-- 4) Storage Info Widget -->
+<div class="px-6 py-4">
+<div class="bg-background-light dark:bg-background-dark rounded-xl p-4 border border-gray-200 dark:border-gray-700 flex items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 text-primary p-2 rounded-lg">
+<span class="material-symbols-outlined">database</span>
+</div>
+<div>
+<p class="text-sm font-bold text-[#0e121b] dark:text-white">Armazenamento Local</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">12MB de 500MB utilizados</p>
+</div>
+</div>
+<!-- Radial Progress (Simulated with SVG) -->
+<div class="relative size-10">
+<svg class="size-full" viewbox="0 0 36 36">
+<path class="text-gray-200 dark:text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="8, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- 2) Local Queue Management List -->
+<div class="flex-1 overflow-y-auto px-6 py-2 space-y-3 pb-24 scrollbar-hide">
+<div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+<span>Pendentes (4)</span>
+<span>Hoje</span>
+</div>
+<!-- Queue Item 1 -->
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-[#1a2130] rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 p-2 rounded-lg mt-0.5">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[#0e121b] dark:text-white font-semibold text-sm">Chamada 9º Ano A</span>
+<span class="text-gray-500 dark:text-gray-400 text-xs">Português • Prof. Ana</span>
+<span class="text-gray-400 text-[10px] mt-1">10:45 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-[20px]" title="Aguardando conexão">schedule</span>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-[#1a2130] rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 p-2 rounded-lg mt-0.5">
+<span class="material-symbols-outlined text-[20px]">grade</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[#0e121b] dark:text-white font-semibold text-sm">Nota AV2 - João Silva</span>
+<span class="text-gray-500 dark:text-gray-400 text-xs">Matemática • 3.5 pts</span>
+<span class="text-gray-400 text-[10px] mt-1">11:15 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-[20px]" title="Aguardando conexão">schedule</span>
+</div>
+</div>
+<!-- Queue Item 3 -->
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-[#1a2130] rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 p-2 rounded-lg mt-0.5">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[#0e121b] dark:text-white font-semibold text-sm">Ocorrência Disciplinar</span>
+<span class="text-gray-500 dark:text-gray-400 text-xs">Maria Eduarda • 8º B</span>
+<span class="text-gray-400 text-[10px] mt-1">11:30 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-[20px]" title="Aguardando conexão">schedule</span>
+</div>
+</div>
+<!-- Queue Item 4 -->
+<div class="group flex items-center justify-between p-4 bg-white dark:bg-[#1a2130] rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-3">
+<div class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 p-2 rounded-lg mt-0.5">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[#0e121b] dark:text-white font-semibold text-sm">Controle de Merenda</span>
+<span class="text-gray-500 dark:text-gray-400 text-xs">Refeição Principal • 125 un.</span>
+<span class="text-gray-400 text-[10px] mt-1">12:00 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-500 text-[20px]" title="Aguardando conexão">schedule</span>
+</div>
+</div>
+</div>
+<!-- 3) Manual Sync Button & Footer -->
+<div class="absolute bottom-0 left-0 w-full p-6 bg-surface-light dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800">
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium text-gray-500">Última tentativa: 2 min atrás</span>
+<div class="flex items-center gap-1 text-xs text-warning font-semibold">
+<span class="material-symbols-outlined text-[14px]">signal_wifi_bad</span>
+                            Sem conexão
+                        </div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-bold text-base h-12 rounded-xl cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined">sync_disabled</span>
+                        Sincronizar Agora
+                    </button>
+<p class="text-center text-[11px] text-gray-400 dark:text-gray-500 px-4">
+                        O botão ficará azul (cor institucional) automaticamente quando uma conexão for detectada.
+                    </p>
+</div>
+</div>
+<!-- Simulated "Connection Restored" State Overlay (Hidden by default, shown for demo structure logic) -->
+<!-- To visualize the active state, one would simply toggle classes on the button above -->
+<!-- Example of what the button looks like when active (Ghost element for demo purposes) -->
+<div class="hidden absolute bottom-[140px] left-6 right-6">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold text-base h-12 rounded-xl shadow-lg shadow-primary/30 transition-all transform hover:scale-[1.02]">
+<span class="material-symbols-outlined animate-spin">sync</span>
+                    Sincronizar Agora
+                </button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,548 @@
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8"><title>Diagramas Yazen</title>
+<style>body{font-family:Inter,system-ui,sans-serif;background:#f8fafc;margin:0;padding:16px}section{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:16px;margin-bottom:24px;overflow:auto}h2{font-size:18px;color:#1e40af}button{margin-left:12px;font-size:12px;padding:4px 10px;border:1px solid #1e40af;background:#fff;color:#1e40af;border-radius:4px;cursor:pointer}</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script></head><body>
+<h1 style="font-size:22px">Yazen — Sistema de Gestão Escolar (cliente: SEMED Xinguara)</h1>
+<section><h2>Fluxo de Perfis <button onclick="dl(0,'01_fluxo_perfis')">Baixar SVG</button></h2><pre class="mermaid" id="d0">flowchart TD
+    %% ===== Acesso público =====
+    subgraph PUB[Acesso Público - sem login]
+        CID([Cidadão / TCM / Conselhos]) --&gt; TRANSP[Portal da Transparência&lt;br/&gt;Fundeb • Indicadores • Cardápios • Lista de espera creches]
+        CID --&gt; VALID[Validação de Documentos&lt;br/&gt;Histórico/Declaração via QR Code + hash]
+    end
+
+    %% ===== Autenticação =====
+    INI([Início do Sistema]) --&gt; LOGIN[Login + MFA]
+    LOGIN --&gt; CTX{Seleção de Contexto&lt;br/&gt;Perfil + Escola}
+    CTX -.-&gt;|1 pessoa pode ter N perfis&lt;br/&gt;em N escolas| CTX
+
+    %% ===== Perfis =====
+    CTX --&gt;|SEMED / Gestor| SEMED
+    CTX --&gt;|Diretor / Coordenador| DIR
+    CTX --&gt;|Professor| PROF
+    CTX --&gt;|Secretaria Escolar| SEC
+    CTX --&gt;|Responsável| RESP
+    CTX --&gt;|Monitor / Transporte| TRA
+    CTX --&gt;|Merenda / Patrimônio| LOG
+    CTX --&gt;|AEE / Biblioteca| SERV
+    CTX --&gt;|Administrador / TI| ADM
+
+    subgraph MOD[Perfis e Módulos]
+        SEMED[SEMED / Gestor&lt;br/&gt;Dashboard da Rede • Evasão • Alertas • Mapa&lt;br/&gt;── Cadastros-base ──&lt;br/&gt;Servidores • Ano Letivo/Períodos • Calendário&lt;br/&gt;Disciplinas/Matriz Curricular • Escolas&lt;br/&gt;Config. Grade da Rede • Arbitragem de conflitos]
+        DIR[Diretor / Coordenador&lt;br/&gt;Dashboard da Escola • Turmas&lt;br/&gt;Lotação de Professores • Grade Horária&lt;br/&gt;PIP • Assistente IA • Aprovação de Diários]
+        PROF[Professor&lt;br/&gt;Minhas Turmas • Diário de Classe&lt;br/&gt;Frequência • Avaliações/Notas&lt;br/&gt;Aceite de Grade • Indisponibilidade]
+        SEC[Secretaria Escolar&lt;br/&gt;Pessoas • Matrícula • Movimentação&lt;br/&gt;Responsáveis • Documentos/Declarações&lt;br/&gt;Frequência de Servidores • Exportação Censo]
+        RESP[Responsável&lt;br/&gt;Filhos • Boletim • Frequência&lt;br/&gt;Tarefas • Avisos • Reuniões • Declarações]
+        TRA[Transporte&lt;br/&gt;Frota • Rotas • Pontos de Embarque&lt;br/&gt;Motoristas • Monitor Mobile • SOS]
+        LOG[Logística&lt;br/&gt;Merenda/PNAE • Estoque&lt;br/&gt;Patrimônio • Scanner QR]
+        SERV[Serviços Educacionais&lt;br/&gt;AEE/PDI • Biblioteca&lt;br/&gt;Histórico/Certificados]
+        ADM[Administrador / TI&lt;br/&gt;Usuários e Perfis • LGPD/Auditoria&lt;br/&gt;APIs/Webhooks • Offline • Importação]
+    end
+
+    %% ===== Camada de inteligência =====
+    subgraph IA[Camada de Inteligência]
+        IAC[Risco de Evasão • Score • Fatores&lt;br/&gt;NIS/CadÚnico • Frequência • Notas&lt;br/&gt;Intervenções • Insights]
+    end
+    PROF -.-&gt;|Frequência / Notas| IAC
+    SEC -.-&gt;|Movimentação / NIS| IAC
+    IAC -.-&gt;|PIP / Alertas| DIR
+    IAC -.-&gt;|Indicadores| SEMED
+
+    %% ===== Integrações =====
+    SEC -.-&gt;|Leiaute Educacenso| CENSO[(INEP / Educacenso)]
+    PROF -.-&gt;|Frequência beneficiários| PRES[(Sistema Presença / Bolsa Família)]
+</pre></section><section><h2>ERD <button onclick="dl(1,'02_erd')">Baixar SVG</button></h2><pre class="mermaid" id="d1">erDiagram
+    %% ============ ESTRUTURA DA REDE / CALENDÁRIO ============
+    ANO_LETIVO ||--o{ PERIODO : divide
+    ANO_LETIVO ||--o{ TURMA : oferta
+    ESCOLA ||--o{ TURMA : possui
+    ESCOLA ||--|| ESCOLA_INFRAESTRUTURA : &quot;Censo reg.10&quot;
+    ESCOLA ||--o{ ESCOLA_DESLOCAMENTO : origem
+    ESCOLA ||--o{ HORARIO_SLOT : define
+    ESCOLA ||--o{ PATRIMONIO : possui
+    ETAPA ||--o{ TURMA : classifica
+    ETAPA ||--o{ MATRIZ_CURRICULAR : define
+    DISCIPLINA ||--o{ MATRIZ_CURRICULAR : compoe
+
+    ANO_LETIVO {
+        bigint id PK
+        int ano
+        date inicio
+        date fim
+        int dias_letivos_min &quot;200&quot;
+        int horas_min &quot;800&quot;
+        string status
+    }
+    PERIODO {
+        bigint id PK
+        bigint ano_letivo_id FK
+        string tipo &quot;bimestre|trimestre&quot;
+        int numero
+        date inicio
+        date fim
+    }
+    ETAPA {
+        bigint id PK
+        int codigo_censo &quot;etapa de ensino INEP&quot;
+        string nome &quot;Creche, 1º ano, EJA...&quot;
+    }
+    ESCOLA {
+        uuid id PK
+        string codigo_inep UK &quot;8 dígitos&quot;
+        string nome
+        string dependencia_adm
+        string localizacao &quot;urbana|rural&quot;
+        string localizacao_diferenciada
+        string situacao_funcionamento
+        bigint diretor_servidor_id FK
+        string endereco
+    }
+    ESCOLA_INFRAESTRUTURA {
+        uuid escola_id FK
+        json dependencias &quot;salas, lab, quadra, biblioteca...&quot;
+        json servicos &quot;água, energia, esgoto, internet&quot;
+    }
+    ESCOLA_DESLOCAMENTO {
+        uuid escola_origem_id FK
+        uuid escola_destino_id FK
+        int minutos
+    }
+    DISCIPLINA {
+        bigint id PK
+        int codigo_censo &quot;componente curricular&quot;
+        string nome
+    }
+    MATRIZ_CURRICULAR {
+        bigint id PK
+        bigint etapa_id FK
+        bigint disciplina_id FK
+        bigint ano_letivo_id FK
+        int aulas_semanais
+    }
+
+    %% ============ PESSOAS (Censo reg.30) ============
+    PESSOA ||--o| ALUNO : &quot;papel&quot;
+    PESSOA ||--o| SERVIDOR : &quot;papel&quot;
+    PESSOA ||--o| RESPONSAVEL : &quot;papel&quot;
+    PESSOA ||--o| USUARIO : &quot;login&quot;
+    PESSOA ||--o{ PESSOA_DEFICIENCIA : possui
+    RESPONSAVEL ||--o{ RESPONSAVEL_ALUNO : cuida
+    ALUNO ||--o{ RESPONSAVEL_ALUNO : vinculado
+
+    PESSOA {
+        bigint id PK
+        string cpf UK &quot;nullable&quot;
+        string id_inep UK &quot;12 dígitos, nullable&quot;
+        string nis UK &quot;não é Censo: Bolsa Família/Presença, sensível LGPD&quot;
+        string nome
+        string nome_social &quot;não é Censo, obrigatório por norma federal&quot;
+        date data_nascimento
+        string sexo
+        string cor_raca
+        string povo_indigena &quot;tabela INEP&quot;
+        boolean filiacao_declarada
+        string filiacao_1
+        string filiacao_2
+        string nacionalidade
+        string municipio_nascimento
+        string certidao_nascimento
+        string cep
+        string endereco
+        string zona_residencia &quot;urbana|rural&quot;
+        string localizacao_diferenciada
+        string email
+        string telefone
+    }
+    PESSOA_DEFICIENCIA {
+        bigint pessoa_id FK
+        string grupo &quot;deficiencia_tea_ah|transtorno_aprendizagem&quot;
+        string tipo &quot;cegueira, baixa visão, visão monocular, surdez, def. auditiva, surdocegueira, física, intelectual, múltipla, TEA, AH | TDAH, dislexia, discalculia, disgrafia, dislalia, TPAC&quot;
+    }
+    ALUNO {
+        bigint id PK
+        bigint pessoa_id FK
+        boolean possui_aee
+        string restricoes_alimentares
+        string laudo_cid &quot;sensível&quot;
+        boolean beneficiario_bolsa_familia &quot;sensível&quot;
+    }
+    ALUNO ||--o{ ALUNO_RECURSO_AVALIACAO : necessita
+    ALUNO_RECURSO_AVALIACAO {
+        bigint aluno_id FK
+        string recurso &quot;Censo reg.30: ledor, transcrição, guia-intérprete, Libras, leitura labial, prova ampliada/superampliada, CD áudio, LP 2ª língua, vídeo Libras, Braille, tempo adicional&quot;
+    }
+    RESPONSAVEL {
+        bigint id PK
+        bigint pessoa_id FK
+        string nis_familiar &quot;sensível&quot;
+    }
+    RESPONSAVEL_ALUNO {
+        bigint responsavel_id FK
+        bigint aluno_id FK
+        string parentesco
+        boolean responsavel_legal
+        boolean pode_retirar
+    }
+
+    %% ============ SERVIDORES / LOTAÇÃO ============
+    SERVIDOR ||--o{ SERVIDOR_FORMACAO : possui
+    SERVIDOR ||--o{ LOTACAO : lotado
+    ESCOLA ||--o{ LOTACAO : recebe
+    LOTACAO ||--o{ LOTACAO_DIAS : permite
+    SERVIDOR ||--o{ PROFESSOR_INDISPONIBILIDADE : declara
+    SERVIDOR ||--o{ AFASTAMENTO : registra
+
+    SERVIDOR {
+        bigint id PK
+        bigint pessoa_id FK
+        string matricula_funcional UK
+        string cargo
+        string situacao_funcional &quot;concursado|temporário|terceirizado|CLT&quot;
+        date data_admissao
+        int carga_horaria_contrato &quot;20|40&quot;
+        string escolaridade &quot;Censo: 1,2,7,6&quot;
+        string tipo_ensino_medio
+    }
+    SERVIDOR_FORMACAO {
+        bigint id PK
+        bigint servidor_id FK
+        string tipo &quot;superior(até 3)|pós(até 6: especialização, mestrado, doutorado)|continuada&quot;
+        string codigo_curso_censo &quot;tabela Cursos Formação Superior&quot;
+        string area_pos_censo &quot;tabela áreas pós-graduação&quot;
+        string ies_codigo &quot;tabela IES&quot;
+        int ano_conclusao
+    }
+    SERVIDOR ||--o{ SERVIDOR_AREA_CONHECIMENTO : habilitado
+    SERVIDOR_AREA_CONHECIMENTO {
+        bigint servidor_id FK
+        int codigo_componente_censo &quot;até 3&quot;
+    }
+    LOTACAO {
+        bigint id PK
+        bigint servidor_id FK
+        uuid escola_id FK
+        bigint ano_letivo_id FK
+        string funcao &quot;docente|gestor|auxiliar|intérprete Libras|apoio&quot;
+        string cargo_gestor &quot;Censo reg.40: diretor|outro&quot;
+        string criterio_acesso_gestor &quot;Censo reg.40: indicação, eleição, concurso... (7)&quot;
+        int carga_horaria
+        date inicio
+        date fim
+    }
+    LOTACAO_DIAS {
+        bigint lotacao_id FK
+        int dia_semana &quot;opcional: dias fixos por escola&quot;
+    }
+    PROFESSOR_INDISPONIBILIDADE {
+        bigint servidor_id FK
+        int dia_semana
+        bigint horario_slot_id FK
+        string motivo
+    }
+    AFASTAMENTO {
+        bigint id PK
+        bigint servidor_id FK
+        string tipo &quot;licença, atestado...&quot;
+        date inicio
+        date fim
+    }
+
+    %% ============ TURMAS (Censo reg.20 / reg.50) ============
+    TURMA ||--o{ TURMA_DISCIPLINA : oferece
+    DISCIPLINA ||--o{ TURMA_DISCIPLINA : &quot;é ofertada&quot;
+    SERVIDOR ||--o{ TURMA_DISCIPLINA : leciona
+    TURMA ||--o{ TURMA_PROFISSIONAL : apoio
+    SERVIDOR ||--o{ TURMA_PROFISSIONAL : atua
+
+    TURMA {
+        bigint id PK
+        uuid escola_id FK
+        bigint ano_letivo_id FK
+        bigint etapa_id FK
+        string nome &quot;8º Ano B&quot;
+        string turno &quot;define slots padrão&quot;
+        time hora_inicio &quot;opcional, sobrepõe turno (EJA, integral)&quot;
+        time hora_fim &quot;opcional, sobrepõe turno&quot;
+        string sala
+        int capacidade
+        string tipo_turma &quot;Censo 2026: 4 complementar|5 AEE|6 curricular|9 curricular+complementar&quot;
+        string mediacao &quot;presencial|semipresencial|EAD&quot;
+        int etapa_agregada
+        string forma_organizacao &quot;série/ano, ciclo... (Anexo 6)&quot;
+        boolean classe_especial
+        boolean classe_bilingue_surdos
+        string local_funcionamento_diferenciado
+    }
+    TURMA_DISCIPLINA {
+        bigint id PK
+        bigint turma_id FK
+        bigint disciplina_id FK
+        bigint professor_servidor_id FK
+        int aulas_semanais
+    }
+    TURMA_PROFISSIONAL {
+        bigint turma_id FK
+        bigint servidor_id FK
+        string funcao &quot;auxiliar|intérprete|apoio (Censo reg.50)&quot;
+    }
+
+    %% ============ MATRÍCULA (Censo reg.60 + 2ª etapa) ============
+    ALUNO ||--o{ MATRICULA : possui
+    TURMA ||--o{ MATRICULA : contem
+    MATRICULA ||--o{ MATRICULA_MOVIMENTACAO : historico
+
+    MATRICULA {
+        bigint id PK
+        bigint aluno_id FK
+        bigint turma_id FK
+        date data_matricula
+        string status &quot;ativa|transferida|remanejada|abandono|concluída&quot;
+        string situacao_final &quot;aprovado|reprovado|... (Censo 2ª etapa)&quot;
+        bigint etapa_multi_id FK &quot;etapa do aluno em turma multietapa&quot;
+        boolean atendimento_hospitalar_domiciliar
+    }
+    MATRICULA ||--o{ MATRICULA_ATIVIDADE_AEE : recebe
+    MATRICULA_ATIVIDADE_AEE {
+        bigint matricula_id FK
+        string atividade &quot;Censo reg.60: funções cognitivas, vida autônoma, enriquecimento, informática acessível, Libras, LP 2ª língua, Soroban, Braille, orientação/mobilidade, CAA, recursos ópticos&quot;
+    }
+    MATRICULA_MOVIMENTACAO {
+        bigint id PK
+        bigint matricula_id FK
+        string tipo &quot;transferência|remanejamento|abandono|falecimento&quot;
+        date data
+        string motivo
+        bigint usuario_id FK
+    }
+
+    %% ============ DIÁRIO / FREQUÊNCIA / AVALIAÇÃO ============
+    TURMA_DISCIPLINA ||--o{ DIARIO_AULA : registra
+    DIARIO_AULA ||--o{ FREQUENCIA : chamada
+    MATRICULA ||--o{ FREQUENCIA : recebe
+    TURMA_DISCIPLINA ||--o{ AVALIACAO : aplica
+    PERIODO ||--o{ AVALIACAO : pertence
+    AVALIACAO ||--o{ NOTA : gera
+    MATRICULA ||--o{ NOTA : recebe
+    ANO_LETIVO ||--|| REGRA_AVALIACAO : configura
+
+    DIARIO_AULA {
+        bigint id PK
+        bigint turma_disciplina_id FK
+        date data
+        bigint horario_slot_id FK
+        text conteudo_ministrado
+        string status &quot;aberto|fechado|aprovado&quot;
+    }
+    FREQUENCIA {
+        bigint diario_aula_id FK
+        bigint matricula_id FK
+        string status &quot;P|F|FJ&quot;
+        string observacao
+        string justificativa_anexo
+    }
+    REGRA_AVALIACAO {
+        bigint ano_letivo_id FK
+        decimal media_aprovacao &quot;6.0 configurável&quot;
+        string formula_recuperacao
+        int frequencia_minima_pct &quot;75&quot;
+    }
+    AVALIACAO {
+        bigint id PK
+        bigint turma_disciplina_id FK
+        bigint periodo_id FK
+        string nome &quot;AV1, Prova, Trabalho...&quot;
+        decimal peso
+        boolean recuperacao
+    }
+    NOTA {
+        bigint avaliacao_id FK
+        bigint matricula_id FK
+        decimal valor
+        string status &quot;rascunho|publicada&quot;
+    }
+
+    %% ============ GRADE HORÁRIA ============
+    ESCOLA ||--o{ GRADE : possui
+    GRADE ||--o{ GRADE_AULA : contem
+    TURMA_DISCIPLINA ||--o{ GRADE_AULA : alocada
+    HORARIO_SLOT ||--o{ GRADE_AULA : ocupa
+    GRADE ||--o{ GRADE_ACEITE : requer
+    SERVIDOR ||--o{ GRADE_ACEITE : aceita
+    SERVIDOR ||--o{ GRADE_CONFLITO_REDE : envolvido
+
+    HORARIO_SLOT {
+        bigint id PK
+        uuid escola_id FK
+        string turno
+        int numero_aula
+        time inicio
+        time fim
+    }
+    REDE_CONFIG_GRADE {
+        bigint ano_letivo_id FK
+        string modo &quot;sequencial|integrado&quot;
+        json prioridade_escolas
+    }
+    GRADE {
+        bigint id PK
+        uuid escola_id FK
+        bigint ano_letivo_id FK
+        int versao
+        string status &quot;rascunho|em_aceite|publicada&quot;
+    }
+    GRADE_AULA {
+        bigint id PK
+        bigint grade_id FK
+        bigint turma_disciplina_id FK
+        int dia_semana
+        bigint horario_slot_id FK
+        string status &quot;proposta|aceita|travada_manual&quot;
+        bigint alterado_por FK
+    }
+    GRADE_ACEITE {
+        bigint grade_id FK
+        bigint servidor_id FK
+        string status &quot;pendente|aceito|contestado&quot;
+        text observacao
+    }
+    GRADE_CONFLITO_REDE {
+        bigint id PK
+        bigint servidor_id FK
+        json escolas
+        int dia_semana
+        bigint horario_slot_id FK
+        string status &quot;aberto|resolvido&quot;
+        text decisao_semed
+    }
+
+    %% ============ TRANSPORTE ============
+    ROTA_TRANSPORTE ||--o{ PONTO_EMBARQUE : possui
+    PONTO_EMBARQUE ||--o{ ALUNO_TRANSPORTE : embarca
+    ALUNO ||--o{ ALUNO_TRANSPORTE : usa
+
+    ROTA_TRANSPORTE {
+        bigint id PK
+        string nome
+        bigint veiculo_id FK
+        string tipo_veiculo &quot;Censo: ônibus, van, embarcação...&quot;
+    }
+    PONTO_EMBARQUE {
+        bigint id PK
+        bigint rota_id FK
+        string nome
+        string coordenadas
+        int ordem
+    }
+    ALUNO_TRANSPORTE {
+        bigint aluno_id FK
+        bigint ponto_id FK
+        bigint ano_letivo_id FK
+        string poder_publico &quot;Censo reg.60: estadual|municipal&quot;
+    }
+    ALUNO_TRANSPORTE ||--o{ ALUNO_TRANSPORTE_VEICULO : utiliza
+    ALUNO_TRANSPORTE_VEICULO {
+        bigint aluno_transporte_id FK
+        string tipo &quot;bicicleta, microônibus, ônibus, tração animal, van/kombi, outro rodoviário, embarcação até 5 / 5-15 / 15-35 / &gt;35&quot;
+    }
+
+    %% ============ PEDAGÓGICO / IA ============
+    ALUNO ||--o{ RISCO_EVASAO : possui
+    ALUNO ||--o{ PLANO_INTERVENCAO : acompanha
+    SERVIDOR ||--o{ PLANO_INTERVENCAO : responsavel
+
+    RISCO_EVASAO {
+        bigint aluno_id FK
+        decimal score
+        string nivel
+        json fatores
+        datetime atualizado_em
+    }
+    PLANO_INTERVENCAO {
+        bigint id PK
+        bigint aluno_id FK
+        bigint responsavel_servidor_id FK
+        string tipo
+        string status
+        date prazo
+    }
+    PATRIMONIO {
+        bigint id PK
+        uuid escola_id FK
+        string codigo_tombamento UK
+        string descricao
+        string categoria
+        string status
+    }
+
+    %% ============ ACESSO / AUDITORIA ============
+    USUARIO ||--o{ USUARIO_PERFIL : tem
+    PERFIL ||--o{ USUARIO_PERFIL : atribuido
+    ESCOLA ||--o{ USUARIO_PERFIL : escopo
+    USUARIO ||--o{ ACTIVITY_LOG : gera
+
+    USUARIO {
+        bigint id PK
+        bigint pessoa_id FK
+        string email UK
+        string senha_hash
+        boolean mfa_ativo
+        boolean ativo
+    }
+    PERFIL {
+        bigint id PK
+        string nome &quot;semed|diretor|professor|secretaria|responsavel|...&quot;
+    }
+    USUARIO_PERFIL {
+        bigint usuario_id FK
+        bigint perfil_id FK
+        uuid escola_id FK &quot;null = rede toda&quot;
+    }
+    ACTIVITY_LOG {
+        bigint id PK
+        bigint usuario_id FK
+        string acao &quot;view|create|update|export&quot;
+        string entidade
+        bigint entidade_id
+        json alteracoes
+        string ip
+        datetime created_at
+    }
+</pre></section><section><h2>Fluxo da Grade Horária <button onclick="dl(2,'03_fluxo_grade')">Baixar SVG</button></h2><pre class="mermaid" id="d2">flowchart TD
+    A([Início da geração - Ano Letivo]) --&gt; B[SEMED define modo&lt;br/&gt;Sequencial por prioridade ou Integrado]
+    B --&gt; C[Coleta de insumos&lt;br/&gt;Turma×Disciplina×Professor • Aulas semanais&lt;br/&gt;Slots • Indisponibilidades • Dias por lotação&lt;br/&gt;Deslocamento entre escolas • Aulas já travadas]
+    C --&gt; D{Modo}
+    D --&gt;|Sequencial| E[Próxima escola na ordem de prioridade]
+    D --&gt;|Integrado| F[Todas as escolas juntas]
+    E --&gt; G[Solver OR-Tools CP-SAT&lt;br/&gt;Restrições rígidas + penalidades&lt;br/&gt;+ mínima alteração do que existe]
+    F --&gt; G
+
+    G --&gt; H{Viável?}
+    H --&gt;|Não| I[Mostra travas/restrições em conflito]
+    I --&gt; J[Coordenador destrava ou ajusta&lt;br/&gt;ou conflito de rede → SEMED arbitra]
+    J --&gt; C
+
+    H --&gt;|Sim| K[Grade PROPOSTA]
+    K --&gt; L[Professores revisam a própria grade]
+    L --&gt; M{Aceite}
+    M --&gt;|Aceita| N[Aulas do professor → TRAVADAS]
+    M --&gt;|Contesta| O[Registra indisponibilidade / observação]
+    O --&gt; C
+
+    K --&gt; P[Coordenador edita manualmente]
+    P --&gt; Q{Validação em tempo real&lt;br/&gt;conflito professor/turma/deslocamento}
+    Q --&gt;|Conflito| P
+    Q --&gt;|OK| R[Aula → TRAVADA_MANUAL]
+
+    N --&gt; S{Todos aceitaram?}
+    R --&gt; S
+    S --&gt;|Não| C
+    S --&gt;|Sim| T[Grade PUBLICADA - versão congelada]
+    T --&gt; U{Modo sequencial e&lt;br/&gt;há próxima escola?}
+    U --&gt;|Sim| V[Travas viram indisponibilidade&lt;br/&gt;dos professores multi-escola]
+    V --&gt; E
+    U --&gt;|Não| W([Fim])
+</pre></section>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',er:{useMaxWidth:false},flowchart:{useMaxWidth:false}});
+window.__erros=[];
+(async()=>{for(const el of document.querySelectorAll('.mermaid')){try{await mermaid.run({nodes:[el]})}catch(e){window.__erros.push(el.id+': '+e.message);el.insertAdjacentHTML('afterend','<p style="color:red">'+e.message+'</p>')}}window.__ok=true})();
+function dl(i,n){const s=document.querySelector('#d'+i+' svg');const b=new Blob([s.outerHTML],{type:'image/svg+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n+'.svg';a.click();}
+</script></body></html>

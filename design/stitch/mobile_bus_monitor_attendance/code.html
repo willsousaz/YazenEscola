@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Bus Monitor Attendance</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1664f3",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2433",
+                        "surface-darker": "#151d29",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1a2433; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2d3b55; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b4d6e; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen w-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#223049] bg-surface-dark px-6 py-4 shrink-0 z-20">
+<div class="flex items-center gap-4 text-white">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[24px]">directions_bus</span>
+</div>
+<div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Route 42 - Morning Pickup</h2>
+<p class="text-slate-400 text-sm font-medium">Driver: John Doe • Vehicle: XC-902</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex items-center gap-2 bg-surface-darker rounded-lg p-1.5 border border-[#223049]">
+<div class="px-3 py-1 rounded bg-green-500/20 text-green-400 text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    Live GPS
+                </div>
+<span class="text-slate-400 text-sm font-medium px-2">12 mins to school</span>
+</div>
+<div class="h-8 w-px bg-[#223049]"></div>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-darker text-slate-300 hover:text-white hover:bg-[#2d3b55] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-darker text-slate-300 hover:text-white hover:bg-[#2d3b55] transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-700 overflow-hidden border-2 border-[#223049]">
+<img alt="Driver Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9rXOGemgXjhqYQyrvr_zPOgrQgpuvDH51ODCFbsqYwhq3HK4o687wb5qUD-fJ00BsXwd8CXyPPwkD51R4S7-oOtoHNxriYpXnx4we-twNqV286kKwksIdUCAqpwmDKoCigMrmcIfPcb_SpU1XPDBctOSMofmobgr27oVCjVXAdlsGK1gpuQIl2s1qUZ1J4cjdomvLefbIAO0upLn1066FVnOy58ukdREfjxWIpdqwo7ysFtf2JP0BTk_UzPzJbGnfsEitFupiqjI"/>
+</div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex-1 grid grid-cols-12 gap-0 overflow-hidden h-full">
+<!-- Left Panel: Map & Route Context (7 cols) -->
+<section class="col-span-12 lg:col-span-7 relative flex flex-col bg-surface-darker border-r border-[#223049]">
+<!-- Map Container -->
+<div class="flex-1 relative w-full h-full bg-slate-800">
+<!-- Abstract Map Background -->
+<div class="absolute inset-0 w-full h-full opacity-60 bg-[url('https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/-49.95, -7.1,13,0,60/1200x800?access_token=pk.eyJ1IjoidGVzdCIsImEiOiJ0ZXN0In0')] bg-cover bg-center grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhV5_nsEJCdCIHAXcZ6nhbBg_onRRZMUKA9qbGe2idtwa3dPRXClkgS9vSHghTshJYZ5jFJHX31XQRD1sYo_qOIUT2Gfr-a_yqHAUmUxOtLt7cMk2ath-GpYGE7DR4ifSCVOGVrPB3aqlYPEHmUEdX8YW__3jl2Y4JRJDZnRheEZV9K19HsAMXoyMN4ayM0kOn_CLl3Fgx5vuhDsF9vqa2gRaGzWzmPoh9sgeMYXXkTXL1c-aKjken0mBDEGd9PabIbsTEDUp6X50'); background-color: #151d29;">
+<!-- Fallback gradient if image fails or for visual flair -->
+<div class="w-full h-full bg-gradient-to-br from-surface-darker/90 via-transparent to-surface-darker/40"></div>
+</div>
+<!-- Simulated Map UI Elements -->
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<div class="bg-surface-dark/90 backdrop-blur border border-[#223049] p-4 rounded-xl shadow-xl w-64">
+<p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Next Stop</p>
+<h3 class="text-white text-lg font-bold">Central Plaza</h3>
+<p class="text-primary text-sm font-medium mt-1">Arrival in 2 mins</p>
+</div>
+</div>
+<!-- Bus Marker on Map -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2">
+<div class="relative flex items-center justify-center size-16 bg-primary/20 rounded-full animate-pulse">
+<div class="size-10 bg-primary rounded-full shadow-lg shadow-primary/50 flex items-center justify-center text-white z-10 border-4 border-surface-darker">
+<span class="material-symbols-outlined text-[20px]">directions_bus</span>
+</div>
+</div>
+</div>
+<!-- Route Line Decoration (SVG Overlay) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" xmlns="http://www.w3.org/2000/svg">
+<path d="M-100 600 Q 300 500 500 400 T 1200 100" fill="none" stroke="#1664f3" stroke-dasharray="10 10" stroke-linecap="round" stroke-width="6"></path>
+</svg>
+</div>
+<!-- Bottom Stats Bar on Map Side -->
+<div class="h-24 bg-surface-dark border-t border-[#223049] flex items-center justify-between px-8 shrink-0 z-10">
+<div class="flex flex-col gap-1">
+<span class="text-slate-400 text-xs font-bold uppercase tracking-wider">Route Progress</span>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-white">25%</span>
+<span class="text-sm text-slate-400 font-medium mb-1.5">Complete</span>
+</div>
+</div>
+<div class="flex-1 mx-12">
+<div class="flex justify-between text-xs font-medium text-slate-400 mb-2">
+<span>Start</span>
+<span class="text-primary">Stop 3 of 12</span>
+<span>End</span>
+</div>
+<div class="h-3 w-full bg-surface-darker rounded-full overflow-hidden border border-[#223049]">
+<div class="h-full bg-primary w-[25%] relative overflow-hidden">
+<div class="absolute inset-0 bg-white/20 w-full h-full animate-[shimmer_2s_infinite]"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<span class="text-slate-400 text-xs font-bold uppercase tracking-wider">On Board</span>
+<div class="flex items-end justify-end gap-2">
+<span class="text-3xl font-bold text-white">14</span>
+<span class="text-sm text-slate-400 font-medium mb-1.5">/ 45 Students</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Attendance & Actions (5 cols) -->
+<section class="col-span-12 lg:col-span-5 flex flex-col bg-surface-dark h-full border-l border-[#223049] shadow-2xl z-10">
+<!-- Context Header -->
+<div class="p-6 pb-2 shrink-0">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-2xl font-bold text-white">Boarding Now</h2>
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold uppercase">Stop #3</span>
+</div>
+<div class="bg-surface-darker p-4 rounded-xl border border-[#223049] flex gap-4 items-center mb-4">
+<div class="size-12 rounded-lg bg-slate-700 bg-cover bg-center shrink-0" data-alt="Street view of Central Plaza stop" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYeSo_chtzhq9mT44AReZ1OkW6aNcMCcHqcG1xe7XgkFlx36lHk2rxaR5OR_URxfH_Hj69XwHiQfrmYrudSpSM8UsE4cK-XLZ5AgD4epsjZIrYUKqbozcLDxpeREb2Cc0NZG_Mhh1VoQethPi6H5U0lR-cUi0fDtAv3Qxm-8-G_czyM_vDCQZBFUjBV_9hWWwRlX0MHiBRebTB2c5vGF8fTESytOwXF42YARJKSOH-oPZpmWHgC2RzPazkyr5q-F9gPS0IIoJr64M');"></div>
+<div>
+<h3 class="text-white font-bold text-lg leading-tight">Central Plaza</h3>
+<p class="text-slate-400 text-sm">Rua das Palmeiras, 120</p>
+</div>
+</div>
+<div class="flex items-center justify-between mt-6 mb-2">
+<h4 class="text-slate-300 text-sm font-bold uppercase tracking-wider">Students to Pickup (4)</h4>
+<button class="text-primary text-sm font-bold hover:text-primary/80 transition-colors">Select All</button>
+</div>
+</div>
+<!-- Scrollable List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-6 pb-6 space-y-3">
+<!-- Student Card 1 -->
+<div class="group bg-surface-darker border border-[#223049] hover:border-primary/50 rounded-xl p-4 transition-all duration-200">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-full bg-slate-700 overflow-hidden shrink-0 border-2 border-slate-600">
+<img alt="Student Portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDSyfo4IsVYO6oALiJjQnLi6mi6o6O11yDpwtZI6BcB5f_i61vBHrc6KP1jV7hjpWqxQN6a602VONyl58NMblliJm8PFFpJJoeQpOZvsWO83ICgI800yoLijplQ69S2XqX24_vM8-mSLo4SCDWj1coS10uuasOoXwxoiE11ke7Q2XyMJkip-9KbvOW8aSKQSVI3F1sNXSUcrrVpxcbkfzaLgBXDfosQYQ8mQ3Gl8PmJqTTYyLvR4ofdtzCmoQ1qr6f7RnO5ZK5Bgs"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-white text-lg font-bold truncate">Ana Silva</h3>
+<p class="text-slate-400 text-sm truncate">ID: 2024001 • Grade 5B</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-[#223049] hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/50 border border-transparent text-slate-300 font-bold transition-all">
+<span class="material-symbols-outlined">close</span>
+                            Absent
+                        </button>
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all transform active:scale-95">
+<span class="material-symbols-outlined">check</span>
+                            Boarded
+                        </button>
+</div>
+</div>
+<!-- Student Card 2 -->
+<div class="group bg-surface-darker border border-[#223049] hover:border-primary/50 rounded-xl p-4 transition-all duration-200">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-full bg-slate-700 overflow-hidden shrink-0 border-2 border-slate-600">
+<img alt="Student Portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNH4039TGC9crhrrSbIxlXG1pI5cs0fG9MhZSTddNCxfgFJLUe_MyjY3NLzGwwI1U87jSR4J0FSR5uY3z7T3cR0PiaOaVhM7Q99IH5AJM5xMaxhJTAkqBAqB6p_LLqQvHwn1xLUt4yy9zyxb7TWS5Qxpsn2TuBqPCdIIHKoH_3JbaPcHEAE5DoWzZB1Mf7_2sxT99DA2kI8vdKh_shX8af287YbpsegTfNmJ7mhlRUPSJ-0O5oQYmLSj7qpx5egY83kfgXeU_4zc4"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-white text-lg font-bold truncate">Lucas Oliveira</h3>
+<p class="text-slate-400 text-sm truncate">ID: 2024045 • Grade 4A</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-[#223049] hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/50 border border-transparent text-slate-300 font-bold transition-all">
+<span class="material-symbols-outlined">close</span>
+                            Absent
+                        </button>
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all transform active:scale-95">
+<span class="material-symbols-outlined">check</span>
+                            Boarded
+                        </button>
+</div>
+</div>
+<!-- Student Card 3 (Boarded State) -->
+<div class="group bg-surface-darker border border-green-500/30 rounded-xl p-4 transition-all duration-200 opacity-70">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-full bg-slate-700 overflow-hidden shrink-0 border-2 border-green-500/50">
+<img alt="Student Portrait" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCnnZ3A0XZYEJ2h4vnWvmef6CnL3BLv6USbtNe3_5MhCFRX4E0swAhgKSoDiO2ZDcV-3ENSAmX81KnO23D2zfvVwiTKknMrLARvGWQGgq6wbEek57iFNrPbu1B8e09c2T1m-Z9laeSrORd9B29vERYDM15YjJPIxdKg0EKK8nV0LTRgrp3Ont1rXjsXlNzWZxJHiNnGo33J1n57IaAtNnY4IVNdTsGPPWgMNLyFHDVZUqEXL1kQogyTatypW0qJ5__FZ5bCGLzkCQ"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-white text-lg font-bold truncate line-through decoration-slate-500 decoration-2">Beatriz Costa</h3>
+<p class="text-green-400 text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Boarded 07:45 AM
+                            </p>
+</div>
+</div>
+<div class="flex">
+<button class="w-full h-10 rounded-lg border border-slate-700 text-slate-400 text-sm font-medium hover:bg-slate-800 hover:text-white transition-colors">
+                            Undo
+                        </button>
+</div>
+</div>
+<!-- Student Card 4 -->
+<div class="group bg-surface-darker border border-[#223049] hover:border-primary/50 rounded-xl p-4 transition-all duration-200">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-12 rounded-full bg-slate-700 overflow-hidden shrink-0 border-2 border-slate-600">
+<img alt="Student Portrait" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwLgAReSSAbom4jE8bJtTupnvudDXqvNuAp_GXB2LDOrmLzVC6HrVE2kftnlIOjJTJOCmHJJOJNDDy-SUiWOvfHpPJv6hip-7HSOrQ-kv5Qi_YwQ5jrFfUYnQYunhLBiNS2RTKQGwAyK_0imrmn2VWk5sfOdDqg0inBhjTgOLiwKlXyA91HjGFxtoX-ZX8S8tSBeUVoHHF2DEac8XrNHxxM16tL7iMtZ0Yz7ozxrsErqC6nB9JQuEG1qZF3Msnb-UnXV5IXWGe-Co"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-white text-lg font-bold truncate">Gabriel Souza</h3>
+<p class="text-slate-400 text-sm truncate">ID: 2024089 • Grade 6C</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-[#223049] hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/50 border border-transparent text-slate-300 font-bold transition-all">
+<span class="material-symbols-outlined">close</span>
+                            Absent
+                        </button>
+<button class="flex items-center justify-center gap-2 h-12 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all transform active:scale-95">
+<span class="material-symbols-outlined">check</span>
+                            Boarded
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="p-6 border-t border-[#223049] bg-surface-darker shrink-0 space-y-4">
+<button class="w-full h-14 bg-[#223049] hover:bg-[#2d3b55] text-white rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-colors">
+                    Next Stop
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full h-12 border-2 border-red-500/30 text-red-400 hover:bg-red-500/10 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-colors uppercase tracking-wide">
+<span class="material-symbols-outlined">warning</span>
+                    Emergency Alert
+                </button>
+</div>
+</section>
+</main>
+</body></html>

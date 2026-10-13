@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Extracurricular Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-light": "#eef4ff",
+                        "primary-hover": "#0d43b3",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        /* Custom scrollbar for horizontal lists */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display">
+<!-- Sticky Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-[#1a2333] border-b border-slate-200 dark:border-slate-800 px-6 py-4 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-10">
+<a class="flex items-center gap-3 text-primary hover:opacity-80 transition-opacity" href="#">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">school</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Xinguara Portal</span>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 font-medium hover:text-primary dark:hover:text-primary transition-colors text-sm" href="#">Dashboard</a>
+<a class="text-primary font-bold transition-colors text-sm" href="#">Explore</a>
+<a class="text-slate-600 dark:text-slate-300 font-medium hover:text-primary dark:hover:text-primary transition-colors text-sm" href="#">My Enrollments</a>
+<a class="text-slate-600 dark:text-slate-300 font-medium hover:text-primary dark:hover:text-primary transition-colors text-sm" href="#">Schedule</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<div class="relative hidden sm:block w-full max-w-md">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border-none rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 sm:text-sm" placeholder="Search for workshops, sports, arts..." type="text"/>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 dark:border-slate-700">
+<button class="relative p-2 text-slate-500 hover:text-primary transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a2333]"></span>
+</button>
+<button class="flex items-center gap-2 pl-2">
+<div class="w-9 h-9 rounded-full bg-cover bg-center border-2 border-white dark:border-slate-700 shadow-sm" data-alt="Student profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLDiMkHrFaldOOyKhLXi_uk3o49SSzDx-hkLJK79pdyPODoKuirbIKq3ArVnCCGtKobuKka3opQJRgDAPoNTfQAeAUbo-DEBDBJ1sqbUacDvTB31d75W1nMABE8spGliVoTzhy4EBGe5c4Ciuhn9V3f4kv6YgF4w8nLpZrKzyP5W5ban2xmbO15yLYYnqY3sG9NBFghCeYjWi9luNL96NE7SuGbHVMRy6bnyj_Z5TbcxYFVfAVA3FFzEpeVQGlRVuIYCU-ej88VtA')"></div>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow max-w-7xl mx-auto w-full px-6 py-8">
+<!-- Hero Section -->
+<div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-r from-blue-900 to-primary mb-10 shadow-lg group">
+<div class="absolute inset-0 bg-black/20 z-10"></div>
+<div class="absolute inset-0 z-0 opacity-40 mix-blend-overlay" data-alt="Students collaborating in a workshop" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5Dxd6vpccG70MYA7gn5JkrjvGLx9la41twb4xgZoJytrTuWw_cWpb07nlbXCStHU0Zf7lYeW6eeH4Wru5XLslAm_XFeBUiTVsIquS_A_qD1M_aGgPT7JfwBa0Crv1Qfmjm8vIJtpyLExsH0HpXnDo8fKPYYb4yBQTRONN2JL8nao3NgPiflLTm6pufpjAKVP5Hh9s8TEPimiAnWENXHlQSolw4hNxGKBJK5Ndf0ru2_tOMOned-gWoXvcz3_XIiH3JbIbkpaO-kA'); background-size: cover; background-position: center;"></div>
+<div class="relative z-20 flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8">
+<div class="flex flex-col gap-4 max-w-2xl text-white">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white w-fit backdrop-blur-sm border border-white/10">
+                        New Season Open
+                    </span>
+<h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Discover Your Passion <br/><span class="text-blue-200">Beyond the Classroom</span></h1>
+<p class="text-blue-100 text-lg max-w-lg leading-relaxed">Join over 50+ new workshops in Arts, Sports, and Technology starting next semester.</p>
+<div class="pt-4 flex gap-4">
+<button class="bg-white text-primary hover:bg-blue-50 transition-colors px-6 py-3 rounded-xl font-bold text-sm shadow-lg flex items-center gap-2">
+                            Explore Now
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="hidden md:flex gap-4">
+<div class="bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-xl text-center min-w-[100px]">
+<p class="text-2xl font-bold text-white">12</p>
+<p class="text-xs text-blue-100 uppercase tracking-wider font-semibold">New Arts</p>
+</div>
+<div class="bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-xl text-center min-w-[100px]">
+<p class="text-2xl font-bold text-white">08</p>
+<p class="text-xs text-blue-100 uppercase tracking-wider font-semibold">Sports</p>
+</div>
+<div class="bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-xl text-center min-w-[100px]">
+<p class="text-2xl font-bold text-white">15</p>
+<p class="text-xs text-blue-100 uppercase tracking-wider font-semibold">Tech Labs</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-64 flex-shrink-0 space-y-8 sticky top-24 z-30 lg:block hidden">
+<div>
+<h3 class="font-bold text-lg text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span> Filters
+                    </h3>
+<div class="space-y-6">
+<!-- Category Filter -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Categories</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-slate-300 rounded focus:ring-primary bg-slate-50" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Arts &amp; Design</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-slate-300 rounded focus:ring-primary bg-slate-50" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Sports &amp; Fitness</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-slate-300 rounded focus:ring-primary bg-slate-50" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Technology</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-slate-300 rounded focus:ring-primary bg-slate-50" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Music &amp; Performance</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-checkbox h-4 w-4 text-primary border-slate-300 rounded focus:ring-primary bg-slate-50" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary transition-colors">Language</span>
+</label>
+</div>
+</div>
+<!-- Schedule Filter -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Days</h4>
+<div class="flex flex-wrap gap-2">
+<button class="h-8 w-8 rounded-full border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 text-xs font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">M</button>
+<button class="h-8 w-8 rounded-full border border-primary bg-primary text-xs font-medium text-white shadow-sm">T</button>
+<button class="h-8 w-8 rounded-full border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 text-xs font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">W</button>
+<button class="h-8 w-8 rounded-full border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 text-xs font-medium text-slate-600 hover:border-primary hover:text-primary transition-colors">T</button>
+<button class="h-8 w-8 rounded-full border border-primary bg-primary text-xs font-medium text-white shadow-sm">F</button>
+</div>
+</div>
+<!-- Availability Filter -->
+<div>
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Availability</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-radio h-4 w-4 text-primary border-slate-300 focus:ring-primary bg-slate-50" name="availability" type="radio"/>
+<span class="text-sm text-slate-600 dark:text-slate-300">Show all</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="form-radio h-4 w-4 text-primary border-slate-300 focus:ring-primary bg-slate-50" name="availability" type="radio"/>
+<span class="text-sm text-slate-600 dark:text-slate-300">Open Spots Only</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 w-full">
+<!-- Category Pills (Mobile/Tablet Friendly list, but useful on desktop too) -->
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-4 lg:hidden">
+<button class="bg-primary text-white px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap shadow-sm">All</button>
+<button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap hover:bg-slate-50 dark:hover:bg-slate-700">Arts</button>
+<button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap hover:bg-slate-50 dark:hover:bg-slate-700">Sports</button>
+<button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap hover:bg-slate-50 dark:hover:bg-slate-700">Technology</button>
+<button class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-sm font-medium whitespace-nowrap hover:bg-slate-50 dark:hover:bg-slate-700">Music</button>
+</div>
+<!-- Recommended Section -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-5">
+<h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">Recommended for You</h2>
+<a class="text-sm font-medium text-primary hover:text-primary-hover flex items-center gap-1" href="#">View all <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Recommendation Card 1 -->
+<div class="bg-white dark:bg-[#1a2333] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 flex gap-4 transition-transform hover:-translate-y-1 duration-300">
+<div class="w-32 h-32 flex-shrink-0 bg-slate-200 rounded-lg bg-cover bg-center relative overflow-hidden" data-alt="Girl playing basketball" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlcpoOSOFzEpeKm_JjiK7sOQUT-G-euJ50F30AHLY0H7v8NxCYeLssPEMljodlLGs-AFMFzpvwmd_hLkmqg1Z5kY0yUM0uKotWJdWZbG_WuSa6Zaytrvqe0nSgK-gyTmjym_3vMTjAiiY3I4ePd9Cl_2RcLjgxZd8ftkWvQqwGVm4FMaX2xwz_39cPsAwRJx_T-HHXQuNPb3En0ReEB72o_v-vKCR3GDfCgGhXfdRqgyMcUFLjf_4bNaKMxLboJOKeDwk8NPE7YZ4')">
+<div class="absolute top-2 left-2 bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-orange-200">
+                                    Few Spots
+                                </div>
+</div>
+<div class="flex flex-col justify-between flex-1 py-1">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">Junior Basketball League</h3>
+</div>
+<p class="text-sm text-slate-500 mb-2">Grade 6-8 • Sports</p>
+<div class="flex items-center gap-1 text-xs text-slate-500 font-medium">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+                                        Tue/Thu • 15:30 - 17:00
+                                    </div>
+</div>
+<div class="flex justify-end mt-2">
+<button class="bg-primary hover:bg-primary-hover text-white text-sm font-semibold py-2 px-4 rounded-lg transition-colors shadow-sm shadow-blue-200 dark:shadow-none">Enroll Now</button>
+</div>
+</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="bg-white dark:bg-[#1a2333] rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 flex gap-4 transition-transform hover:-translate-y-1 duration-300">
+<div class="w-32 h-32 flex-shrink-0 bg-slate-200 rounded-lg bg-cover bg-center relative overflow-hidden" data-alt="Student holding a robot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA81SAedcffDyDPk-NSBIkRClRjqulBNm7MW4kzpryye8_Lr6nVEonHl-mCuXTx6gOZIj9eqR3SKEzfb5B6XIVGbP0fzuLEdgWFZB_B4ldp_L2owiDh6qtdSC8vk1wOS_7NWj6qKUmdvONACQicdyZA4Gw7NNBfZzL9nE3gEQx5VU-yDsM-abb3VEW_BSET_TYYPfSkzDYZmPGTZcpt6VyOlqENPQ50MvLfrLE0VziqMcAIg-hSFCrebFZRMrSbcdmfg08fwOMii4U')">
+<div class="absolute top-2 left-2 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-200">
+                                    New
+                                </div>
+</div>
+<div class="flex flex-col justify-between flex-1 py-1">
+<div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg leading-tight mb-1">Intro to Robotics</h3>
+<p class="text-sm text-slate-500 mb-2">Grade 5-8 • Tech</p>
+<div class="flex items-center gap-1 text-xs text-slate-500 font-medium">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+                                        Mon/Wed • 16:00 - 17:30
+                                    </div>
+</div>
+<div class="flex justify-end mt-2">
+<button class="bg-primary hover:bg-primary-hover text-white text-sm font-semibold py-2 px-4 rounded-lg transition-colors shadow-sm shadow-blue-200 dark:shadow-none">Enroll Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- All Workshops Grid -->
+<section>
+<div class="flex items-center justify-between mb-5">
+<h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">Explore All Activities</h2>
+<!-- Sort Dropdown (Simplified) -->
+<div class="relative inline-block text-left">
+<button class="inline-flex items-center justify-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+                                Sort by: Popularity
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Students painting on canvas" class="w-full h-full object-cover" data-alt="Students painting on canvas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI_Oj6er5vzByTiIGhnFiKPFCNxT26asxHeW037RAmrtdn43lojhLR9Mh047PvfisSCN_Falkpke-xc77AYUXAhHBzsO66ieF5V015mR6jaM0wnsRmQyoRF64yYuc1vl55RgrcR1ET3H_x1lTBVOPgQXkdYkKOJJ1iByha2q-o3TnTzjDPH_S0HpLsAVM1OlRk9gHc-ffzwGHMkIR-XM4ywMYpl2yEk2Hi4qQGUnRVkthHlshWe2vSrz7eDuUxHOPYlRRsDs2_p4s"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">palette</span> Arts
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Advanced Acrylic Painting</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Master techniques in layering and texture with guidance from professional artists.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Fridays, 15:00 - 17:00</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>Grade 9-12</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-green-600 text-xs font-semibold bg-green-50 px-2 py-1 rounded-md">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Open
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Band practice with musical instruments" class="w-full h-full object-cover" data-alt="Band practice with instruments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA4gn_e-Ew-fv67ChExjLV_gJEt0-dS9JAazbiD0O0XbG4dcPaRCWhjRRBU79lPR9R_hsOnHyKrOUAOXnvPjK4sadLDXiYu-LkCyC93qJrHRgL76jKa4oG-w1D640Jb5ypPN-Lv7ABonGYHkYPr5Ejf-NtKLE0txWW1SoI_CTJyHEMLBmT7FhSAQuV4NZos27vA72HOxaFI2ENQMGb1YJdazyZvpDY_4xK4z-v1jHEBF7SQC48Rd8fquV2Ifa3rTHuqHwQM6PeXuw"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">music_note</span> Music
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">School Orchestra</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Join the ensemble! Open for strings, brass, woodwinds, and percussion players.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Mon/Wed, 16:30 - 18:00</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>All Grades</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-amber-600 text-xs font-semibold bg-amber-50 px-2 py-1 rounded-md">
+<span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                        Audition Required
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Computer screen with code" class="w-full h-full object-cover" data-alt="Code on a computer screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlfLFmDlm6ojDjJeL1GE_l2XE1NOLurmyZG8Lusy8b36qpPbbUeMDuZrBuomAM4HUVJ25RwGxGy5AWGxam5R66NlU8c_b9agKZtxLVcrIED_BIAdV3Zb6X1H1a008gpj__HECAkM-ouctzy1kHyQ1Twqu13E36M8osIYTOSRLgQCxnoZJDMGpfR5PIS0tdcBid1zc3ea37ePfTFKjYuE3musskMJngDEQY1uNbQfvnl6tPqGRatJVHz1inXC4ouejY5EZ8IJ6lRn8"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">terminal</span> Tech
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Python for Beginners</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Start your coding journey. Learn syntax, logic, and build simple games.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Tuesdays, 15:30 - 16:30</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>Grade 7-10</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-slate-500 text-xs font-semibold bg-slate-100 px-2 py-1 rounded-md">
+<span class="material-symbols-outlined text-[14px]">hourglass_empty</span>
+                                        Waitlist Only
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Join Waitlist</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Soccer ball on green field" class="w-full h-full object-cover" data-alt="Soccer ball on a field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiUOB9lGt0C7VLjW6mFB1n-uKRk_wwL_6aVKEgLSICs12uOMjv0tJN6c2mH98j6BA6FeCXNbjrXOfzFfRLP6_KHxHKVjcOWlggRKUVmkBa3Fvs4_UTmzRfHJJeHYO3JQ_vWo1Ca00jAUFNyToUhNIN00ibhL22cJKuRRzOkBfF_-aKDEdwEI1HfvFUkxq0fZa95rEiK1RPMDdBUQYb1c3rOouHgf4FllHE12KfxsYDKfwRvqeRtwFVb1DRkmnimx-jtfBcBN2S0Eo"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">sports_soccer</span> Sports
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Varsity Soccer Prep</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Intensive training sessions focused on agility, teamwork, and match tactics.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Mon/Thu, 15:00 - 17:00</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>Grade 9-12</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-green-600 text-xs font-semibold bg-green-50 px-2 py-1 rounded-md">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Open
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Clay pottery wheel" class="w-full h-full object-cover" data-alt="Hands working on a pottery wheel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjf7ZFMmRiQmWefxx9X7BFE2xWIymOJW30sN-vg3VpMEFFj5vi_VmRXgttyPxJXe1_x5SZTsBi77to14mp0vMq2iQB7T81Hw3XOODlTJ-tu_0OXys-uyjJe-4r67ZGE2iXflRRf1mQtkFi0vLi-2O-jefxddd7DVViVqKLYn7q4kcw6NAkErSrl0LMKtdMHOgHU8olq-Nfn6SCYncwcKfVft2rYg_Lmv5vrvu7WNgCGpEQkgkyNQh3PloRPmrDSYhg7bEIx4hJmg0"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">brush</span> Crafts
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Ceramics &amp; Pottery</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Get your hands dirty! Create bowls, mugs, and sculptures from clay.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Wednesdays, 15:30 - 17:30</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>Grade 6-12</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-orange-600 text-xs font-semibold bg-orange-50 px-2 py-1 rounded-md">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                                        Few Spots Left
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group bg-white dark:bg-[#1a2333] rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-900 transition-all hover:shadow-md">
+<div class="relative h-48 bg-slate-200">
+<img alt="Chess board close up" class="w-full h-full object-cover" data-alt="Chess pieces on a board" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpimZ1xYc7DwfWtM3KLbHh3UTwr1PFa6DfpSePhO5gjhMTBWJ0CIYktCxSKpzXVO6sTcvK2snivLSlegDM8f9UxRzcT8Xu4UsrvZdWyty7kjUmPA1HMgAx3zgZ23Z4dbG-5LsjUFYa_TjcLuaZvkZXvKUB19uwXmrGVUxVMECmwF6Lx2s-BOxcQFNZRbCAsT49r8IUqNqgommKtnyTX6jOEzxcmt_B4scSfXOBVSIIgqCtoCr-K_wbawpQtWLn85QqogYE_YFoowc"/>
+<div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-slate-800 shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">extension</span> Strategy
+                                </div>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Chess Club</h3>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">Sharpen your mind. Open to all skill levels from beginner to grandmaster.</p>
+<div class="space-y-2 mb-5">
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+<span>Fridays, 12:30 - 13:30</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-slate-400 text-lg">school</span>
+<span>All Grades</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-1 text-green-600 text-xs font-semibold bg-green-50 px-2 py-1 rounded-md">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                        Open
+                                    </div>
+<button class="text-primary font-bold text-sm hover:underline decoration-2 underline-offset-4">Details</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 flex justify-center">
+<button class="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            Load More Activities
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

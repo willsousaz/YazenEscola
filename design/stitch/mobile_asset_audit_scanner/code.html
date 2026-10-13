@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara Asset Manager - Audit Station</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "primary-light": "#ebf1fd", 
+                        "primary-dark": "#0e3da1",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "text-main": "#0e121b",
+                        "text-sub": "#4e6797",
+                        "border-color": "#e7ebf3",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Lexend', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light text-text-main flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-color bg-white px-6 py-4 sticky top-0 z-20">
+<div class="flex items-center gap-4 text-text-main">
+<div class="size-8 text-primary flex items-center justify-center bg-primary-light rounded-lg">
+<span class="material-symbols-outlined text-[24px]">inventory_2</span>
+</div>
+<h2 class="text-text-main text-xl font-bold leading-tight tracking-[-0.015em]">Xinguara Asset Manager</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-2 bg-background-light px-3 py-1.5 rounded-lg border border-border-color">
+<span class="material-symbols-outlined text-text-sub text-[20px]">school</span>
+<span class="text-sm font-medium text-text-main">Lincoln High School</span>
+<span class="material-symbols-outlined text-text-sub text-[20px] cursor-pointer">arrow_drop_down</span>
+</div>
+<div class="flex gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-background-light hover:bg-border-color transition-colors text-text-main">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-lg bg-background-light hover:bg-border-color transition-colors text-text-main">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYkGtnZhtIGd7TNHaxs_8yQUcKpqf7OeT2UecW-2ca6jzeSgNFLXB8c2N45qk88tlbTKZ-5DQ0MMWgJOL0pDP1oFSwPKARvmYR92dm1-bKdcVDH0cRbH716SnZlsvcZiCvF5juiAfqGGRFGMLPSynkkRT5gxg7n0ZtlXpY3p3iN0W7qHpKvwcxpFH-jRGeM_DDZ4MnyIsD1hLSyRtMEz3da7Pq6ZnuU-TTbEYjfEeVKEtHau04wqCQtmrsu1656_dlBivaN0jrv7g");'></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col lg:flex-row overflow-hidden max-w-[1600px] w-full mx-auto p-4 lg:p-6 gap-6">
+<!-- Left Column: Scanning & Active Audit -->
+<div class="flex flex-col w-full lg:w-5/12 gap-6 overflow-y-auto pr-0 lg:pr-2">
+<!-- Context Header -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 text-text-sub text-sm font-medium uppercase tracking-wide">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Current Location</span>
+</div>
+<h1 class="text-3xl font-extrabold text-text-main">Room 302 - Science Lab</h1>
+<p class="text-text-sub">Audit in progress • 12 of 45 assets verified</p>
+</div>
+<!-- Scan Action Card -->
+<div class="bg-white rounded-xl shadow-sm border border-border-color p-5 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold">Quick Scan</h3>
+<span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded-full uppercase">Active</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white h-12 rounded-lg font-bold flex items-center justify-center gap-2 transition-colors shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                        Scan Barcode
+                    </button>
+<button class="bg-background-light hover:bg-border-color text-text-main h-12 w-12 rounded-lg font-bold flex items-center justify-center transition-colors border border-border-color">
+<span class="material-symbols-outlined">keyboard</span>
+</button>
+</div>
+<div class="relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-border-color"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-white px-2 text-sm text-text-sub font-medium">or verify manually</span>
+</div>
+</div>
+<input class="w-full h-12 rounded-lg border-border-color bg-background-light focus:border-primary focus:ring-primary" placeholder="Enter Asset Tag ID (e.g., XIN-88392)" type="text"/>
+</div>
+<!-- Active Asset Detail Card (Simulated 'Just Scanned') -->
+<div class="bg-white rounded-xl shadow-lg border border-primary/20 flex-1 flex flex-col overflow-hidden relative group">
+<div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+<!-- Status Header -->
+<div class="p-5 border-b border-border-color flex justify-between items-start bg-primary-light/30">
+<div>
+<p class="text-sm font-bold text-primary uppercase tracking-wider mb-1">Asset Detected</p>
+<h2 class="text-2xl font-bold text-text-main">Acer Chromebook 314</h2>
+<p class="text-text-sub font-mono text-sm mt-1">ID: <span class="text-text-main font-bold">XIN-88392</span></p>
+</div>
+<div class="size-12 bg-white rounded-lg border border-border-color flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">laptop_chromebook</span>
+</div>
+</div>
+<!-- Scrollable Form Content -->
+<div class="p-6 flex-1 overflow-y-auto space-y-6">
+<!-- Image Evidence -->
+<div>
+<label class="block text-sm font-bold text-text-main mb-2">Visual Evidence</label>
+<div class="grid grid-cols-2 gap-3">
+<div class="aspect-video bg-background-light rounded-lg border-2 border-dashed border-border-color flex flex-col items-center justify-center cursor-pointer hover:border-primary hover:bg-primary-light/10 transition-colors group/upload">
+<span class="material-symbols-outlined text-text-sub group-hover/upload:text-primary mb-1">add_a_photo</span>
+<span class="text-xs font-medium text-text-sub group-hover/upload:text-primary">Add Photo</span>
+</div>
+<div class="aspect-video bg-cover bg-center rounded-lg border border-border-color relative group/image" data-alt="Laptop on desk" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_ZsozyHo_0aNaT5pe_PPRWPaIAgw6wbfkrLgOIPL0JgNTY9ZgwclO3tv7vMyOkgOhVCS9bObDNPdAQ6-mAnd2BjsYDIajHMb7mQKGMXuhZdCfBH1CFiAKhpg4vE3LYUq2LeK5Gv9vdRdbCghYh9MqaIID9Nt9wyN8_S5s_j16L8B4f5px61hn0KmBu1tfFPI8Xi_UjUrJv51hKJrpRzWfbpDBZBLp0AuGesnP5bFb0xAOfaycH7dxz_DBcqX6qZxiQ5MplTqHvM8');">
+<button class="absolute top-1 right-1 bg-black/50 hover:bg-red-600 text-white rounded p-1 opacity-0 group-hover/image:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Condition -->
+<div>
+<label class="block text-sm font-bold text-text-main mb-2">Condition Status</label>
+<div class="grid grid-cols-3 gap-2">
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="condition" type="radio"/>
+<div class="p-3 rounded-lg border border-border-color bg-white text-center hover:bg-background-light peer-checked:bg-green-50 peer-checked:border-green-500 peer-checked:text-green-700 transition-all">
+<span class="material-symbols-filled block mb-1 text-[20px]">check_circle</span>
+<span class="text-xs font-bold">Good</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="condition" type="radio"/>
+<div class="p-3 rounded-lg border border-border-color bg-white text-center hover:bg-background-light peer-checked:bg-yellow-50 peer-checked:border-yellow-500 peer-checked:text-yellow-700 transition-all">
+<span class="material-symbols-outlined block mb-1 text-[20px]">warning</span>
+<span class="text-xs font-bold">Damaged</span>
+</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="condition" type="radio"/>
+<div class="p-3 rounded-lg border border-border-color bg-white text-center hover:bg-background-light peer-checked:bg-red-50 peer-checked:border-red-500 peer-checked:text-red-700 transition-all">
+<span class="material-symbols-outlined block mb-1 text-[20px]">cancel</span>
+<span class="text-xs font-bold">Lost</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Notes -->
+<div>
+<label class="block text-sm font-bold text-text-main mb-2">Audit Notes</label>
+<textarea class="w-full rounded-lg border-border-color bg-background-light focus:border-primary focus:ring-primary text-sm p-3" placeholder="Describe damage or missing components..." rows="3"></textarea>
+</div>
+<!-- Assignee Info (Read Only) -->
+<div class="bg-background-light rounded-lg p-3 flex items-center gap-3 border border-border-color">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Student profile" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBF0b7EX20Sy0gBJJvZKLHiYRDwzxl_TWCzB9g1dNRlfedU48-o6vtu3lfInUkL_C86jZoJy3tS2i7gmEApanrDDKoTMqVYAhMfQPATzaVKom5AC1FQQJvUAT31Aes7zCovOHFzhgc6rHuXKEW1E3nytG58_qnWDlWGJn0YAyc02gGfv2p2V-RZGdROa6Gj9Ywu4bIYnla5B-C1KqtFyOl_yGopPxarmfvrH8z2FlOvPN5O8tMwjeChfwQBzZL0HERTCoEdX9Ne0-Q');"></div>
+<div class="flex-1">
+<p class="text-xs text-text-sub uppercase font-bold">Assigned To</p>
+<p class="text-sm font-bold text-text-main">Sarah Jenkins (Grade 10)</p>
+</div>
+<button class="text-primary text-xs font-bold hover:underline">Change</button>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-5 border-t border-border-color bg-gray-50 flex gap-3">
+<button class="flex-1 bg-primary text-white font-bold py-3 rounded-lg shadow-lg hover:bg-primary-dark transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">save</span>
+                        Save Audit
+                    </button>
+<button class="px-5 border border-border-color bg-white text-text-main font-bold rounded-lg hover:bg-background-light transition-colors">
+                        Skip
+                    </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Nearby Assets List -->
+<div class="flex flex-col w-full lg:w-7/12 bg-white rounded-xl shadow-sm border border-border-color overflow-hidden">
+<div class="p-5 border-b border-border-color flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h3 class="text-lg font-bold text-text-main">Nearby Assets</h3>
+<p class="text-text-sub text-sm">Assets assigned to Room 302</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-sub text-[18px]">search</span>
+<input class="pl-9 pr-4 py-2 text-sm border-border-color rounded-lg bg-background-light focus:border-primary focus:ring-primary w-full sm:w-48" placeholder="Filter list..." type="text"/>
+</div>
+<button class="flex items-center justify-center size-9 rounded-lg border border-border-color bg-white text-text-sub hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 px-5 py-3 bg-background-light border-b border-border-color text-xs font-bold text-text-sub uppercase tracking-wider">
+<div class="col-span-5 sm:col-span-4">Asset Name</div>
+<div class="col-span-3 sm:col-span-2">Tag ID</div>
+<div class="hidden sm:block sm:col-span-3">Last Audit</div>
+<div class="col-span-4 sm:col-span-3 text-right">Status</div>
+</div>
+<!-- Scrollable List -->
+<div class="overflow-y-auto flex-1 p-0">
+<!-- Item 1 (Selected/Active feel) -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color bg-primary-light/10 hover:bg-primary-light/20 transition-colors items-center border-l-4 border-l-primary">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-white border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">laptop_chromebook</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">Acer Chromebook 314</span>
+<span class="text-xs text-text-sub">School Device</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main bg-white px-1.5 py-0.5 rounded border border-border-color">XIN-88392</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">history</span>
+                            Just now
+                        </span>
+</div>
+<div class="col-span-4 sm:col-span-3 text-right">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700 border border-blue-200">
+<span class="size-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                            In Review
+                        </span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color hover:bg-background-light transition-colors items-center border-l-4 border-l-transparent">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-background-light border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-text-sub text-[18px]">science</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">Digital Microscope 4x</span>
+<span class="text-xs text-text-sub">Lab Equipment</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main">XIN-92201</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+                        Oct 24, 2023
+                    </div>
+<div class="col-span-4 sm:col-span-3 flex justify-end gap-2">
+<button class="text-primary hover:bg-primary-light p-1.5 rounded transition-colors text-xs font-bold">Audit</button>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200">
+                            Good
+                        </span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color hover:bg-background-light transition-colors items-center border-l-4 border-l-transparent">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-background-light border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-text-sub text-[18px]">chair</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">Ergo Mesh Chair</span>
+<span class="text-xs text-text-sub">Furniture</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main">XIN-10293</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+                        Aug 12, 2023
+                    </div>
+<div class="col-span-4 sm:col-span-3 flex justify-end gap-2">
+<button class="text-primary hover:bg-primary-light p-1.5 rounded transition-colors text-xs font-bold">Audit</button>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700 border border-red-200">
+                            Damaged
+                        </span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color hover:bg-background-light transition-colors items-center border-l-4 border-l-transparent">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-background-light border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-text-sub text-[18px]">print</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">HP LaserJet Pro</span>
+<span class="text-xs text-text-sub">Printer</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main">XIN-44512</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+                        Sep 01, 2023
+                    </div>
+<div class="col-span-4 sm:col-span-3 flex justify-end gap-2">
+<button class="text-primary hover:bg-primary-light p-1.5 rounded transition-colors text-xs font-bold">Audit</button>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700 border border-green-200">
+                            Good
+                        </span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color hover:bg-background-light transition-colors items-center border-l-4 border-l-transparent">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-background-light border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-text-sub text-[18px]">router</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">Cisco Access Point</span>
+<span class="text-xs text-text-sub">Networking</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main">XIN-77281</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+                        Jan 15, 2024
+                    </div>
+<div class="col-span-4 sm:col-span-3 flex justify-end gap-2">
+<button class="text-primary hover:bg-primary-light p-1.5 rounded transition-colors text-xs font-bold">Audit</button>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-700 border border-gray-200">
+                            Pending
+                        </span>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="grid grid-cols-12 gap-4 px-5 py-4 border-b border-border-color hover:bg-background-light transition-colors items-center border-l-4 border-l-transparent">
+<div class="col-span-5 sm:col-span-4 flex items-center gap-3">
+<div class="size-8 rounded bg-background-light border border-border-color flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-text-sub text-[18px]">monitor</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-sm font-bold text-text-main truncate">Dell UltraSharp 27</span>
+<span class="text-xs text-text-sub">Monitor</span>
+</div>
+</div>
+<div class="col-span-3 sm:col-span-2">
+<span class="text-sm font-mono text-text-main">XIN-39201</span>
+</div>
+<div class="hidden sm:block sm:col-span-3 text-xs text-text-sub">
+                        Never Audited
+                    </div>
+<div class="col-span-4 sm:col-span-3 flex justify-end gap-2">
+<button class="text-primary hover:bg-primary-light p-1.5 rounded transition-colors text-xs font-bold">Audit</button>
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-700 border border-gray-200">
+                            Pending
+                        </span>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-border-color bg-gray-50 flex justify-center">
+<button class="text-sm font-bold text-primary hover:underline">View All Room Assets</button>
+</div>
+</div>
+</main>
+</body></html>

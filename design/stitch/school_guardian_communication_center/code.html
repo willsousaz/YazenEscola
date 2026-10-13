@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>School Guardian Portal - Communication Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1664f3",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation (Adapted from provided component) -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7ebf4] bg-white px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-4 text-[#0d121c]">
+<div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<h2 class="text-[#0d121c] text-lg font-bold leading-tight tracking-[-0.015em]">School Guardian Portal</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg size-10 bg-[#e7ebf4] hover:bg-[#dfe4ef] text-[#0d121c] transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white"></span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg size-10 bg-primary text-white hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg size-10 bg-[#e7ebf4] hover:bg-[#dfe4ef] text-[#0d121c] transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200" data-alt="Profile picture of the current user, a female teacher" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOWTKPAQs7Ka_I75ETxxWz33wAMB8Go6ik8A686gh1W940_UdIDTbARdqn9hPukStwSI63Y9PksJEWRlGt26C8SVafynftzdQS8lHhNR8njRu2zOP8MmC6XsvAoYNrEnmI9-0qqsEw3ozb3CnuRc_auAb3Eip5g9hA9_zCy8OEGTlmQoM02MwgajoXmAfhsnI6yCKFtCtFOUif30R5cDlrD4m2QKydvc8JIfxItS4KeB8EdUc0G9w4g9_LflnY8h0RoFqiLppv_xs");'></div>
+</div>
+</header>
+<!-- Main Content Grid -->
+<main class="flex flex-1 overflow-hidden">
+<!-- Column 1: Chat List -->
+<aside class="w-80 flex flex-col border-r border-[#e7ebf4] bg-white z-10">
+<!-- Search Header -->
+<div class="p-4 border-b border-[#e7ebf4]">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 placeholder-slate-400" placeholder="Search guardians..." type="text"/>
+</div>
+</div>
+<!-- List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="px-3 py-2 space-y-1">
+<h3 class="px-2 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-2">Active Conversations</h3>
+<!-- Chat Item 1 (Active) -->
+<button class="w-full flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10 transition-all text-left group">
+<div class="relative shrink-0">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200" data-alt="Portrait of Maria Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOKyrtUuT4ESj4Rm2sKZJz3dqD1pCucSaW7t5S2jcHWuLJuXpMDYOvH_Tzk89phAZ4XtCEuaSg-DPRKU20ZFLICHRW6idUtycHbl80lMfoTvvyHjgvWGmnFp2E37sHQbH55NHmE1Dv0QMnoMBwiuaLhIYPVLg32c5cCE3AzFF_1vWa5QpX2t0pNRB3UgEm-mfZw4p9I6BHEiAwdZdDkXhDyj3dG54pSLvbL5gTqJaRCWunIWbM0gpCcVSgKCWh7hrjN88mPXHOO6s");'></div>
+<span class="absolute bottom-0 right-0 size-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<span class="font-semibold text-slate-900 text-sm truncate">Maria Silva</span>
+<span class="text-xs text-primary font-medium">10:42 AM</span>
+</div>
+<p class="text-xs text-slate-500 truncate mb-1">Guardian of <span class="text-slate-700 font-medium">João Silva (5-B)</span></p>
+<p class="text-xs text-slate-600 truncate line-clamp-1">Thank you for the update, teacher!</p>
+</div>
+</button>
+<!-- Chat Item 2 -->
+<button class="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-all text-left group relative">
+<div class="relative shrink-0">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200" data-alt="Portrait of Pedro Santos" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjlIWWbBAL7vumufdoc0IuhPhQSNAT8WToJGGqtyonL1oshh3mLttlO2NjU3ohzjZp2uPiD8d6DxgFp_mVTfbzvHouwSQaNHO25mbF8n0OyGrI73-rgdV0lef1nqP54BRNDkjd7JfE1EF6scEadxHpnr7ysC0ZdhqxSJ0WtUCK2KQQvHsBsjQ5GDxz9Fzv9xeIjCgzduZOCvh1yJ_q3K3C4TJviceKDqHXd_5KuB69sejt6_ZQK9zuoywfLvcC_iQI4YM3PnmHg3o");'></div>
+<span class="absolute bottom-0 right-0 size-2.5 bg-slate-300 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<span class="font-semibold text-slate-900 text-sm truncate">Pedro Santos</span>
+<span class="text-xs text-slate-400">Yesterday</span>
+</div>
+<p class="text-xs text-slate-500 truncate mb-1">Guardian of <span class="text-slate-700 font-medium">Ana Santos (4-A)</span></p>
+<p class="text-xs text-slate-400 truncate line-clamp-1 font-medium text-slate-800">Can we schedule a call regarding Ana's performance in math?</p>
+</div>
+<span class="absolute right-3 top-1/2 mt-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm">1</span>
+</button>
+<!-- Chat Item 3 -->
+<button class="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-all text-left group">
+<div class="relative shrink-0">
+<div class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold text-sm border border-blue-200">CD</div>
+<span class="absolute bottom-0 right-0 size-2.5 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<span class="font-semibold text-slate-900 text-sm truncate">Carla Diaz</span>
+<span class="text-xs text-slate-400">Mon</span>
+</div>
+<p class="text-xs text-slate-500 truncate mb-1">Guardian of <span class="text-slate-700 font-medium">Lucas Diaz (5-B)</span></p>
+<p class="text-xs text-slate-400 truncate line-clamp-1">Confirmed. He will bring the signed form.</p>
+</div>
+</button>
+<!-- Chat Item 4 -->
+<button class="w-full flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-all text-left group">
+<div class="relative shrink-0">
+<div class="size-10 rounded-full bg-cover bg-center border border-slate-200" data-alt="Portrait of Sarah Connor" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzeaW4s_RMdrldNW8yv9G0mGbl8hgsOcq_Hq3zqZfUeBTftX0OQdFFCXpGuk6ktQGPdG8ZmQgE6yvV0DuClnXNq6pX0hkvrljOk2Q04CS3PzLmfxb9VhlhtKyzCc11VWwD9ZRmSKLRl0RuyJ1zjwn_o4quS--5PfLU8ZUJTFov58CsRNWMiMTeKubkqBJ3tVGjhFSUzKvOiGUGEuZAqbVIX7ny458X_LpNIS5IWA_TSyC4yuBhlpbTVcycfCTiTz2CFCCo4lBZ_NY");'></div>
+<span class="absolute bottom-0 right-0 size-2.5 bg-slate-300 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<span class="font-semibold text-slate-900 text-sm truncate">Sarah Connor</span>
+<span class="text-xs text-slate-400">Sun</span>
+</div>
+<p class="text-xs text-slate-500 truncate mb-1">Guardian of <span class="text-slate-700 font-medium">John Connor (6-A)</span></p>
+<p class="text-xs text-slate-400 truncate line-clamp-1">I'll check with him about the missing book.</p>
+</div>
+</button>
+</div>
+</div>
+</aside>
+<!-- Column 2: Active Conversation -->
+<section class="flex-1 flex flex-col bg-[#f8f9fc] min-w-0">
+<!-- Chat Header -->
+<div class="h-16 border-b border-[#e7ebf4] bg-white px-6 flex items-center justify-between shadow-sm z-10">
+<div>
+<h2 class="text-lg font-bold text-slate-900">João Silva <span class="text-sm font-normal text-slate-500 ml-2 bg-slate-100 px-2 py-0.5 rounded">Class 5-B</span></h2>
+<p class="text-xs text-slate-500 flex items-center gap-1">
+                        Chatting with <span class="font-medium text-slate-700">Maria Silva (Mother)</span>
+<span class="size-1.5 rounded-full bg-green-500 ml-1"></span>
+<span class="text-green-600 font-medium">Online</span>
+</p>
+</div>
+<div class="flex gap-2">
+<button class="size-9 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</button>
+<button class="size-9 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">videocam</span>
+</button>
+<button class="size-9 flex items-center justify-center rounded-lg text-slate-500 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar flex flex-col-reverse">
+<!-- Message Group: User (Teacher) -->
+<div class="flex flex-row-reverse gap-3 group">
+<div class="size-8 rounded-full bg-cover bg-center shrink-0 self-end mb-1" data-alt="Profile of teacher" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIRCp8grqCSD6RM71owUtPJwhxhLtcWEfqxPfzrb6uqRVIoPuAZzLQS6ClJiHrMoAkXj4-__9DsIkZPUzsvLBSBhGlEMLM-wNOIzbQnRW0sT6WzMT6lvClrn3l90kY98PNGixMDfKKo7w3JxGigGMn9WXCVZOempownHTZVL7RuEPREZ4BnfSH0J3M7v-alFggTj9eMVRQiTRnm2ArALj77bEwZHtHhzwY6XgW99tItLO0PVymuUzxMfGlLSiY6JEa2o0OdJ4dHJo");'></div>
+<div class="flex flex-col items-end max-w-[70%]">
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+<p class="text-sm leading-relaxed">Hello Maria, I wanted to let you know that João did excellently on his Geography project today. His presentation on the Amazon Biome was very thorough.</p>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 mr-1">10:30 AM • Read</span>
+</div>
+</div>
+<!-- Message Group: Guardian -->
+<div class="flex flex-row gap-3 group">
+<div class="size-8 rounded-full bg-cover bg-center shrink-0 self-end mb-1" data-alt="Profile of Maria Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB7mFv9JB4VuEilj8XGrEVYy0mp7pug3nC0D73MtD50_02zN2fIMBmp9rT5tYvlhQqEh9SlDRR27-6prQvbhUPBjHFVz3uuGcq2EIXvlNNJHf8meeibkRANO1ds7Y5Crp1xjSEGePyq9moYjS0BGi1UV6RylOvJ5AEOcMmjGsyJiehR0ajYDSZxCFF9lANoNARSkQyBUbb02OXJfk3SCwxFY3lskFqGG468_HQVri3i4SbRF33kWxb1nhC4jYPLlhKuKuxDxR9sl6U");'></div>
+<div class="flex flex-col items-start max-w-[70%]">
+<div class="bg-white border border-slate-200 text-slate-800 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+<p class="text-sm leading-relaxed">That is wonderful to hear! He worked very hard on it all weekend. We were a bit worried about the public speaking part.</p>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 ml-1">10:32 AM</span>
+</div>
+</div>
+<!-- Message Group: User (Teacher) -->
+<div class="flex flex-row-reverse gap-3 group">
+<div class="size-8 rounded-full bg-cover bg-center shrink-0 self-end mb-1" data-alt="Profile of teacher" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEmeGQOxk8u3LliSOWqk3-jJGYkdDj4t8Q1vFFHlDf6SnnSUh9AtDoWQayfo4iKM3tixTt5ouy_SqnCMEk5L3zLWY0XUo5By206v5Qho80WEvGueoBqfBd6lA2uNdE_-Oy7zhSwrPSPnelTd271t7MD6H8iVtsYMazEqJT9QcqXu2EzSmrZZi0_Lubk-0m-LGR2lI3O1GIlkcpaJj_sD3Jt7WvUsKRWpjDInP-fgyCPwr3rww9fHWA5oyFu-AgNxwNotr1slfh5_k");'></div>
+<div class="flex flex-col items-end max-w-[70%]">
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-sm shadow-sm">
+<p class="text-sm leading-relaxed">He was very confident. Also, just a reminder that the permission slip for the Science Museum trip is due by Friday.</p>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 mr-1">10:35 AM • Read</span>
+</div>
+</div>
+<!-- Message Group: Guardian -->
+<div class="flex flex-row gap-3 group">
+<div class="size-8 rounded-full bg-cover bg-center shrink-0 self-end mb-1" data-alt="Profile of Maria Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzJQ4OPaZzePxTrzaQQTwN73xW3u4KfY64ZqwGnxy4kOIob6i4XCw_4D-aPAz4HCl2-snxAntgFfCxoz5XZlGWe0tsYPQpSUdFrgIyK3BVsQcSRVfrZFFWn1t26E8Ivv2IVqDLXh4gXVfmmsS4CMJ2fjhfY0vzZbT-ncIW-UjsXwQKOR2tM-ejXylRRCVoLua5Ay7r2UnSHkY_jGScTXxRYIOaeF9qACPgbxbfzIto8AnSy7tnCecdh6IDAOPr0pCgmnLQBhWILSM");'></div>
+<div class="flex flex-col items-start max-w-[70%]">
+<div class="bg-white border border-slate-200 text-slate-800 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+<p class="text-sm leading-relaxed">Oh right! I completely forgot. I will sign it tonight and send it with him tomorrow morning.</p>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 ml-1">10:40 AM</span>
+</div>
+</div>
+<!-- Date Divider -->
+<div class="flex justify-center my-4">
+<span class="bg-slate-200 text-slate-500 text-xs px-3 py-1 rounded-full font-medium">Today</span>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-white border-t border-[#e7ebf4]">
+<div class="flex items-end gap-2 bg-slate-50 p-2 rounded-xl border border-slate-200 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+<span class="material-symbols-outlined text-[22px]">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none resize-none focus:ring-0 p-2 max-h-32 min-h-[44px] text-sm text-slate-800 placeholder-slate-400" placeholder="Type your message..." rows="1"></textarea>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors rounded-lg hover:bg-white">
+<span class="material-symbols-outlined text-[22px]">sentiment_satisfied</span>
+</button>
+<button class="p-2 bg-primary text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+<div class="text-[10px] text-slate-400 mt-2 text-center">Press Enter to send, Shift + Enter for new line</div>
+</div>
+</section>
+<!-- Column 3: Context Sidebar -->
+<aside class="w-80 bg-white border-l border-[#e7ebf4] flex flex-col overflow-y-auto custom-scrollbar shadow-[-4px_0_24px_rgba(0,0,0,0.02)] z-20">
+<!-- Student Header -->
+<div class="p-6 text-center border-b border-[#e7ebf4]">
+<div class="relative inline-block">
+<div class="size-24 mx-auto rounded-full bg-cover bg-center border-4 border-white shadow-md mb-3" data-alt="Portrait of student João Silva" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjTfvx3c24vmTn2McYcLmgLC-tcOYCtkj6YEGnts4s5Kwio5Ec_CUU9d__iK9z7S9jLXpPbtV17n3qXl0kTQQKiC1QZIXmwNDJyZTZRraKzhyPcmpdAKGB0Ye6FJKTImhCqKKryOGp0rG4HdYwbWW1eDHtg0NlJNvi1oKkg7BNvGDOTKZ-5kNn254R-Li6YXo1BS4QXtb_LIInG4dmQGWDenj5iq66jB9J-R_iuRq1PGFTJOas4MZwDVo05yph1vM11iXZ_glp6Ng");'></div>
+<div class="absolute bottom-4 right-1 bg-white p-1 rounded-full shadow-sm">
+<div class="bg-green-500 size-3 rounded-full"></div>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900">João Silva</h3>
+<p class="text-sm text-slate-500 font-medium">Student ID: #2024-8821</p>
+<div class="mt-4 flex justify-center gap-2">
+<span class="px-3 py-1 bg-blue-50 text-primary text-xs font-bold rounded-full border border-blue-100">5th Grade B</span>
+<span class="px-3 py-1 bg-purple-50 text-purple-600 text-xs font-bold rounded-full border border-purple-100">Morning Shift</span>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="p-6 border-b border-[#e7ebf4]">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Quick Actions</h4>
+<div class="grid grid-cols-2 gap-3">
+<button class="col-span-2 flex items-center justify-center gap-2 bg-primary text-white py-2.5 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined text-[18px]">calendar_add_on</span>
+                        Schedule Meeting
+                    </button>
+<button class="flex flex-col items-center justify-center gap-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-lg text-xs font-medium hover:bg-slate-50 hover:border-slate-300 transition-all">
+<span class="material-symbols-outlined text-[20px] text-slate-500">campaign</span>
+                        Broadcast
+                    </button>
+<button class="flex flex-col items-center justify-center gap-1 bg-white border border-slate-200 text-slate-700 py-3 rounded-lg text-xs font-medium hover:bg-slate-50 hover:border-slate-300 transition-all">
+<span class="material-symbols-outlined text-[20px] text-slate-500">assignment_ind</span>
+                        Report Card
+                    </button>
+</div>
+</div>
+<!-- Academic Context -->
+<div class="p-6">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Academic Overview</h4>
+<div class="space-y-5">
+<!-- Attendance -->
+<div>
+<div class="flex justify-between items-end mb-1">
+<span class="text-sm font-medium text-slate-700 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-slate-400">schedule</span>
+                                Attendance
+                            </span>
+<span class="text-sm font-bold text-emerald-600">92%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 92%"></div>
+</div>
+<p class="text-[10px] text-slate-400 mt-1">Last absence: Oct 12 (Medical)</p>
+</div>
+<!-- Grades -->
+<div>
+<div class="flex justify-between items-end mb-1">
+<span class="text-sm font-medium text-slate-700 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-slate-400">analytics</span>
+                                Grade Avg
+                            </span>
+<span class="text-sm font-bold text-primary">8.4</span>
+</div>
+<!-- Mini Breakdown -->
+<div class="grid grid-cols-3 gap-2 mt-2">
+<div class="bg-slate-50 p-2 rounded border border-slate-100 text-center">
+<div class="text-[10px] text-slate-500 mb-0.5">Math</div>
+<div class="font-bold text-sm text-slate-800">7.5</div>
+</div>
+<div class="bg-slate-50 p-2 rounded border border-slate-100 text-center">
+<div class="text-[10px] text-slate-500 mb-0.5">Hist</div>
+<div class="font-bold text-sm text-slate-800">9.0</div>
+</div>
+<div class="bg-slate-50 p-2 rounded border border-slate-100 text-center">
+<div class="text-[10px] text-slate-500 mb-0.5">Sci</div>
+<div class="font-bold text-sm text-slate-800">8.8</div>
+</div>
+</div>
+</div>
+<!-- Behavior Note -->
+<div class="pt-2">
+<div class="bg-amber-50 border border-amber-100 rounded-lg p-3">
+<div class="flex gap-2 mb-1">
+<span class="material-symbols-outlined text-amber-500 text-[18px]">info</span>
+<span class="text-xs font-bold text-amber-800">Teacher Note</span>
+</div>
+<p class="text-xs text-amber-700 leading-relaxed">
+                                João has been participating more in group activities. Keep encouraging him to speak up.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto p-4 text-center border-t border-[#e7ebf4]">
+<button class="text-xs text-primary font-medium hover:underline">View Full Student Profile</button>
+</div>
+</aside>
+</main>
+</body></html>

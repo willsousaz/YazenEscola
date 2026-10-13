@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal do Responsável - Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1754cf",
+                        "primary-hover": "#1346b0",
+                        "primary-light": "#eef4ff",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                        "neutral-surface": "#ffffff",
+                        "neutral-text-main": "#0e121b",
+                        "neutral-text-secondary": "#4e6797",
+                        "accent-success": "#10b981",
+                        "accent-warning": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(23, 84, 207, 0.08)',
+                        'card': '0 2px 8px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-neutral-text-main antialiased min-h-screen flex flex-col">
+<!-- Top Navigation with Student Switcher -->
+<header class="bg-neutral-surface border-b border-[#e7ebf3] sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16 sm:h-20">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div class="hidden md:flex flex-col">
+<h1 class="text-lg font-bold leading-tight text-primary">Portal do Responsável</h1>
+<span class="text-xs text-neutral-text-secondary font-medium">Sistema de Gestão Municipal</span>
+</div>
+</div>
+<!-- Center: Student Switcher (Prominent) -->
+<div class="flex-1 max-w-md mx-4 md:mx-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary">face</span>
+</div>
+<select class="block w-full pl-10 pr-10 py-2.5 sm:py-3 text-base font-medium border-none ring-1 ring-[#e7ebf3] rounded-xl bg-background-light focus:ring-2 focus:ring-primary focus:bg-white transition-all shadow-sm appearance-none cursor-pointer hover:ring-primary/50 text-neutral-text-main">
+<option selected="" value="student1">Miguel Silva (3º Ano A)</option>
+<option value="student2">Alice Silva (5º Ano B)</option>
+<option value="student3">Pedro Silva (1º Ano C)</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-neutral-text-secondary">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Right: Profile & Actions -->
+<div class="flex items-center gap-3 sm:gap-4">
+<button class="relative p-2 text-neutral-text-secondary hover:text-primary transition-colors rounded-full hover:bg-primary-light">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 sm:border-l border-[#e7ebf3]">
+<div class="hidden sm:flex flex-col items-end">
+<span class="text-sm font-bold text-neutral-text-main">Mariana Silva</span>
+<span class="text-xs text-neutral-text-secondary">Mãe / Responsável</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-white shadow-sm" data-alt="Profile picture of the guardian" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDq0mMgLs8cMm9Vi6HqZHe95Tr2Qoz60MmjSqk6uirWG_e755ce3pg38uLq7ZbdTDB8JbM2omAGiMjrFuDzfNUhmj2p_ENrBAiiC4TL7SSW8sQ5Uws42Px0oyEpjqmU2g-SiuLH8sccOIdFMNka6dAfOHdn9IFKqldVcGhk-pZCHr88iCteYKgfglfLXm0b-_P-z5KZ46voHM1Sl6dW3Pxcv3rjZ-ag_SSD39RmfSAywMdy8bHRB6jaN_lxTS6-c5JDfYVKAtm2As');"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Dashboard -->
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+<!-- Welcome Section -->
+<div class="mb-8">
+<h2 class="text-2xl sm:text-3xl font-bold text-neutral-text-main">Olá, Mariana! 👋</h2>
+<p class="text-neutral-text-secondary mt-1">Aqui está o resumo acadêmico do <span class="text-primary font-semibold">Miguel</span> hoje.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+<!-- LEFT COLUMN: Quick Actions & Stats (lg:col-span-7) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Quick Access Hub -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-neutral-text-main flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                            Acesso Rápido
+                        </h3>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Card 1: Boletim -->
+<button class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-card hover:shadow-soft hover:-translate-y-1 transition-all duration-300 group border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">assignment</span>
+</div>
+<span class="font-bold text-neutral-text-main text-sm text-center">Boletim Digital</span>
+<span class="text-xs text-neutral-text-secondary mt-1">Ver notas</span>
+</button>
+<!-- Card 2: Frequência -->
+<button class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-card hover:shadow-soft hover:-translate-y-1 transition-all duration-300 group border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">calendar_month</span>
+</div>
+<span class="font-bold text-neutral-text-main text-sm text-center">Frequência</span>
+<span class="text-xs text-neutral-text-secondary mt-1">Histórico</span>
+</button>
+<!-- Card 3: Chat -->
+<button class="relative flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-card hover:shadow-soft hover:-translate-y-1 transition-all duration-300 group border border-transparent hover:border-primary/10">
+<div class="absolute top-3 right-3 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-pulse"></div>
+<div class="w-14 h-14 bg-violet-50 text-violet-600 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">chat_bubble</span>
+</div>
+<span class="font-bold text-neutral-text-main text-sm text-center">Mensagens</span>
+<span class="text-xs text-neutral-text-secondary mt-1">Falar com Prof.</span>
+</button>
+<!-- Card 4: Calendário -->
+<button class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-card hover:shadow-soft hover:-translate-y-1 transition-all duration-300 group border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">event</span>
+</div>
+<span class="font-bold text-neutral-text-main text-sm text-center">Calendário</span>
+<span class="text-xs text-neutral-text-secondary mt-1">Eventos</span>
+</button>
+</div>
+</section>
+<!-- Academic Progress Widget -->
+<section class="bg-white p-6 rounded-2xl shadow-card border border-[#e7ebf3]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-neutral-text-main flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+                            Progresso Acadêmico (3º Bimestre)
+                        </h3>
+<button class="text-sm font-semibold text-primary hover:underline">Ver detalhado</button>
+</div>
+<div class="space-y-5">
+<!-- Subject 1 -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 text-xs font-bold">PT</span>
+<span class="text-sm font-bold text-neutral-text-main">Português</span>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-neutral-text-main">8.5</span>
+<span class="text-xs text-neutral-text-secondary">/ Meta 7.0</span>
+</div>
+</div>
+<div class="h-2.5 w-full bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Subject 2 -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-700 text-xs font-bold">MT</span>
+<span class="text-sm font-bold text-neutral-text-main">Matemática</span>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-neutral-text-main">6.8</span>
+<span class="text-xs text-red-500 font-medium">Atenção!</span>
+</div>
+</div>
+<div class="h-2.5 w-full bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-red-500 to-red-400 rounded-full" style="width: 68%"></div>
+</div>
+</div>
+<!-- Subject 3 -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-700 text-xs font-bold">HI</span>
+<span class="text-sm font-bold text-neutral-text-main">História</span>
+</div>
+<div class="text-right">
+<span class="text-lg font-bold text-neutral-text-main">9.2</span>
+<span class="text-xs text-neutral-text-secondary">/ Meta 7.0</span>
+</div>
+</div>
+<div class="h-2.5 w-full bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Marketing Banner / Announcement -->
+<div class="relative overflow-hidden rounded-2xl p-6 text-white shadow-soft">
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-indigo-600 z-0"></div>
+<div class="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4">
+<span class="material-symbols-outlined text-[140px]">school</span>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div>
+<h4 class="text-xl font-bold mb-1">Renovação de Matrícula 2024</h4>
+<p class="text-white/80 text-sm max-w-md">O período de renovação já está aberto. Garanta a vaga do seu filho antecipadamente.</p>
+</div>
+<button class="bg-white text-primary font-bold py-2 px-5 rounded-lg text-sm hover:bg-neutral-50 transition-colors shadow-lg whitespace-nowrap">
+                           Renovar Agora
+                       </button>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Activity Timeline (lg:col-span-5) -->
+<div class="lg:col-span-5">
+<section class="bg-white rounded-2xl shadow-card border border-[#e7ebf3] h-full flex flex-col">
+<div class="p-6 border-b border-[#e7ebf3] flex justify-between items-center bg-white rounded-t-2xl sticky top-0 z-10">
+<h3 class="text-lg font-bold text-neutral-text-main flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Linha do Tempo
+                        </h3>
+<span class="bg-primary/10 text-primary text-xs font-bold px-2 py-1 rounded">Hoje</span>
+</div>
+<div class="flex-1 overflow-y-auto max-h-[600px] p-6 space-y-8 scrollbar-hide">
+<!-- Timeline Item 1: Entry -->
+<div class="relative pl-8 border-l-2 border-primary/20 last:border-0">
+<div class="absolute -left-[9px] top-0 bg-white border-2 border-green-500 rounded-full w-4 h-4"></div>
+<div class="flex flex-col gap-1 -mt-1.5">
+<span class="text-xs font-bold text-neutral-text-secondary uppercase tracking-wider">07:30 - Entrada</span>
+<div class="bg-background-light p-4 rounded-xl border border-[#e7ebf3] mt-1 group hover:border-green-200 transition-colors">
+<div class="flex items-start gap-3">
+<div class="bg-green-100 p-2 rounded-lg text-green-600">
+<span class="material-symbols-outlined text-xl">login</span>
+</div>
+<div>
+<p class="text-sm font-bold text-neutral-text-main">Entrada na Escola</p>
+<p class="text-xs text-neutral-text-secondary mt-0.5">Catraca Principal • Reconhecimento Facial</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2: Lunch -->
+<div class="relative pl-8 border-l-2 border-primary/20">
+<div class="absolute -left-[9px] top-0 bg-white border-2 border-orange-400 rounded-full w-4 h-4"></div>
+<div class="flex flex-col gap-1 -mt-1.5">
+<span class="text-xs font-bold text-neutral-text-secondary uppercase tracking-wider">10:00 - Merenda Escolar</span>
+<div class="bg-background-light p-4 rounded-xl border border-[#e7ebf3] mt-1 group hover:border-orange-200 transition-colors">
+<div class="flex items-start gap-3">
+<div class="bg-orange-100 p-2 rounded-lg text-orange-600">
+<span class="material-symbols-outlined text-xl">restaurant</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-neutral-text-main">Cardápio do Dia</p>
+<p class="text-sm text-neutral-text-main mt-1">Estrogonofe de Frango, Arroz, Batata Palha e Salada.</p>
+<div class="mt-2 flex items-center gap-1 text-xs text-neutral-text-secondary">
+<span class="material-symbols-outlined text-sm">nutrition</span>
+<span>650 Kcal • Aprovado pela Nutricionista</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3: New Grade -->
+<div class="relative pl-8 border-l-2 border-primary/20">
+<div class="absolute -left-[9px] top-0 bg-white border-2 border-primary rounded-full w-4 h-4"></div>
+<div class="flex flex-col gap-1 -mt-1.5">
+<span class="text-xs font-bold text-neutral-text-secondary uppercase tracking-wider">11:15 - Nova Nota</span>
+<div class="bg-background-light p-4 rounded-xl border border-[#e7ebf3] mt-1 group hover:border-primary/30 transition-colors">
+<div class="flex items-start gap-3">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-xl">verified</span>
+</div>
+<div class="w-full">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-sm font-bold text-neutral-text-main">Avaliação Mensal</p>
+<p class="text-xs text-neutral-text-secondary">Matemática</p>
+</div>
+<span class="bg-white border border-gray-200 px-2 py-1 rounded text-sm font-bold text-neutral-text-main shadow-sm">8.5</span>
+</div>
+<button class="mt-3 w-full text-center text-xs font-semibold text-primary py-1.5 rounded bg-white border border-primary/20 hover:bg-primary hover:text-white transition-colors">Ver prova corrigida</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Item 4: Meeting Invitation -->
+<div class="relative pl-8 border-l-2 border-transparent">
+<div class="absolute -left-[9px] top-0 bg-white border-2 border-purple-500 rounded-full w-4 h-4"></div>
+<div class="flex flex-col gap-1 -mt-1.5">
+<span class="text-xs font-bold text-neutral-text-secondary uppercase tracking-wider">Ontem - Comunicado</span>
+<div class="bg-white p-4 rounded-xl border border-purple-200 shadow-sm mt-1 ring-1 ring-purple-100">
+<div class="flex items-start gap-3">
+<div class="bg-purple-100 p-2 rounded-lg text-purple-600">
+<span class="material-symbols-outlined text-xl">groups</span>
+</div>
+<div>
+<p class="text-sm font-bold text-neutral-text-main">Reunião de Pais e Mestres</p>
+<p class="text-xs text-neutral-text-secondary mt-1">Sexta-feira, 14 de Outubro às 18h.</p>
+<div class="mt-3 flex gap-2">
+<button class="px-3 py-1.5 bg-purple-600 text-white text-xs font-bold rounded-lg hover:bg-purple-700 transition-colors">Confirmar</button>
+<button class="px-3 py-1.5 bg-transparent text-neutral-text-secondary text-xs font-bold rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">Não posso ir</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End of feed indicator -->
+<div class="relative pl-8 pt-4">
+<div class="absolute -left-[5px] top-6 w-2 h-2 rounded-full bg-neutral-300"></div>
+<p class="text-xs text-neutral-text-secondary italic">Fim das atualizações recentes.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white border-t border-[#e7ebf3] mt-auto py-6">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-sm text-neutral-text-secondary">
+                © 2024 Secretaria Municipal de Educação de Xinguara.
+            </div>
+<div class="flex gap-6 text-sm text-neutral-text-secondary font-medium">
+<a class="hover:text-primary transition-colors" href="#">Ajuda</a>
+<a class="hover:text-primary transition-colors" href="#">Privacidade</a>
+<a class="hover:text-primary transition-colors" href="#">Termos</a>
+</div>
+</div>
+</footer>
+</body></html>

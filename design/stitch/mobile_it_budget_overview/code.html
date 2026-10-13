@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara IT Finance - Budget Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#105ef9",
+                        "primary-dark": "#0a40b0",
+                        "primary-light": "#eef4ff",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#0f1623",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2436",
+                        "text-main": "#0d121c",
+                        "text-secondary": "#47649e",
+                        "border-light": "#e6ebf4",
+                        "border-dark": "#2a3649",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        .gauge-circle {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-text-main antialiased selection:bg-primary/20 selection:text-primary min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light bg-surface-light px-6 py-4 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-4 text-text-main">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-text-main text-xl font-bold leading-tight tracking-[-0.015em]">Xinguara IT Finance</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<!-- Search Bar -->
+<div class="hidden md:flex w-full max-w-md items-center rounded-full bg-background-light border border-border-light px-4 py-2 transition-all focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="w-full bg-transparent border-none text-sm text-text-main placeholder:text-text-secondary focus:ring-0 ml-2" placeholder="Search transactions, budgets..."/>
+</div>
+<!-- Actions -->
+<div class="flex gap-3 items-center">
+<button class="flex size-10 items-center justify-center rounded-full bg-background-light text-text-main hover:bg-primary/10 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-surface-light"></span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-background-light text-text-main hover:bg-primary/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<div class="h-8 w-px bg-border-light mx-1"></div>
+<button class="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 hover:bg-background-light transition-colors">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 ring-2 ring-primary/10" data-alt="User profile picture of Alex Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXfSzzS8qY1YBurYQ_Tdc-gy4obcINryG-em6N3446rFruxgIAAcN1gNdQs0SnBvvIuJAJekWkeOqJ7pp0MfJFGgH48kOPMu0pVCLrGQJY52WB7kJoRpy51fY-6pGpio7Z2gIwffLxF26h-R8ats03XxmnDasqqiK50RbPlMuy0Bped3zf20uXb9xfwUaLLYWmeoudKVvhKVA2fgpVRbIQxw0JQVvtct_1-RFiATdCuEqXxx_GYn_cFjy6b9t8hJgeXpn_FI67TuI");'></div>
+<span class="hidden lg:block text-sm font-medium text-text-main">Alex Chen</span>
+<span class="material-symbols-outlined text-text-secondary text-sm hidden lg:block">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation (Desktop) -->
+<nav class="hidden lg:flex w-64 flex-col border-r border-border-light bg-surface-light p-4 gap-2 h-[calc(100vh-73px)] overflow-y-auto">
+<div class="mb-4 px-4 pt-2">
+<p class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Main Menu</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+                Budget &amp; Forecast
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+                Expenses
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">verified</span>
+                Approvals
+                <span class="ml-auto bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+                Vendors
+            </a>
+<div class="mt-8 mb-2 px-4">
+<p class="text-xs font-semibold text-text-secondary uppercase tracking-wider">Settings</p>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Configuration
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-background-light hover:text-text-main font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+                Help &amp; Support
+            </a>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-background-light p-4 md:p-8">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-text-main tracking-tight">Financial Overview</h1>
+<p class="text-text-secondary mt-1">October 2023 • IT Department</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-light border border-border-light rounded-lg text-sm font-medium text-text-main hover:bg-background-light transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Export Report
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            New Request
+                        </button>
+</div>
+</div>
+<!-- Top Stats Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Budget Gauge Card -->
+<div class="lg:col-span-1 bg-surface-light rounded-2xl p-6 shadow-sm border border-border-light flex flex-col items-center justify-center relative overflow-hidden">
+<h3 class="text-lg font-bold text-text-main w-full text-left mb-2">Monthly Budget</h3>
+<div class="relative size-56 flex items-center justify-center my-4">
+<!-- SVG Gauge -->
+<svg class="size-full gauge-circle" viewbox="0 0 100 100">
+<circle class="text-background-light stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-dasharray="251.2" stroke-dashoffset="62.8" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-black text-text-main tracking-tight">75%</span>
+<span class="text-sm font-medium text-text-secondary uppercase tracking-wide mt-1">Utilized</span>
+</div>
+</div>
+<div class="w-full flex justify-between items-end mt-2 border-t border-border-light pt-4">
+<div>
+<p class="text-sm text-text-secondary">Spent</p>
+<p class="text-xl font-bold text-text-main">$45,200</p>
+</div>
+<div class="text-right">
+<p class="text-sm text-text-secondary">Remaining</p>
+<p class="text-xl font-bold text-emerald-600">$14,800</p>
+</div>
+</div>
+</div>
+<!-- Pending Approvals & Alerts -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Quick Approvals -->
+<div class="bg-surface-light rounded-2xl p-6 shadow-sm border border-border-light flex-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold text-text-main flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500">pending_actions</span>
+                                    Quick Approvals
+                                </h3>
+<a class="text-sm font-medium text-primary hover:text-primary-dark" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<!-- Approval Item 1 -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-xl bg-background-light border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-md transition-all">
+<div class="flex items-start gap-4 flex-1">
+<div class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0">
+<span class="material-symbols-outlined">laptop_mac</span>
+</div>
+<div>
+<p class="font-semibold text-text-main">MacBook Pro 16" - M3 Max</p>
+<p class="text-sm text-text-secondary mt-1">Request from <span class="text-text-main font-medium">Sarah Miller (DevOps)</span></p>
+<div class="mt-2 flex items-center gap-3 text-xs text-text-secondary">
+<span class="bg-white border border-border-light px-2 py-0.5 rounded shadow-sm">Hardware</span>
+<span>•</span>
+<span>$3,499.00</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col gap-2 justify-center sm:min-w-[100px]">
+<button class="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors">Approve</button>
+<button class="flex-1 px-4 py-2 bg-white border border-border-light text-text-main text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors">Reject</button>
+</div>
+</div>
+<!-- Approval Item 2 -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-xl bg-background-light border border-transparent hover:border-primary/20 hover:bg-white hover:shadow-md transition-all">
+<div class="flex items-start gap-4 flex-1">
+<div class="size-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<div>
+<p class="font-semibold text-text-main">AWS Instance Scale-Up</p>
+<p class="text-sm text-text-secondary mt-1">Request from <span class="text-text-main font-medium">Auto-Scaling Group</span></p>
+<div class="mt-2 flex items-center gap-3 text-xs text-text-secondary">
+<span class="bg-white border border-border-light px-2 py-0.5 rounded shadow-sm">Cloud Infrastructure</span>
+<span>•</span>
+<span>Est. $450/mo</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col gap-2 justify-center sm:min-w-[100px]">
+<button class="flex-1 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors">Approve</button>
+<button class="flex-1 px-4 py-2 bg-white border border-border-light text-text-main text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors">Reject</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Two Columns -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Recent Large Expenses -->
+<div class="bg-surface-light rounded-2xl shadow-sm border border-border-light flex flex-col">
+<div class="p-6 border-b border-border-light flex justify-between items-center">
+<h3 class="text-lg font-bold text-text-main">Recent Large Expenses</h3>
+<button class="text-primary hover:bg-primary/5 rounded-lg p-1 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="p-4 flex-1">
+<div class="space-y-1">
+<!-- Expense Item -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-background-light transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-gray-500">storage</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main">Dell Enterprise</span>
+<span class="text-xs text-text-secondary">Server Upgrade - Rack B2</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-main">-$12,500.00</p>
+<p class="text-xs text-text-secondary">Oct 24, 2023</p>
+</div>
+</div>
+<!-- Expense Item -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-background-light transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-red-500">design_services</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main">Adobe Systems</span>
+<span class="text-xs text-text-secondary">Creative Cloud Licenses (Yearly)</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-main">-$4,200.00</p>
+<p class="text-xs text-text-secondary">Oct 22, 2023</p>
+</div>
+</div>
+<!-- Expense Item -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-background-light transition-colors group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-blue-500">videocam</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-text-main">Zoom Video Com.</span>
+<span class="text-xs text-text-secondary">Enterprise Plan Q4</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-main">-$1,850.00</p>
+<p class="text-xs text-text-secondary">Oct 20, 2023</p>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full py-2 text-sm text-text-secondary font-medium hover:text-primary transition-colors text-center border border-dashed border-border-light rounded-lg hover:border-primary/50 hover:bg-primary/5">View Full Transaction History</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Contract Renewals -->
+<div class="bg-surface-light rounded-2xl shadow-sm border border-border-light flex flex-col">
+<div class="p-6 border-b border-border-light flex justify-between items-center">
+<h3 class="text-lg font-bold text-text-main">Contract Renewals</h3>
+<span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded-full">2 Urgent</span>
+</div>
+<div class="p-4 flex-1">
+<div class="space-y-3">
+<!-- Renewal Card -->
+<div class="bg-background-light rounded-xl p-4 border border-l-4 border-l-yellow-500 border-t-border-light border-r-border-light border-b-border-light">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-main" style="font-size: 20px;">forum</span>
+<h4 class="text-sm font-bold text-text-main">Slack Enterprise Grid</h4>
+</div>
+<span class="text-xs font-bold text-yellow-600 bg-yellow-50 px-2 py-0.5 rounded">12 Days Left</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-text-secondary">Current Cost</p>
+<p class="text-sm font-semibold text-text-main">$15,000 / yr</p>
+</div>
+<button class="text-xs font-medium text-primary hover:underline">Review Terms</button>
+</div>
+</div>
+<!-- Renewal Card -->
+<div class="bg-background-light rounded-xl p-4 border border-l-4 border-l-blue-500 border-t-border-light border-r-border-light border-b-border-light">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-text-main" style="font-size: 20px;">cloud</span>
+<h4 class="text-sm font-bold text-text-main">AWS Reserved Instances</h4>
+</div>
+<span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">28 Days Left</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-text-secondary">Current Cost</p>
+<p class="text-sm font-semibold text-text-main">$8,500 / yr</p>
+</div>
+<button class="text-xs font-medium text-primary hover:underline">Review Terms</button>
+</div>
+</div>
+<div class="pt-2 text-center">
+<p class="text-xs text-text-secondary">Next renewal: Atlassian Jira (45 days)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

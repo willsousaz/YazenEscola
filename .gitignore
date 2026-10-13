@@ -1,0 +1,34 @@
+# SO / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Segredos
+.env
+.env.*
+!.env.example
+
+# Laravel (backend/)
+backend/vendor/
+backend/node_modules/
+backend/public/build/
+backend/public/hot
+backend/public/storage
+backend/storage/*.key
+backend/.phpunit.result.cache
+
+# Flutter (mobile/)
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins*
+
+# Python (solver/)
+solver/__pycache__/
+solver/.venv/
+*.pyc
+
+# Claude local
+.claude/settings.local.json

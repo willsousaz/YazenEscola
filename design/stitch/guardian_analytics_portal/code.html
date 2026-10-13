@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guardian Analytics Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1664f3",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .circular-chart {
+            display: block;
+            margin: 0 auto;
+            max-width: 80%;
+            max-height: 250px;
+        }
+        .circle-bg {
+            fill: none;
+            stroke: #e7ebf4;
+            stroke-width: 3.8;
+        }
+        .circle {
+            fill: none;
+            stroke-width: 3.8;
+            stroke-linecap: round;
+            animation: progress 1s ease-out forwards;
+        }
+        @keyframes progress {
+            0% { stroke-dasharray: 0 100; }
+        }
+        .percentage {
+            fill: #1664f3;
+            font-family: 'Lexend', sans-serif;
+            font-weight: bold;
+            font-size: 0.5em;
+            text-anchor: middle;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-800 dark:text-slate-100">
+<div class="flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="font-bold text-xl tracking-tight hidden sm:block">Xinguara Schools</span>
+</div>
+<!-- Center: Student Selector -->
+<div class="flex-1 max-w-xs mx-4">
+<div class="relative">
+<select class="block w-full rounded-lg border-0 py-2 pl-10 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6 bg-gray-50 dark:bg-gray-800 dark:text-white dark:ring-gray-700 cursor-pointer">
+<option>Gabriel Silva</option>
+<option>Ana Silva</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-primary">
+<span class="material-symbols-outlined text-sm">face</span>
+</div>
+</div>
+</div>
+<!-- Right: Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-gray-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-gray-900"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold overflow-hidden cursor-pointer" data-alt="User avatar placeholder">
+<img alt="Parent Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuWO5lc_dERD57AowVJmHaw3SapU_zHg5esGOZ0nLGIvnplfSB1rekgEE-_jNeVwm5tLtcEsUVSV9uyEr62OhmDCiM2sVtd_4VpDL0_ChRL27CAOh8L6zZdzgE_8MtU1-vCsD0-Bn-A7kMW3uH98fzEO_cRP2qPrhgZuY5Pk75_b6TcRF8NXSgMFbIPbXV2rJPrh5cFUHpUh_Kf3_SFgzwP1GJLvi2_WNBQBOrh76zITSY1pImJYEMjpOoUtSQttmBZdYn6GMB3F0"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Academic Overview</h1>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Summary for Term 2 - 2024</p>
+</div>
+<div class="flex gap-3">
+<button class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px] mr-2">download</span>
+                        Report Card
+                    </button>
+<button class="inline-flex items-center px-4 py-2 bg-primary hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm shadow-blue-500/30">
+<span class="material-symbols-outlined text-[18px] mr-2">analytics</span>
+                        Full Analysis
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Key Metrics (4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Overall Performance Card -->
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-300"></div>
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Overall Performance</h2>
+<div class="relative w-full flex justify-center mb-4">
+<svg class="circular-chart text-primary w-48 h-48" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle stroke-current" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" stroke-dasharray="82, 100"></path>
+<text class="percentage fill-current text-3xl" x="18" y="20.35">82%</text>
+</svg>
+</div>
+<div class="text-center">
+<span class="inline-flex items-center rounded-full bg-green-50 dark:bg-green-900/30 px-2.5 py-0.5 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">
+<span class="material-symbols-outlined text-[14px] mr-1">trending_up</span>
+                                +2.4% vs Last Term
+                            </span>
+<p class="text-sm text-gray-500 mt-3 px-4">Gabriel is performing above the class average in Science and Mathematics.</p>
+</div>
+</div>
+<!-- Attendance Card -->
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white">Attendance</h2>
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</div>
+</div>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-4xl font-bold text-gray-900 dark:text-white">94%</span>
+<span class="text-sm text-gray-500 dark:text-gray-400 mb-1">Presence Rate</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mb-4">
+<div class="bg-primary h-2.5 rounded-full" style="width: 94%"></div>
+</div>
+<div class="flex justify-between items-center text-sm border-t border-gray-100 dark:border-gray-700 pt-4 mt-2">
+<div class="flex flex-col">
+<span class="text-gray-500">Total Absences</span>
+<span class="font-semibold text-gray-900 dark:text-white">4 Days</span>
+</div>
+<span class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400 ring-1 ring-inset ring-blue-700/10">
+                                Good Standing
+                            </span>
+</div>
+</div>
+</div>
+<!-- Middle Column: Subject List (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col h-full">
+<div class="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white">Subject Performance</h2>
+<button class="text-sm text-primary font-medium hover:text-blue-700 flex items-center">
+                                Detailed Grades
+                                <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</button>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6 overflow-y-auto max-h-[600px]">
+<!-- Subject Item -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span> Mathematics
+                                    </span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">75%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full transition-all duration-500 group-hover:bg-blue-600" style="width: 75%"></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> History
+                                    </span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">90%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+<div class="bg-green-500 h-2.5 rounded-full transition-all duration-500 group-hover:bg-green-600" style="width: 90%"></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span> Science
+                                    </span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">60%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+<div class="bg-yellow-500 h-2.5 rounded-full transition-all duration-500 group-hover:bg-yellow-600" style="width: 60%"></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span> Geography
+                                    </span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">85%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+<div class="bg-purple-500 h-2.5 rounded-full transition-all duration-500 group-hover:bg-purple-600" style="width: 85%"></div>
+</div>
+</div>
+<!-- Subject Item -->
+<div class="group">
+<div class="flex justify-between mb-2">
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-indigo-500"></span> English
+                                    </span>
+<span class="text-sm font-bold text-gray-900 dark:text-white">88%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+<div class="bg-indigo-500 h-2.5 rounded-full transition-all duration-500 group-hover:bg-indigo-600" style="width: 88%"></div>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-gray-100 dark:border-gray-700 mt-auto bg-gray-50/50 dark:bg-gray-800/50 rounded-b-xl">
+<button class="w-full flex justify-center items-center py-3 px-4 bg-primary hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-md shadow-blue-500/20">
+                                View Full 4-Evaluation Breakdown
+                            </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Feedback & Notes (3 cols) -->
+<div class="lg:col-span-3 flex flex-col gap-6">
+<div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 h-full flex flex-col">
+<div class="p-6 border-b border-gray-100 dark:border-gray-700">
+<h2 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400">forum</span>
+                                Teacher Notes
+                            </h2>
+</div>
+<div class="p-4 flex-1 overflow-y-auto space-y-4">
+<!-- Note Item -->
+<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-2 mb-2">
+<div class="h-8 w-8 rounded-full overflow-hidden bg-gray-300" data-alt="Teacher avatar Ms. Silva">
+<img alt="Teacher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk99PkaNQoTtKGYZljmUIOnRk2J8c925mYJ5OONF04FHteUE0lkyGD3VaKvSXQsHAMzz4fI-NMBYh7vskTrbOAiNy7xDpfogMdkgkNY3vAjpxnW6enQ_3q6BXQLBZlYbpCnyN04_-hLafZGWm3fspl1nIAMhqDxM19ltVMhazWgnzeKucIB7EXYhjmEzeIcmN56TluQtlqCZCMXt5_D6r-Tp_G_EA0uKtyr65rYMV4oHmIu0Ts5JnInEL59fg-DreCrMkoIUPuE8o"/>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">Ms. Silva</p>
+<p class="text-[10px] uppercase tracking-wide text-gray-500">Mathematics • 2 days ago</p>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    "Showing great improvement in algebra. He has been very attentive during class exercises."
+                                </p>
+</div>
+<!-- Note Item -->
+<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-2 mb-2">
+<div class="h-8 w-8 rounded-full overflow-hidden bg-gray-300" data-alt="Teacher avatar Mr. Costa">
+<img alt="Teacher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ-5mKIBRAzFvCcHQvphCdYu3Sq4rpjaKBW4xdmabr5wkhIhHMG3vRQz5Sz5cbzyibF973oloDDH0ML4eZ6TFTgG9RxNTX8g8eZX4I5L9_zVojAK0xK1twEbzDKQq1gzhmAbH3gewiHDlqzk8tOtia_uU8Z1qgo6xgm4L7cLs93KZsbr6QkAKAT-HLhyV6oW77lppswO5FS-WfgUZJo-FhdN9PumvUW4WAfkxXXEkpZq-I-iwbSsnIKhv0NEOS-YpvLuiDzcqcmNU"/>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">Mr. Costa</p>
+<p class="text-[10px] uppercase tracking-wide text-gray-500">History • 5 days ago</p>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    "Please ensure homework is submitted on time next week. We have a major project due."
+                                </p>
+</div>
+<!-- Note Item -->
+<div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 border border-gray-100 dark:border-gray-600">
+<div class="flex items-center gap-2 mb-2">
+<div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold" data-alt="School Admin Icon">
+                                        SA
+                                    </div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">School Admin</p>
+<p class="text-[10px] uppercase tracking-wide text-gray-500">General • 1 week ago</p>
+</div>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    "Reminder: Parent-Teacher meeting scheduled for next Friday at 2 PM."
+                                </p>
+</div>
+</div>
+<div class="p-4 border-t border-gray-100 dark:border-gray-700">
+<button class="w-full flex justify-center items-center py-2 px-4 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg text-sm transition-colors">
+                                Contact Teachers
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

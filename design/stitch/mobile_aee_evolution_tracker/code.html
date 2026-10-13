@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AEE Evolution Tracker - João Silva</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#105ef9",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1623",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "sans": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d121c] dark:text-white min-h-screen flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e6ebf4] dark:border-gray-800 bg-white dark:bg-[#1a202c] px-6 py-3 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="text-primary size-8 flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<h2 class="text-[#0d121c] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">AEE Evolution Tracker</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#e6ebf4] dark:bg-gray-700 hover:bg-primary/10 hover:text-primary transition-colors text-[#0d121c] dark:text-gray-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#e6ebf4] dark:bg-gray-700 hover:bg-primary/10 hover:text-primary transition-colors text-[#0d121c] dark:text-gray-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Breadcrumb -->
+<div class="px-6 py-4 bg-background-light dark:bg-background-dark">
+<div class="flex flex-wrap gap-2 text-sm">
+<a class="text-[#47649e] dark:text-blue-400 font-medium hover:underline" href="#">Home</a>
+<span class="text-[#47649e] dark:text-gray-500 font-medium">/</span>
+<a class="text-[#47649e] dark:text-blue-400 font-medium hover:underline" href="#">Students</a>
+<span class="text-[#47649e] dark:text-gray-500 font-medium">/</span>
+<span class="text-[#0d121c] dark:text-gray-200 font-medium">João Silva</span>
+</div>
+</div>
+<!-- Main Content Grid -->
+<main class="flex-1 px-4 pb-12 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+<!-- Left Sidebar: Student Profile -->
+<aside class="lg:col-span-4 xl:col-span-3 space-y-6">
+<!-- Profile Card -->
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 shadow-sm border border-[#e6ebf4] dark:border-gray-800">
+<div class="flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="size-32 rounded-full overflow-hidden border-4 border-background-light dark:border-gray-700 shadow-md">
+<img alt="Portrait of a young student smiling" class="w-full h-full object-cover" data-alt="Portrait of a young student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADsU6DT1s-0HwtOqrq47F9SgwTheVcOD-tVTYZccu1rdGt4Y-FPENumNCbgCP_9iNoXPMnZWn41A-csMD8yIQNWrYkbPZt-bz1uSgZ-GCxbybnIFC0pHTf5duIWvrS1dZNCS2uov0g-U8g8ZadH72zV5pzoY8RzQFyjVI-Lz__O5Qq7ioRsIoH5kQXQllgA7mCi_AIoniG7yt44WZ9sfL1lp1SlcALdISVE0pEXm1ChKhHRegM-tDC_NZNTtM0snDud_HsCa2o5n0"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 h-5 w-5 rounded-full border-2 border-white dark:border-[#1a202c]" title="Present today"></div>
+</div>
+<h1 class="text-2xl font-bold text-[#0d121c] dark:text-white mb-1">João Silva</h1>
+<p class="text-[#47649e] dark:text-gray-400 text-sm font-medium mb-4">8 years old • 3rd Grade</p>
+<!-- Quick Context Badges -->
+<div class="flex flex-wrap justify-center gap-2 w-full mb-6">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                                Autism Spectrum (TEA)
+                            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                                Non-verbal
+                            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-800">
+                                Visual Learner
+                            </span>
+</div>
+<!-- Quick Actions -->
+<div class="grid grid-cols-2 gap-3 w-full">
+<button class="flex items-center justify-center gap-2 p-2 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition shadow-sm">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span>Schedule</span>
+</button>
+<button class="flex items-center justify-center gap-2 p-2 rounded-lg bg-white dark:bg-gray-800 border border-[#e6ebf4] dark:border-gray-700 text-[#0d121c] dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+<span class="material-symbols-outlined text-lg">folder_open</span>
+<span>Docs</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Strengths & Challenges -->
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl overflow-hidden shadow-sm border border-[#e6ebf4] dark:border-gray-800">
+<details class="group border-b border-[#e6ebf4] dark:border-gray-800" open="">
+<summary class="flex cursor-pointer items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+<div class="flex items-center gap-2 font-semibold text-[#0d121c] dark:text-white">
+<span class="material-symbols-outlined text-green-600">psychology</span>
+                                Strengths &amp; Interests
+                            </div>
+<span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed bg-white dark:bg-[#1a202c]">
+                            Visual memory, Puzzles, Sorting activities, Lego building. Responds well to token economy systems.
+                        </div>
+</details>
+<details class="group">
+<summary class="flex cursor-pointer items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+<div class="flex items-center gap-2 font-semibold text-[#0d121c] dark:text-white">
+<span class="material-symbols-outlined text-red-500">warning</span>
+                                Challenges &amp; Triggers
+                            </div>
+<span class="material-symbols-outlined text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="p-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed bg-white dark:bg-[#1a202c]">
+                            Sensory overload (loud noises), Transitions between activities without warning, Unexpected changes in routine.
+                        </div>
+</details>
+</div>
+<!-- Next Session Reminder -->
+<div class="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary/20 dark:to-primary/5 rounded-2xl p-5 border border-primary/20">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-primary dark:text-blue-300">Next Session</h3>
+<span class="text-xs font-semibold bg-white dark:bg-gray-800 text-primary px-2 py-1 rounded shadow-sm">Tomorrow</span>
+</div>
+<p class="text-2xl font-bold text-[#0d121c] dark:text-white">10:00 AM</p>
+<p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Sensory Integration Room</p>
+<button class="text-sm font-medium text-primary hover:underline flex items-center gap-1">
+                        Reschedule <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</aside>
+<!-- Right Column: Evolution Log -->
+<section class="lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
+<!-- New Entry Composer -->
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 shadow-sm border border-[#e6ebf4] dark:border-gray-800">
+<h3 class="text-lg font-bold text-[#0d121c] dark:text-white mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_note</span>
+                        Record Daily Evolution
+                    </h3>
+<div class="relative mb-4">
+<textarea class="w-full min-h-[120px] p-4 rounded-xl bg-background-light dark:bg-gray-900 border-none resize-none focus:ring-2 focus:ring-primary/50 text-[#0d121c] dark:text-gray-200 placeholder-gray-400 text-base leading-relaxed" placeholder="What did we achieve today? e.g., João completed the puzzle activity independently..."></textarea>
+<!-- Floating Voice Button inside textarea area on mobile, or toolbar on desktop -->
+<button class="absolute bottom-3 right-3 p-2 bg-white dark:bg-gray-800 rounded-full shadow-md text-gray-500 hover:text-primary transition-colors" title="Voice to Text">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium transition border border-transparent hover:border-gray-200 dark:hover:border-gray-600">
+<span class="material-symbols-outlined text-[20px]">add_a_photo</span>
+<span>Photo</span>
+</button>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-medium transition border border-transparent hover:border-gray-200 dark:hover:border-gray-600">
+<span class="material-symbols-outlined text-[20px]">add_alert</span>
+<span>Reminder</span>
+</button>
+</div>
+<div class="w-full sm:w-auto flex items-center gap-3">
+<div class="hidden sm:flex items-center gap-2 text-xs text-gray-400">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                Autosaved
+                            </div>
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all transform active:scale-95">
+<span>Save Entry</span>
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Timeline / Feed -->
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-[#0d121c] dark:text-white">History</h3>
+<div class="flex gap-2">
+<select class="bg-transparent text-sm font-medium text-gray-500 border-none focus:ring-0 cursor-pointer hover:text-primary">
+<option>All Activities</option>
+<option>Notes Only</option>
+<option>Photos Only</option>
+</select>
+</div>
+</div>
+<!-- Timeline Item: Today -->
+<div class="relative pl-8 before:absolute before:left-3 before:top-8 before:bottom-0 before:w-0.5 before:bg-gray-200 dark:before:bg-gray-700">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-sm z-10">
+<span class="material-symbols-outlined text-white text-[14px]">today</span>
+</div>
+<h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Today</h4>
+<!-- Card 1 -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl p-5 shadow-sm border border-[#e6ebf4] dark:border-gray-800 mb-4 transition hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="bg-blue-100 dark:bg-blue-900/30 text-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-lg">extension</span>
+</div>
+<span class="font-bold text-[#0d121c] dark:text-white">Motor Skills Activity</span>
+</div>
+<span class="text-xs text-gray-400 font-medium">10:30 AM</span>
+</div>
+<p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                                João successfully completed the texture matching activity without assistance. He seemed calm today and engaged with the materials for 15 minutes straight, which is a new record for him.
+                            </p>
+<!-- Attached Images -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+<div class="relative group cursor-pointer aspect-video rounded-lg overflow-hidden bg-gray-100">
+<img alt="Child hands playing with colorful puzzle pieces" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Child hands playing with colorful puzzle pieces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZOg2WOd7f3sLuOmIdUYQURmzoti-Fgc86WCGTchLwaUNE9J_4ACeEa5-iM1k0efBO4BbYLO-pyYSgb2eHyYg1y1x3rinU-Tqpald5j1QalklZjPIq58PzCN9Uhh0BQjs-rKBZWX6m_L0sNyp0x6gtDRXQGR_IEiX99wtBq-xUkG29ZNCfpG_rB6TJMrC9ebtR-hJ2g4KgRyuHvTwIqoHe7GipWg47iH9K4D9TZEQ-5pkCr1XhtplsiwUd0yMHu9AyEcYlJm_RW-w"/>
+</div>
+<div class="relative group cursor-pointer aspect-video rounded-lg overflow-hidden bg-gray-100">
+<img alt="Wooden educational toys on table" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" data-alt="Wooden educational toys on table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpeFvmKks94srphmB7NkXN-no9c75jsxW4McXJcvIj-wf7VgC_bTo9zGbLq_mU9Yh2RVoxCYISHxfHiBhCp9K-Z2CQ_xdS4PmjXUMBgC6di5j7APgKpigEjYUUzhaiul3lAwlzytHpCpToEv7yQzXzckTA_-YLtgN_hphCri9sAe0WCEk5mOCy9KVJVckNLmWKWZTPCQzTdASAvnrUdaOL0dh6KfwySNv9_lCAPmzJ3_u8mZt3OHkFI9r_RvA5kUAbSWv0aeSRHHo"/>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+<button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-primary transition">
+<span class="material-symbols-outlined text-sm">edit</span> Edit
+                                </button>
+<button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-red-500 transition">
+<span class="material-symbols-outlined text-sm">delete</span> Delete
+                                </button>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Yesterday -->
+<div class="relative pl-8 before:absolute before:left-3 before:top-8 before:bottom-0 before:w-0.5 before:bg-gray-200 dark:before:bg-gray-700 last:before:hidden">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center shadow-sm z-10">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-300 text-[14px]">history</span>
+</div>
+<h4 class="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Yesterday</h4>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl p-5 shadow-sm border border-[#e6ebf4] dark:border-gray-800 mb-4 transition hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="bg-purple-100 dark:bg-purple-900/30 text-purple-600 p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-lg">forum</span>
+</div>
+<span class="font-bold text-[#0d121c] dark:text-white">Communication Milestone</span>
+</div>
+<span class="text-xs text-gray-400 font-medium">2:15 PM</span>
+</div>
+<p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Used the PECS card for 'water' independently to request a drink. This is the first time he initiated the request without prompting.
+                            </p>
+<div class="mt-3 flex gap-2">
+<span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                    #PECS
+                                </span>
+<span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+                                    #Communication
+                                </span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl p-5 shadow-sm border border-[#e6ebf4] dark:border-gray-800 mb-4 transition hover:shadow-md">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="bg-orange-100 dark:bg-orange-900/30 text-orange-600 p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-lg">mood_bad</span>
+</div>
+<span class="font-bold text-[#0d121c] dark:text-white">Behavioral Note</span>
+</div>
+<span class="text-xs text-gray-400 font-medium">11:00 AM</span>
+</div>
+<p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Slight agitation during the transition from the playground to the classroom. We used the "Wait" card and visual timer, which helped de-escalate after about 3 minutes.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

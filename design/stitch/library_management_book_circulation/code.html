@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Xinguara Library Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "primary-dark": "#0e44b3",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+              "neutral-subtle": "#e7ebf3",
+            },
+            fontFamily: {
+              "display": ["Public Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      /* Custom Scrollbar for high-density tables */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cfd7e7; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4c669a; 
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d121b] antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7ebf3] bg-white px-10 py-3 shadow-sm z-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#0d121b]">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path>
+</svg>
+</div>
+<h2 class="text-[#0d121b] text-lg font-bold leading-tight tracking-[-0.015em]">Xinguara SMS - Library Module</h2>
+</div>
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-0.5" href="#">Dashboard</a>
+<a class="text-[#4c669a] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Catalog</a>
+<a class="text-[#4c669a] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Circulation</a>
+<a class="text-[#4c669a] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Students</a>
+<a class="text-[#4c669a] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Reports</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<!-- Global Search -->
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-[#cfd7e7] bg-background-light">
+<div class="text-[#4c669a] flex border-none items-center justify-center pl-3 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d121b] focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-[#4c669a] px-2 rounded-l-none border-l-0 text-sm font-normal leading-normal" placeholder="Global Search..." value=""/>
+</div>
+</label>
+<button class="text-[#4c669a] hover:text-primary relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-[#e7ebf3]">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-[#0d121b]">Maria Santos</p>
+<p class="text-xs text-[#4c669a]">Head Librarian</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#e7ebf3]" data-alt="Portrait of a female librarian" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAu6QiMQTTALK2wSFImofZ49z5QCU6dRn_WW_cOTfvxID7gvbvF1MpV_m9N-tJe2WbjiAqWQqBJe_Ll7rsAuOhzl0-LPxulGKA2CTS-4FD7pgwkEcGOm0V38DjilgP32MRU8KbyVLa2aaZcOwQyRUlg5tDLx10PP18X4wr8eWYFQkyEZijkHurSNYTVeA7HUeEh-q_mMnmQG-rTnSzR3U-gMWnIkR3WWiYLc1B5Wa3nQRqa8dl4y-oqwu64vnKReX18i60DsUQDgB4");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 max-w-[1600px] mx-auto w-full gap-8">
+<!-- Top Section: Stats & Analytics -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Quick Stats -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div>
+<h1 class="text-[#0d121b] text-3xl font-black leading-tight tracking-[-0.033em]">Library Dashboard</h1>
+<p class="text-[#4c669a] text-base font-normal mt-1">Manage resources, circulation, and student engagement.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-white border border-[#cfd7e7] text-[#0d121b] hover:bg-[#f8f9fc] text-sm font-bold shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">category</span>
+<span>Manage Categories</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white hover:bg-primary-dark text-sm font-bold shadow-md shadow-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Catalog New Book</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col justify-between gap-2 rounded-xl p-5 bg-white border border-[#e7ebf3] shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">menu_book</span>
+</div>
+<div>
+<p class="text-[#4c669a] text-sm font-semibold uppercase tracking-wider">Total Books</p>
+<p class="text-[#0d121b] text-3xl font-bold mt-1">12,450</p>
+</div>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-medium bg-[#e6f4ea] w-fit px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12 this week</span>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-2 rounded-xl p-5 bg-white border border-[#e7ebf3] shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">assignment_returned</span>
+</div>
+<div>
+<p class="text-[#4c669a] text-sm font-semibold uppercase tracking-wider">Active Loans</p>
+<p class="text-[#0d121b] text-3xl font-bold mt-1">843</p>
+</div>
+<div class="flex items-center gap-1 text-[#07883b] text-sm font-medium bg-[#e6f4ea] w-fit px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+5% vs last month</span>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-2 rounded-xl p-5 bg-white border border-[#e7ebf3] shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-red-600">running_with_errors</span>
+</div>
+<div>
+<p class="text-[#4c669a] text-sm font-semibold uppercase tracking-wider">Overdue</p>
+<p class="text-[#0d121b] text-3xl font-bold mt-1">27</p>
+</div>
+<div class="flex items-center gap-1 text-red-600 text-sm font-medium bg-red-50 w-fit px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Action needed</span>
+</div>
+</div>
+<div class="flex flex-col justify-between gap-2 rounded-xl p-5 bg-white border border-[#e7ebf3] shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-orange-500">pending_actions</span>
+</div>
+<div>
+<p class="text-[#4c669a] text-sm font-semibold uppercase tracking-wider">Reservations</p>
+<p class="text-[#0d121b] text-3xl font-bold mt-1">15</p>
+</div>
+<div class="flex items-center gap-1 text-[#4c669a] text-sm font-medium bg-gray-100 w-fit px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-sm">remove</span>
+<span>Stable</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytics Chart (Visual Representation) -->
+<div class="lg:col-span-4 flex flex-col h-full bg-white border border-[#e7ebf3] rounded-xl shadow-sm p-6">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-[#0d121b] text-lg font-bold">Most Read Categories</h3>
+<button class="text-primary text-sm font-medium hover:underline">View Report</button>
+</div>
+<div class="flex-1 flex items-center justify-center relative">
+<!-- Simple CSS Donut Chart representation -->
+<div class="relative size-48 rounded-full border-[24px] border-[#e7ebf3] flex items-center justify-center">
+<!-- Segments simulated with conic-gradient in style -->
+<div class="absolute inset-[-24px] rounded-full" style="background: conic-gradient(#135bec 0% 35%, #42a5f5 35% 60%, #90caf9 60% 80%, #e7ebf3 80% 100%); mask: radial-gradient(transparent 55%, black 56%); -webkit-mask: radial-gradient(transparent 55%, black 56%);"></div>
+<div class="flex flex-col items-center">
+<span class="text-2xl font-bold text-[#0d121b]">35%</span>
+<span class="text-xs text-[#4c669a]">Fiction</span>
+</div>
+</div>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-2 text-sm">
+<div class="flex items-center gap-2"><span class="size-3 rounded-full bg-primary"></span><span class="text-[#4c669a]">Fiction</span></div>
+<div class="flex items-center gap-2"><span class="size-3 rounded-full bg-[#42a5f5]"></span><span class="text-[#4c669a]">Science</span></div>
+<div class="flex items-center gap-2"><span class="size-3 rounded-full bg-[#90caf9]"></span><span class="text-[#4c669a]">History</span></div>
+<div class="flex items-center gap-2"><span class="size-3 rounded-full bg-[#e7ebf3]"></span><span class="text-[#4c669a]">Others</span></div>
+</div>
+</div>
+</section>
+<!-- Middle Section: Circulation & Overdue -->
+<section class="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start">
+<!-- Circulation Control -->
+<div class="xl:col-span-2 bg-white border border-[#e7ebf3] rounded-xl shadow-sm flex flex-col overflow-hidden">
+<div class="p-6 border-b border-[#e7ebf3] bg-[#fdfdfd]">
+<h2 class="text-[#0d121b] text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">qr_code_scanner</span>
+                        Circulation Control
+                    </h2>
+<p class="text-[#4c669a] text-sm mt-1">Quickly process borrowings and returns by scanning barcodes.</p>
+</div>
+<div class="p-6 grid gap-8">
+<!-- Toggle Switch for Mode -->
+<div class="flex p-1 bg-[#f1f3f7] rounded-lg self-start w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-6 py-2 rounded-md bg-white text-primary shadow-sm font-bold text-sm transition-all">Check-out (Loan)</button>
+<button class="flex-1 sm:flex-none px-6 py-2 rounded-md text-[#4c669a] hover:text-[#0d121b] font-medium text-sm transition-all">Check-in (Return)</button>
+</div>
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1">
+<label class="block text-sm font-medium text-[#0d121b] mb-1.5">Student ID / Name</label>
+<div class="flex rounded-lg shadow-sm">
+<span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-[#cfd7e7] bg-[#f8f9fc] text-[#4c669a]">
+<span class="material-symbols-outlined text-lg">person_search</span>
+</span>
+<input class="flex-1 block w-full rounded-none rounded-r-lg border-[#cfd7e7] focus:border-primary focus:ring-primary sm:text-sm p-2.5" placeholder="Search student..." type="text"/>
+</div>
+</div>
+<div class="flex-[2]">
+<label class="block text-sm font-medium text-[#0d121b] mb-1.5">Book Barcode / ISBN</label>
+<div class="flex rounded-lg shadow-sm">
+<span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-[#cfd7e7] bg-[#f8f9fc] text-[#4c669a]">
+<span class="material-symbols-outlined text-lg">barcode_reader</span>
+</span>
+<input class="flex-1 block w-full rounded-none border-[#cfd7e7] focus:border-primary focus:ring-primary sm:text-sm p-2.5" placeholder="Scan or type barcode..." type="text"/>
+<button class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-bold rounded-r-lg text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    Process Loan
+                                </button>
+</div>
+</div>
+</div>
+<!-- Recent Transactions Mini-Table -->
+<div class="mt-2">
+<h4 class="text-sm font-bold text-[#0d121b] mb-3 uppercase tracking-wider">Recent Activity</h4>
+<div class="overflow-hidden rounded-lg border border-[#e7ebf3]">
+<table class="min-w-full divide-y divide-[#e7ebf3]">
+<thead class="bg-[#f8f9fc]">
+<tr>
+<th class="px-4 py-2 text-left text-xs font-semibold text-[#4c669a] uppercase" scope="col">Time</th>
+<th class="px-4 py-2 text-left text-xs font-semibold text-[#4c669a] uppercase" scope="col">Action</th>
+<th class="px-4 py-2 text-left text-xs font-semibold text-[#4c669a] uppercase" scope="col">Book</th>
+<th class="px-4 py-2 text-left text-xs font-semibold text-[#4c669a] uppercase" scope="col">Student</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-[#e7ebf3]">
+<tr>
+<td class="px-4 py-2 text-sm text-[#4c669a]">10:42 AM</td>
+<td class="px-4 py-2"><span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">Loan</span></td>
+<td class="px-4 py-2 text-sm font-medium text-[#0d121b]">The Little Prince</td>
+<td class="px-4 py-2 text-sm text-[#4c669a]">Ana Silva (Grade 5B)</td>
+</tr>
+<tr>
+<td class="px-4 py-2 text-sm text-[#4c669a]">10:15 AM</td>
+<td class="px-4 py-2"><span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Return</span></td>
+<td class="px-4 py-2 text-sm font-medium text-[#0d121b]">Geography Atlas V2</td>
+<td class="px-4 py-2 text-sm text-[#4c669a]">João Pedro (Grade 8A)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Late Returns Management -->
+<div class="xl:col-span-1 bg-white border border-red-100 rounded-xl shadow-sm flex flex-col h-full">
+<div class="p-5 border-b border-red-100 bg-red-50/30 flex justify-between items-center">
+<div>
+<h2 class="text-[#0d121b] text-lg font-bold text-red-700 flex items-center gap-2">
+<span class="material-symbols-outlined">notification_important</span>
+                            Overdue Books
+                        </h2>
+</div>
+<button class="text-xs font-semibold text-primary hover:underline">View All</button>
+</div>
+<div class="flex-1 overflow-y-auto max-h-[400px] p-4 flex flex-col gap-4">
+<!-- Overdue Item 1 -->
+<div class="flex gap-3 p-3 rounded-lg border border-[#e7ebf3] bg-white hover:border-red-200 hover:shadow-sm transition-all">
+<div class="h-16 w-12 bg-gray-200 rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Book cover of Harry Potter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa7AOvlyWKfCd-brIG4uiboO2rsoVy-gjvKk0CxqgkoRmy_BwwaIIKvpSF3ApKhsCKwnrsfgB9Mo0NDpXv5C24ZoYg8u1fCpMYhZ7wxhwhqfgns59vZWKulKcMLSMGQxVlS-I-L9jGhiRj7p43-r5X6Rhx-ubxMuOy2DtMAzsJ1rW9avM1ssvpStQhiErm0MWKKs9NVzd-7I1og1OU1mUYGpxJe-6XhSncOQ8m0SET05qqxXZhHYs7gh5xG3XKhUokstw-kHeIkj8"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-sm font-bold text-[#0d121b] truncate">Harry Potter &amp; The...</h4>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">-4 days</span>
+</div>
+<p class="text-xs text-[#4c669a] mt-0.5">Student: <span class="font-medium text-[#0d121b]">Lucas M.</span></p>
+<button class="mt-2 w-full flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-[#0d121b] hover:bg-[#2a3441] py-1.5 rounded transition-colors">
+<span class="material-symbols-outlined text-sm">chat</span>
+                                Send Reminder
+                            </button>
+</div>
+</div>
+<!-- Overdue Item 2 -->
+<div class="flex gap-3 p-3 rounded-lg border border-[#e7ebf3] bg-white hover:border-red-200 hover:shadow-sm transition-all">
+<div class="h-16 w-12 bg-gray-200 rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Book cover of Calculus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_zCc5_Kdmd4Z130bq7wIHXNFTOBWi3eV-9fg9iiJmpUI1q5D_S2JRpedAnf0tzntAtOaI_HgYD_YrdemXUsNCBFTwNwCRZIHu5M2wvhUUvPKJsvXYxB3NTnJnChw3egLjYVK4nSYrBcni3X1QF-d4Hc6SwdP4sljVmksXQ0CSlSwUAbwrVt2XIfRnb74X1Coq5k1kDcdzd4aYr67OxH5sFJV83gQ4CHAvKREISkoDJXWArc5W9DvBF1JI8iz0-ctrjTvKLY0VIEU"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-sm font-bold text-[#0d121b] truncate">Advanced Calculus</h4>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">-2 days</span>
+</div>
+<p class="text-xs text-[#4c669a] mt-0.5">Student: <span class="font-medium text-[#0d121b]">Beatriz S.</span></p>
+<button class="mt-2 w-full flex items-center justify-center gap-1.5 text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 py-1.5 rounded transition-colors">
+<span class="material-symbols-outlined text-sm">check</span>
+                                Reminder Sent
+                            </button>
+</div>
+</div>
+<!-- Overdue Item 3 -->
+<div class="flex gap-3 p-3 rounded-lg border border-[#e7ebf3] bg-white hover:border-red-200 hover:shadow-sm transition-all">
+<div class="h-16 w-12 bg-gray-200 rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Book cover of History of Brazil" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDHVpza9xyHqmdSuw2E5_aPqG08tN5ur-n8IjNHde9leQbXAK9SZ-W9ca5F3ScB_Q4tqXG9jkRx4kvhIsvZ9qstWaW4g6mtKAySS-5MZuob8dOJEfPn6UOixgGQ884Y1Ipy_4OiveV50CGJP4M4QD8puEMb05QA2DOYXRv4FWqZJPGm1_WGJOQk3rKBwGkvoJd0Gl8nmbIwiqw9Li3sQFBxCKGpTiYLkMwSJJNxzlxak9W4LbMP8LgbuOgWAUiDpOL9OOnGPoKvtA"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-sm font-bold text-[#0d121b] truncate">History of Brazil</h4>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-1.5 py-0.5 rounded">-7 days</span>
+</div>
+<p class="text-xs text-[#4c669a] mt-0.5">Student: <span class="font-medium text-[#0d121b]">Carlos E.</span></p>
+<button class="mt-2 w-full flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-[#0d121b] hover:bg-[#2a3441] py-1.5 rounded transition-colors">
+<span class="material-symbols-outlined text-sm">chat</span>
+                               Send Reminder
+                           </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Catalog Management -->
+<section class="bg-white border border-[#e7ebf3] rounded-xl shadow-sm flex flex-col mb-10">
+<div class="p-6 border-b border-[#e7ebf3] flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="text-[#0d121b] text-xl font-bold">Catalog Management</h2>
+<p class="text-[#4c669a] text-sm mt-1">View and manage all library resources.</p>
+</div>
+<div class="flex gap-3">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-[#4c669a]">filter_list</span>
+</span>
+<select class="form-select pl-10 pr-8 py-2 rounded-lg border-[#cfd7e7] text-sm text-[#0d121b] focus:ring-primary focus:border-primary">
+<option>All Categories</option>
+<option>Fiction</option>
+<option>Science</option>
+<option>History</option>
+</select>
+</div>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-[#4c669a]">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 rounded-lg border-[#cfd7e7] text-sm text-[#0d121b] focus:ring-primary focus:border-primary w-full md:w-64" placeholder="Search catalog..." type="text"/>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-[#e7ebf3]">
+<thead class="bg-[#f8f9fc]">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-bold text-[#4c669a] uppercase tracking-wider w-20" scope="col">Cover</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-[#4c669a] uppercase tracking-wider" scope="col">Book Details</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-[#4c669a] uppercase tracking-wider" scope="col">Category</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-[#4c669a] uppercase tracking-wider" scope="col">ISBN</th>
+<th class="px-6 py-3 text-left text-xs font-bold text-[#4c669a] uppercase tracking-wider" scope="col">Status</th>
+<th class="relative px-6 py-3" scope="col">
+<span class="sr-only">Edit</span>
+</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-[#e7ebf3]">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="h-14 w-10 rounded bg-gray-200 overflow-hidden shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Cover of book The Alchemist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA923Az40heFZtZ45o_vpX_5Rw6hPHfdjrOjWAVMEarMWjbI-OB-N-Du_yCOHvvgwHk0MGLpSKQ_PL5eac3QlHn1gW80xW4_HbJXLF-8IoogtAy34uGIjNVclr56WgCMHeM1zVNL8W4SkQmz5gRQsoxOilwExrpRx5iQko0c3Xx3EAVz8u31bPd8tadZ_GkBJ-ocNyKY6d9ONoLHHjtiBJ5S60M9kcas8nBw4OahvGRn1QdAjQaoihAc_5whhrao6_HPS6YPwhssgw"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#0d121b]">The Alchemist</span>
+<span class="text-xs text-[#4c669a]">Paulo Coelho</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#4c669a]">Fiction / Adventure</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#0d121b] font-mono">978-0-06-112241-5</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
+                                    Available
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-[#4c669a] hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="h-14 w-10 rounded bg-gray-200 overflow-hidden shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Cover of book Intro to Physics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-zFvGSVGfhfhLcoaf8jLhgNpBGU1tbFC8U9rhjOcNWF-Ex0osYXCv_XaZvEbQGWBJnVetbOUG-UI7z-NygKEkDPuWMmOFyonjhwCRblnTyYwumXMROuiliQ_lMdjUEfX1XzfW6DHgKDLGh2b0UUJgZQ68VipBQ0REP5hpeNYdlYJNncSOtxtIXK9gU5QH7ouRH3MDO1w6ls3yee0n9C4fS1QZqSml3CqhWPoNsxpdTNSbKQFjdpIRGm-KfEvafmshzODZOJfl30A"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#0d121b]">Introduction to Physics</span>
+<span class="text-xs text-[#4c669a]">John D. Cutnell</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#4c669a]">Science / Education</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#0d121b] font-mono">978-0-471-15183-8</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                                    Borrowed
+                                </span>
+<span class="block text-[10px] text-[#4c669a] mt-1">Due: Oct 24</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-[#4c669a] hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="h-14 w-10 rounded bg-gray-200 overflow-hidden shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Cover of book Web Design 101" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9gZdKK7BTvYidzB_EzF1HomYomQXTEFZCFrlfI6xsQ3zH4zXHNW3FdbeJjFwTrhdau-jrtYzYNzMjjXvy6x2GGBLZpQD2aW3vKU2EbW08GEyZA2FRtOgW2MctZ6Q1SHVLBBXa9oXUn5a4OTtNLI7JwK7imhXrON9DOqlsDIQg8bXN7n9mlbpzO17om7CatyQj3gMkEYes944SemxSTQCyR9aEHziV7tf7SySQjcO5rMnZuasYvTIBB9Flf9CwI1b9w6iLH4Ev07o"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#0d121b]">Web Design 101</span>
+<span class="text-xs text-[#4c669a]">Sarah J. Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#4c669a]">Technology</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#0d121b] font-mono">978-1-59327-584-6</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
+                                    Late
+                                </span>
+<span class="block text-[10px] text-red-600 mt-1 font-bold">+2 Days</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-[#4c669a] hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50 group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="h-14 w-10 rounded bg-gray-200 overflow-hidden shadow-sm">
+<img class="h-full w-full object-cover" data-alt="Cover of book Modern Art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9lf2iJ4ri2cUvRSKL_0RiG2ZllIorzoPPazaiEHRfDqdjJf2FwCPD-pJxmDf4cECxx6r3gqukSU_6r2ZjxRfSaqHBlljMHhqrb3tLQIzR2f4Ju6nIwVRc8MD2qmVO3Yyapc8A3m5CMU3xQq5qVpdTEBI2ks8c5HRg0m4lKsc_UYUvw3uVZjtnan4NWfQ6W8h3ZeI0VyvN3FAAjMLzChPHmrmMNNNa6ADBZexQq-ZflEBCERvrePgUSodrfWxXHQmuh0wma26gR9A"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#0d121b]">Modern Art History</span>
+<span class="text-xs text-[#4c669a]">H.H. Arnason</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#4c669a]">Arts &amp; Design</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[#0d121b] font-mono">978-0-13-189565-6</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-800">
+                                    Reserved
+                                </span>
+<span class="block text-[10px] text-[#4c669a] mt-1">For: Pedro A.</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-[#4c669a] hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white px-4 py-3 flex items-center justify-between border-t border-[#e7ebf3] sm:px-6 rounded-b-xl">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-[#4c669a]">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">12450</span> results
+                        </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-[#cfd7e7] bg-white text-sm font-medium text-[#4c669a] hover:bg-gray-50" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary border-primary text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">1</a>
+<a class="bg-white border-[#cfd7e7] text-[#4c669a] hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">2</a>
+<a class="bg-white border-[#cfd7e7] text-[#4c669a] hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 border border-[#cfd7e7] bg-white text-sm font-medium text-[#4c669a]">...</span>
+<a class="bg-white border-[#cfd7e7] text-[#4c669a] hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#">8</a>
+<a class="bg-white border-[#cfd7e7] text-[#4c669a] hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">9</a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-[#cfd7e7] bg-white text-sm font-medium text-[#4c669a] hover:bg-gray-50" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,47 @@
+flowchart TD
+    %% ===== Acesso público =====
+    subgraph PUB[Acesso Público - sem login]
+        CID([Cidadão / TCM / Conselhos]) --> TRANSP[Portal da Transparência<br/>Fundeb • Indicadores • Cardápios • Lista de espera creches]
+        CID --> VALID[Validação de Documentos<br/>Histórico/Declaração via QR Code + hash]
+    end
+
+    %% ===== Autenticação =====
+    INI([Início do Sistema]) --> LOGIN[Login + MFA]
+    LOGIN --> CTX{Seleção de Contexto<br/>Perfil + Escola}
+    CTX -.->|1 pessoa pode ter N perfis<br/>em N escolas| CTX
+
+    %% ===== Perfis =====
+    CTX -->|SEMED / Gestor| SEMED
+    CTX -->|Diretor / Coordenador| DIR
+    CTX -->|Professor| PROF
+    CTX -->|Secretaria Escolar| SEC
+    CTX -->|Responsável| RESP
+    CTX -->|Monitor / Transporte| TRA
+    CTX -->|Merenda / Patrimônio| LOG
+    CTX -->|AEE / Biblioteca| SERV
+    CTX -->|Administrador / TI| ADM
+
+    subgraph MOD[Perfis e Módulos]
+        SEMED[SEMED / Gestor<br/>Dashboard da Rede • Evasão • Alertas • Mapa<br/>── Cadastros-base ──<br/>Servidores • Ano Letivo/Períodos • Calendário<br/>Disciplinas/Matriz Curricular • Escolas<br/>Config. Grade da Rede • Arbitragem de conflitos]
+        DIR[Diretor / Coordenador<br/>Dashboard da Escola • Turmas<br/>Lotação de Professores • Grade Horária<br/>PIP • Assistente IA • Aprovação de Diários]
+        PROF[Professor<br/>Minhas Turmas • Diário de Classe<br/>Frequência • Avaliações/Notas<br/>Aceite de Grade • Indisponibilidade]
+        SEC[Secretaria Escolar<br/>Pessoas • Matrícula • Movimentação<br/>Responsáveis • Documentos/Declarações<br/>Frequência de Servidores • Exportação Censo]
+        RESP[Responsável<br/>Filhos • Boletim • Frequência<br/>Tarefas • Avisos • Reuniões • Declarações]
+        TRA[Transporte<br/>Frota • Rotas • Pontos de Embarque<br/>Motoristas • Monitor Mobile • SOS]
+        LOG[Logística<br/>Merenda/PNAE • Estoque<br/>Patrimônio • Scanner QR]
+        SERV[Serviços Educacionais<br/>AEE/PDI • Biblioteca<br/>Histórico/Certificados]
+        ADM[Administrador / TI<br/>Usuários e Perfis • LGPD/Auditoria<br/>APIs/Webhooks • Offline • Importação]
+    end
+
+    %% ===== Camada de inteligência =====
+    subgraph IA[Camada de Inteligência]
+        IAC[Risco de Evasão • Score • Fatores<br/>NIS/CadÚnico • Frequência • Notas<br/>Intervenções • Insights]
+    end
+    PROF -.->|Frequência / Notas| IAC
+    SEC -.->|Movimentação / NIS| IAC
+    IAC -.->|PIP / Alertas| DIR
+    IAC -.->|Indicadores| SEMED
+
+    %% ===== Integrações =====
+    SEC -.->|Leiaute Educacenso| CENSO[(INEP / Educacenso)]
+    PROF -.->|Frequência beneficiários| PRES[(Sistema Presença / Bolsa Família)]

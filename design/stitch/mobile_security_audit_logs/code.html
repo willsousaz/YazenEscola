@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security Audit &amp; Logs - Municipal School Management System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1754cf",
+              "background-light": "#f6f6f8",
+              "background-dark": "#111621",
+              "surface-dark": "#1c2433",
+              "warning": "#f59e0b",
+              "danger": "#ef4444",
+              "success": "#10b981",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for log feed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #111621;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#243047] bg-white dark:bg-[#111722] px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-4">
+<div class="size-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">School Management System</h2>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Xinguara Municipal Admin • Security Audit</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium" href="#">Students</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium" href="#">Teachers</a>
+<a class="text-primary font-bold text-sm" href="#">Security Audit</a>
+</nav>
+<div class="h-6 w-px bg-slate-200 dark:bg-[#243047]"></div>
+<button class="flex items-center gap-2 cursor-pointer text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span class="text-sm font-medium hidden sm:block">Admin</span>
+</button>
+</div>
+</header>
+<!-- Main Content Layout -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden lg:flex w-64 flex-col border-r border-slate-200 dark:border-[#243047] bg-white dark:bg-[#111722] p-4 gap-2">
+<div class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2 px-3">Audit Tools</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">list_alt</span>
+                Access Logs
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#1c2433] transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">lock_person</span>
+                Permission Roles
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#1c2433] transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">vpn_key</span>
+                Password Policy
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#1c2433] transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[20px]">devices</span>
+                Active Sessions
+            </a>
+<div class="mt-auto p-4 rounded-xl bg-slate-50 dark:bg-[#1c2433] border border-slate-100 dark:border-[#243047]">
+<div class="flex items-center gap-2 mb-2 text-warning">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-bold text-sm">Security Alert</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-3">3 suspicious login attempts detected from unrecognized IPs in the last hour.</p>
+<button class="w-full py-1.5 bg-warning/20 hover:bg-warning/30 text-warning text-xs font-bold rounded transition-colors">Review Alerts</button>
+</div>
+</aside>
+<!-- Central Feed Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-slate-50 dark:bg-background-dark relative">
+<!-- Dashboard Stats & Filters Header -->
+<div class="p-6 md:p-8 pb-4 shrink-0">
+<div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+<div>
+<h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">Security Audit Log</h1>
+<p class="text-slate-500 dark:text-[#93a5c8]">Real-time monitoring of system access and administrative actions.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-end px-4 py-2 bg-white dark:bg-[#1c2433] border border-slate-200 dark:border-[#243047] rounded-lg shadow-sm">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Total Logins Today</span>
+<span class="text-xl font-bold text-slate-900 dark:text-white">1,245</span>
+</div>
+<div class="flex flex-col items-end px-4 py-2 bg-warning/10 border border-warning/20 rounded-lg shadow-sm">
+<span class="text-xs font-bold text-warning">Suspicious Activity</span>
+<span class="text-xl font-black text-warning">3</span>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between bg-white dark:bg-[#1c2433] p-4 rounded-xl shadow-sm border border-slate-200 dark:border-[#243047]">
+<!-- Search & Filter Group -->
+<div class="flex flex-1 flex-col sm:flex-row gap-3">
+<div class="relative flex-1 max-w-md group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border-none rounded-lg bg-slate-100 dark:bg-[#111621] text-slate-900 dark:text-white placeholder-slate-500 focus:ring-2 focus:ring-primary sm:text-sm transition-all" placeholder="Search by User, IP, or Action..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<label class="flex items-center gap-2 cursor-pointer select-none bg-slate-100 dark:bg-[#111621] px-3 py-2.5 rounded-lg border border-transparent hover:border-slate-300 dark:hover:border-slate-600 transition-colors">
+<input class="form-checkbox rounded text-primary border-slate-300 dark:border-slate-600 bg-transparent focus:ring-primary size-4" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">Sensitive Actions Only</span>
+</label>
+<button class="flex items-center justify-center p-2.5 rounded-lg bg-slate-100 dark:bg-[#111621] text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-[#243047] transition-colors border border-transparent" title="Filter Settings">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Critical Actions -->
+<div class="flex items-center justify-end border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-[#243047] pt-3 lg:pt-0 lg:pl-4 mt-3 lg:mt-0">
+<button class="flex items-center gap-2 px-4 py-2 bg-danger hover:bg-red-600 text-white text-sm font-bold rounded-lg shadow-sm shadow-red-900/20 transition-all active:scale-95 whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">power_settings_new</span>
+                            Remote Logout All Users
+                        </button>
+</div>
+</div>
+</div>
+<!-- Log Feed List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-6 md:px-8 pb-8">
+<div class="flex flex-col gap-3 max-w-5xl mx-auto">
+<!-- Date Header -->
+<div class="flex items-center gap-4 py-2">
+<div class="h-px bg-slate-200 dark:bg-[#243047] flex-1"></div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Today, Oct 24</span>
+<div class="h-px bg-slate-200 dark:bg-[#243047] flex-1"></div>
+</div>
+<!-- Log Item: Critical -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-white dark:bg-[#1c2433] border-l-4 border-warning shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute inset-0 bg-warning/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="flex items-start gap-4 flex-1">
+<div class="mt-1 p-2 rounded-full bg-warning/20 text-warning shrink-0">
+<span class="material-symbols-outlined text-[24px]">lock_clock</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-base font-bold text-slate-900 dark:text-white">Multiple Failed Logins</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-warning text-slate-900">Critical Alert</span>
+</div>
+<div class="text-sm text-slate-600 dark:text-slate-300">
+                                    User <span class="font-medium text-slate-900 dark:text-white">Mariana Silva</span> attempted access 5 times within 1 minute.
+                                </div>
+<div class="flex items-center gap-4 mt-1 text-xs text-slate-400 font-mono">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">smartphone</span> iPhone 13 Pro</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lan</span> 192.168.1.15</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pl-4 sm:border-l border-slate-100 dark:border-[#243047]">
+<span class="text-xs font-bold text-slate-400">10:42 AM</span>
+<button class="text-primary hover:text-white hover:bg-primary px-3 py-1.5 rounded text-xs font-bold transition-colors">Block User</button>
+</div>
+</div>
+<!-- Log Item: Sensitive -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-white dark:bg-[#1c2433] border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-4 flex-1">
+<div class="mt-1 p-2 rounded-full bg-primary/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">edit_document</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-base font-bold text-slate-900 dark:text-white">Grade Modified</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-primary/20 text-primary">Sensitive</span>
+</div>
+<div class="text-sm text-slate-600 dark:text-slate-300">
+                                    User <span class="font-medium text-slate-900 dark:text-white">Roberto Teacher</span> changed Mathematics grade for student ID #8821.
+                                </div>
+<div class="flex items-center gap-4 mt-1 text-xs text-slate-400 font-mono">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">laptop_mac</span> Chrome / MacOS</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lan</span> 172.16.0.42</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pl-4 sm:border-l border-slate-100 dark:border-[#243047]">
+<span class="text-xs font-bold text-slate-400">09:15 AM</span>
+<button class="text-slate-500 hover:text-white hover:bg-slate-700 px-3 py-1.5 rounded text-xs font-bold transition-colors">Details</button>
+</div>
+</div>
+<!-- Log Item: Standard -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-white dark:bg-[#1c2433] border-l-4 border-slate-300 dark:border-[#374151] shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-4 flex-1">
+<div class="mt-1 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 shrink-0">
+<span class="material-symbols-outlined text-[24px]">download</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-base font-bold text-slate-900 dark:text-white">Data Exported</span>
+</div>
+<div class="text-sm text-slate-600 dark:text-slate-300">
+                                    User <span class="font-medium text-slate-900 dark:text-white">Admin Staff</span> downloaded the monthly attendance report CSV.
+                                </div>
+<div class="flex items-center gap-4 mt-1 text-xs text-slate-400 font-mono">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">desktop_windows</span> Windows PC</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lan</span> 10.0.0.55</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pl-4 sm:border-l border-slate-100 dark:border-[#243047]">
+<span class="text-xs font-bold text-slate-400">08:30 AM</span>
+<button class="text-slate-500 hover:text-white hover:bg-slate-700 px-3 py-1.5 rounded text-xs font-bold transition-colors">Details</button>
+</div>
+</div>
+<!-- Log Item: Standard -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-white dark:bg-[#1c2433] border-l-4 border-slate-300 dark:border-[#374151] shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start gap-4 flex-1">
+<div class="mt-1 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 shrink-0">
+<span class="material-symbols-outlined text-[24px]">login</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="text-base font-bold text-slate-900 dark:text-white">User Login</span>
+</div>
+<div class="text-sm text-slate-600 dark:text-slate-300">
+                                    User <span class="font-medium text-slate-900 dark:text-white">Carla Mendez</span> logged in successfully.
+                                </div>
+<div class="flex items-center gap-4 mt-1 text-xs text-slate-400 font-mono">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">smartphone</span> Android App</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lan</span> 192.168.1.18</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pl-4 sm:border-l border-slate-100 dark:border-[#243047]">
+<span class="text-xs font-bold text-slate-400">08:15 AM</span>
+<button class="text-slate-500 hover:text-white hover:bg-slate-700 px-3 py-1.5 rounded text-xs font-bold transition-colors">Details</button>
+</div>
+</div>
+<!-- Date Header -->
+<div class="flex items-center gap-4 py-2 mt-4">
+<div class="h-px bg-slate-200 dark:bg-[#243047] flex-1"></div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Yesterday, Oct 23</span>
+<div class="h-px bg-slate-200 dark:bg-[#243047] flex-1"></div>
+</div>
+<!-- Log Item: Sensitive -->
+<div class="group flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-white dark:bg-[#1c2433] border-l-4 border-primary shadow-sm hover:shadow-md transition-shadow opacity-75 hover:opacity-100">
+<div class="flex items-start gap-4 flex-1">
+<div class="mt-1 p-2 rounded-full bg-primary/20 text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">key</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-base font-bold text-slate-900 dark:text-white">Password Reset</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-primary/20 text-primary">Sensitive</span>
+</div>
+<div class="text-sm text-slate-600 dark:text-slate-300">
+                                    Admin <span class="font-medium text-slate-900 dark:text-white">System Superuser</span> forced password reset for user ID #992.
+                                </div>
+<div class="flex items-center gap-4 mt-1 text-xs text-slate-400 font-mono">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">desktop_windows</span> Admin Console</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lan</span> 10.0.0.1</span>
+</div>
+</div>
+</div>
+<div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 pl-4 sm:border-l border-slate-100 dark:border-[#243047]">
+<span class="text-xs font-bold text-slate-400">05:45 PM</span>
+<button class="text-slate-500 hover:text-white hover:bg-slate-700 px-3 py-1.5 rounded text-xs font-bold transition-colors">Details</button>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center mt-8">
+<nav class="flex items-center gap-2 bg-white dark:bg-[#1c2433] p-1 rounded-lg border border-slate-200 dark:border-[#243047]">
+<button class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 disabled:opacity-50">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-sm font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#243047] text-sm font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-[#243047] text-sm font-medium">3</button>
+<span class="text-slate-400 px-1">...</span>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</main>
+</div>
+</body></html>
