@@ -12,8 +12,7 @@ Cliente inicial: **SEMED Xinguara (PA)**. "Yazen" é o nome do sistema; Xinguara
 docs/                  especificação e diagramas (fonte da verdade funcional)
   documentacao_telas_arquitetura_yazen.md
   diagramas/           01_fluxo_perfis.mmd, 02_erd.mmd, 03_fluxo_grade.mmd, visualizar.html
-design/stitch/         73 telas exportadas do Stitch (HTML Tailwind + PNG) — referência visual, não é código de produção
-backend/               Laravel (ainda não instalado)
+design/stitch/         76 telas exportadas do Stitch (HTML Tailwind + PNG) — referência visual, não é código de produção
 mobile/                Flutter (fase 2)
 solver/                Python OR-Tools para geração de horário (fase 2)
 ```
@@ -38,5 +37,5 @@ solver/                Python OR-Tools para geração de horário (fase 2)
 - [ ] Validar renderização dos diagramas (`docs/diagramas/visualizar.html`).
 - [ ] Diagramas UML (casos de uso, classes, estados, atividades, sequência, componentes) — sugerido PlantUML p/ casos de uso e componentes, Mermaid p/ o resto.
 - [ ] Confirmar se professores multi-escola em Xinguara têm dias fixos por escola.
-- [ ] Instalar Laravel em `backend/`.
+- [x] Instalar Laravel (instalado na raiz do repositório).
 - [ ] Ordem do MVP: (1) cadastros-base, acesso e matrícula → (2) diário, frequência e notas → (3) portal do responsável → (4) demais módulos → IA de evasão por último.
