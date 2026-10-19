@@ -12,7 +12,7 @@ Cliente inicial: **SEMED Xinguara (PA)**. "Yazen" é o nome do sistema; Xinguara
 docs/                  especificação e diagramas (fonte da verdade funcional)
   documentacao_telas_arquitetura_yazen.md
   diagramas/           01_fluxo_perfis.mmd, 02_erd.mmd, 03_fluxo_grade.mmd, visualizar.html
-design/stitch/         76 telas exportadas do Stitch (HTML Tailwind + PNG) — referência visual, não é código de produção
+design/stitch/         77 telas exportadas do Stitch (HTML Tailwind + PNG) — referência visual, não é código de produção
 mobile/                Flutter (fase 2)
 solver/                Python OR-Tools para geração de horário (fase 2)
 ```
